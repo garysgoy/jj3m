@@ -1,13 +1,4 @@
 <?
-include ("_login_chk.php");
-
-$username = "";
-$password = "";
-if(isset($_POST['username'])) {
-$username = $_POST['user_name'];
-$password = $_POST['password'];
-}
-
 $lang=0;
 $ls = new stdClass();
 $ls->title = array("3M System","3M 互助系统","3M 互助系統");
@@ -84,7 +75,7 @@ $ls->password = array("Login Password","登入密码","登入密碼");
             <div class="hpanel" style="opacity: 0.7;">
                 <div class="panel-body">
                         <form action="" id="loginForm" method="post">
-
+                            <input type="hidden" id="act" value="login">
                             <div class="form-group">
                                 <label class="control-label" for="username"><? echo $ls->username[$lang]; ?></label>
                                 <input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" class="form-control">
@@ -100,7 +91,7 @@ if ($ErrMsg<>"") {
   echo "<h3 style='color:red'>$ErrMsg</h3>";
 }
 ?>
-                            <button  id="login-btn" class="btn btn-success btn-block"><? echo $ls->login[$lang]; ?></button>
+                            <button  id="login-btn" class="btn btn-success btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
 <!--
                             <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
 -->
@@ -136,9 +127,24 @@ if ($ErrMsg<>"") {
 <script>
     $(document).keypress(function (e) {
         if (e.which == 13) {
-            $('#login-btn').click();
+            doLogin();
         }
     });
+
+    function doLogin() {
+        var act = $("#act").val();
+        var username = $("#username").val();
+        var password = $('#password').val();
+
+        $.post("_action_login.php",{act:act,username:username,password:password},function(result){
+            if(result.status == 'success') {
+              document.location.href = "dashboard.php";
+            } else {
+                alert(result.msg);
+              //show_msg(result.msg);
+            }
+        },"json");
+}
 </script>
 </body>
 
