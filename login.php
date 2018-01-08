@@ -100,7 +100,7 @@ if ($ErrMsg<>"") {
   echo "<h3 style='color:red'>$ErrMsg</h3>";
 }
 ?>
-                            <button class="btn btn-success btn-block"><? echo $ls->login[$lang]; ?></button>
+                            <button  id="login-btn" class="btn btn-success btn-block"><? echo $ls->login[$lang]; ?></button>
 <!--
                             <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
 -->
@@ -120,7 +120,6 @@ if ($ErrMsg<>"") {
 </div>
 </div>
 
-
 <!-- Vendor scripts -->
 <script src="./js/libs/jquery-3.2.1.min.js"></script>
 <script src="./js/bootstrap/bootstrap.min.js"></script>
@@ -134,7 +133,13 @@ if ($ErrMsg<>"") {
 <script src="/assets/vendor/sparkline/index.js"></script>
 <script src="/assets/vendor/toastr/build/toastr.min.js"></script>
 -->
-
+<script>
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $('#login-btn').click();
+        }
+    });
+</script>
 </body>
 
 </html>
