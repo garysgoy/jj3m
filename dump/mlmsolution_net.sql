@@ -1,0 +1,548 @@
+-- MySQL dump 10.13  Distrib 5.6.37, for Linux (x86_64)
+--
+-- Host: localhost    Database: mlmsolution_net
+-- ------------------------------------------------------
+-- Server version	5.6.37-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tblaccesslog`
+--
+
+DROP TABLE IF EXISTS `tblaccesslog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblaccesslog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `date` datetime NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `success` tinyint(1) NOT NULL,
+  `str` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblaccesslog`
+--
+
+LOCK TABLES `tblaccesslog` WRITE;
+/*!40000 ALTER TABLE `tblaccesslog` DISABLE KEYS */;
+INSERT INTO `tblaccesslog` VALUES (1,4,'jjroot','2018-01-02 23:55:19','::1',1,'11'),(2,1,'jjadmin','2018-01-03 00:01:48','::1',1,'11'),(3,1,'jjadmin','2018-01-03 00:05:14','::1',1,'112233'),(4,1,'jjadmin','2018-01-03 00:06:31','::1',1,'112233'),(5,5,'mem001','2018-01-03 00:10:30','::1',1,'112233'),(6,1,'jjadmin','2018-01-03 00:10:47','::1',1,'112233'),(7,5,'mem001','2018-01-03 00:11:29','::1',1,'112233'),(8,51,'patrick','2018-01-03 00:12:52','::1',1,'123456'),(9,1,'jjadmin','2018-01-03 00:16:39','::1',1,'112233'),(10,5,'mem001','2018-01-03 00:31:10','::1',1,'112233'),(11,51,'patrick','2018-01-03 00:31:57','::1',1,'123456'),(12,51,'patrick','2018-01-03 01:10:44','103.219.195.52',1,'123456'),(13,5,'mem001','2018-01-03 01:16:06','103.219.195.52',1,'112233'),(14,1,'jjadmin','2018-01-03 01:17:18','103.219.195.52',1,'112233'),(15,5,'mem001','2018-01-03 01:21:54','103.219.195.52',1,'112233'),(16,5,'mem001','2018-01-03 01:35:51','103.219.195.52',1,'112233'),(17,53,'bohboh','2018-01-03 01:36:44','103.219.195.52',1,'123456'),(18,1,'jjadmin','2018-01-03 01:37:47','103.219.195.52',1,'112233'),(19,5,'mem001','2018-01-03 01:38:13','103.219.195.52',1,'112233'),(20,1,'jjadmin','2018-01-03 01:49:05','103.219.195.52',1,'112233'),(21,5,'mem001','2018-01-03 01:49:45','103.219.195.52',1,'112233'),(22,1,'jjadmin','2018-01-03 01:54:00','103.219.195.52',1,'112233'),(23,5,'mem001','2018-01-03 01:54:21','103.219.195.52',1,'112233'),(24,1,'jjadmin','2018-01-03 02:33:37','103.219.195.52',1,'112233'),(25,51,'patrick','2018-01-03 02:33:55','103.219.195.52',1,'123456'),(26,51,'Patrick','2018-01-03 04:05:40','219.74.229.191',1,'123456'),(27,51,'patrick','2018-01-03 05:35:49','103.219.195.52',1,'123456'),(28,51,'Patrick','2018-01-03 08:10:34','219.74.229.191',1,'123456'),(29,51,'Patrick','2018-01-03 08:11:14','219.74.229.191',1,'123456'),(30,55,'shiokers','2018-01-03 08:13:06','219.74.229.191',1,'1password1'),(31,1,'jjadmin','2018-01-03 20:25:49','103.219.195.52',1,'112233'),(32,1,'jjadmin','2018-01-03 20:46:51','103.219.195.52',1,'112233'),(33,51,'patrick','2018-01-03 20:47:48','103.219.195.52',1,'123456');
+/*!40000 ALTER TABLE `tblaccesslog` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblaccesslog1`
+--
+
+DROP TABLE IF EXISTS `tblaccesslog1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblaccesslog1` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(80) DEFAULT NULL,
+  `l_date` datetime NOT NULL,
+  `l_type` varchar(4) DEFAULT NULL,
+  `l_note` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nodupe` (`user_name`,`l_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblaccesslog1`
+--
+
+LOCK TABLES `tblaccesslog1` WRITE;
+/*!40000 ALTER TABLE `tblaccesslog1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblaccesslog1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblbank`
+--
+
+DROP TABLE IF EXISTS `tblbank`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblbank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mem_id` int(11) NOT NULL,
+  `bk_desc` varchar(120) NOT NULL,
+  `bk_name` varchar(120) NOT NULL,
+  `bk_holder` varchar(120) NOT NULL,
+  `bk_account` varchar(120) NOT NULL,
+  `bk_extra` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mem_id` (`mem_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblbank`
+--
+
+LOCK TABLES `tblbank` WRITE;
+/*!40000 ALTER TABLE `tblbank` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblbank` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblcounter`
+--
+
+DROP TABLE IF EXISTS `tblcounter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblcounter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(10) NOT NULL,
+  `value` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblcounter`
+--
+
+LOCK TABLES `tblcounter` WRITE;
+/*!40000 ALTER TABLE `tblcounter` DISABLE KEYS */;
+INSERT INTO `tblcounter` VALUES (1,'GIVE',4),(2,'MEM',1),(3,'MISC',1);
+/*!40000 ALTER TABLE `tblcounter` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblhelp`
+--
+
+DROP TABLE IF EXISTS `tblhelp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblhelp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `g_type` varchar(1) NOT NULL,
+  `mem_id` int(11) NOT NULL,
+  `mgr_id` int(11) NOT NULL,
+  `g_date` datetime NOT NULL,
+  `g_plan` varchar(2) NOT NULL,
+  `g_amount` double NOT NULL,
+  `g_pending` double NOT NULL,
+  `status` varchar(1) NOT NULL,
+  `reentry` tinyint(1) NOT NULL,
+  `date_match` datetime NOT NULL,
+  `date_close` datetime NOT NULL,
+  `note` varchar(10) NOT NULL DEFAULT '',
+  `priority` int(11) NOT NULL DEFAULT '5',
+  `sms` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nodupe` (`mem_id`,`g_date`),
+  KEY `status` (`status`,`id`),
+  KEY `g_type` (`g_type`,`id`),
+  KEY `mgr_id` (`mgr_id`),
+  KEY `priority` (`g_type`,`priority`,`g_date`),
+  KEY `sms` (`sms`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblhelp`
+--
+
+LOCK TABLES `tblhelp` WRITE;
+/*!40000 ALTER TABLE `tblhelp` DISABLE KEYS */;
+INSERT INTO `tblhelp` VALUES (5,'P',51,5,'2018-01-03 08:12:39','1',7000,0,'C',1,'2018-01-03 20:27:24','0000-00-00 00:00:00','',5,0),
+(15,'P',55,51,'2018-01-03 08:13:20','1',7000,0,'C',1,'2018-01-03 20:27:30','0000-00-00 00:00:00','',5,0),
+(16,'G',0,0,'2018-01-03 20:26:50','',10000,1000,'P',1,'0000-00-00 00:00:00','0000-00-00 00:00:00','',4,0),
+(17,'G',10,0,'2018-01-03 20:27:03','',5000,0,'C',1,'2018-01-03 20:27:24','0000-00-00 00:00:00','',3,0);
+/*!40000 ALTER TABLE `tblhelp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblhelpdetail`
+--
+
+DROP TABLE IF EXISTS `tblhelpdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblhelpdetail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tran_id` int(11) NOT NULL,
+  `help_id` int(11) NOT NULL,
+  `mem_id` int(11) NOT NULL,
+  `g_type` varchar(1) NOT NULL,
+  `oth_id` int(11) NOT NULL,
+  `g_date` datetime NOT NULL,
+  `g_amount` double NOT NULL,
+  `g_timer` datetime NOT NULL,
+  `status` varchar(2) NOT NULL,
+  `images` text,
+  `notes` varchar(256) DEFAULT NULL,
+  `stage` int(11) NOT NULL DEFAULT '0',
+  `g_payment` datetime DEFAULT NULL,
+  `g_confirm` datetime DEFAULT NULL,
+  `g_extend` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`),
+  KEY `tran_id` (`tran_id`),
+  KEY `help_id` (`help_id`),
+  KEY `mem_id` (`mem_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblhelpdetail`
+--
+
+LOCK TABLES `tblhelpdetail` WRITE;
+/*!40000 ALTER TABLE `tblhelpdetail` DISABLE KEYS */;
+INSERT INTO `tblhelpdetail` VALUES (1,1,5,51,'P',10,'2018-01-03 20:27:24',5000,'2018-01-05 08:27:24','0',NULL,NULL,0,NULL,NULL,NULL),
+(2,1,17,10,'G',51,'2018-01-03 20:27:24',5000,'2018-01-05 08:27:24','0',NULL,NULL,0,NULL,NULL,NULL),
+(3,2,5,51,'P',0,'2018-01-03 20:27:24',2000,'2018-01-05 08:27:24','0',NULL,NULL,0,NULL,NULL,NULL),
+(4,2,16,0,'G',51,'2018-01-03 20:27:24',2000,'2018-01-05 08:27:24','0',NULL,NULL,0,NULL,NULL,NULL),
+(5,3,15,55,'P',0,'2018-01-03 20:27:30',7000,'2018-01-05 08:27:30','0',NULL,NULL,0,NULL,NULL,NULL),
+(6,3,16,0,'G',55,'2018-01-03 20:27:30',7000,'2018-01-05 08:27:30','0',NULL,NULL,0,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `tblhelpdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblmavro`
+--
+
+DROP TABLE IF EXISTS `tblmavro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblmavro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `help_id` int(11) NOT NULL,
+  `mem_id` int(11) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `username` varchar(30) DEFAULT NULL,
+  `m_type` varchar(1) DEFAULT NULL,
+  `date_created` datetime NOT NULL,
+  `release_days` smallint(6) NOT NULL,
+  `category` varchar(1) NOT NULL,
+  `real_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `nominal_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `wallet` smallint(6) NOT NULL,
+  `future_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `comment` varchar(30) NOT NULL,
+  `type` varchar(1) NOT NULL,
+  `op_type` varchar(1) NOT NULL,
+  `bonus` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `plan` int(11) NOT NULL DEFAULT '0',
+  `ctr` int(11) NOT NULL DEFAULT '0',
+  `date_close` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_release` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `op_level` int(11) NOT NULL DEFAULT '0',
+  `incentive` decimal(8,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`),
+  KEY `username` (`email`),
+  KEY `help_id` (`help_id`),
+  KEY `mem_id` (`mem_id`,`op_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblmavro`
+--
+
+LOCK TABLES `tblmavro` WRITE;
+/*!40000 ALTER TABLE `tblmavro` DISABLE KEYS */;
+INSERT INTO `tblmavro` VALUES (1,0,5,NULL,'patrick',NULL,'2018-01-03 00:12:29',0,'1',0.00,40.00,4,40.00,'patrick','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(2,0,4,NULL,'patrick',NULL,'2018-01-03 00:12:29',0,'1',0.00,20.00,4,20.00,'patrick','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(3,0,5,NULL,'calvin',NULL,'2018-01-03 01:17:03',0,'1',0.00,40.00,4,40.00,'calvin','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(4,0,4,NULL,'calvin',NULL,'2018-01-03 01:17:03',0,'1',0.00,20.00,4,20.00,'calvin','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(5,0,5,NULL,'bohboh',NULL,'2018-01-03 01:36:24',0,'1',0.00,40.00,4,40.00,'bohboh','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(6,0,4,NULL,'bohboh',NULL,'2018-01-03 01:36:24',0,'1',0.00,20.00,4,20.00,'bohboh','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(7,0,5,NULL,'steven',NULL,'2018-01-03 01:53:53',0,'1',0.00,40.00,4,40.00,'steven','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(8,0,4,NULL,'steven',NULL,'2018-01-03 01:53:53',0,'1',0.00,20.00,4,20.00,'steven','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(9,0,51,NULL,'shiokers',NULL,'2018-01-03 08:12:10',0,'1',0.00,40.00,4,40.00,'shiokers','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(10,0,5,NULL,'shiokers',NULL,'2018-01-03 08:12:10',0,'1',0.00,20.00,4,20.00,'shiokers','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(11,0,4,NULL,'shiokers',NULL,'2018-01-03 08:12:10',0,'1',0.00,20.00,4,20.00,'shiokers','N','N',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(12,5,51,NULL,'patrick',NULL,'2018-01-03 08:12:39',15,'1',7000.00,7000.00,1,7070.00,'patrick','U','B',0.00,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(13,5,5,NULL,'patrick',NULL,'2018-01-03 08:12:39',0,'1',0.00,7000.00,2,350.00,'patrick','U','R',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(14,5,5,NULL,'patrick',NULL,'2018-01-03 08:12:39',0,'1',0.00,7000.00,3,420.00,'patrick','U','M',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',1,0.00),(15,5,4,NULL,'patrick',NULL,'2018-01-03 08:12:39',0,'1',0.00,7000.00,3,210.00,'patrick','U','M',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',2,0.00),(16,15,55,NULL,'shiokers',NULL,'2018-01-03 08:13:20',15,'1',7000.00,7000.00,1,7000.00,'shiokers','U','B',0.00,1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(17,15,51,NULL,'shiokers',NULL,'2018-01-03 08:13:20',0,'1',0.00,7000.00,2,350.00,'shiokers','U','R',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',0,0.00),(18,15,51,NULL,'shiokers',NULL,'2018-01-03 08:13:20',0,'1',0.00,7000.00,3,420.00,'shiokers','U','M',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',1,0.00),(19,15,5,NULL,'shiokers',NULL,'2018-01-03 08:13:20',0,'1',0.00,7000.00,3,210.00,'shiokers','U','M',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',2,0.00),(20,15,4,NULL,'shiokers',NULL,'2018-01-03 08:13:20',0,'1',0.00,7000.00,3,140.00,'shiokers','U','M',0.00,0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00',3,0.00);
+/*!40000 ALTER TABLE `tblmavro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblmember`
+--
+
+DROP TABLE IF EXISTS `tblmember`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblmember` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT '1',
+  `fullname` varchar(33) DEFAULT NULL,
+  `referral` int(11) DEFAULT NULL,
+  `manager` int(11) DEFAULT NULL,
+  `ref_name` varchar(32) DEFAULT NULL,
+  `mgr_name` varchar(32) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `password` varchar(40) NOT NULL,
+  `password2` varchar(40) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `country` varchar(20) DEFAULT NULL,
+  `region` varchar(30) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL,
+  `currency` varchar(3) DEFAULT NULL,
+  `date_add` datetime DEFAULT NULL,
+  `date_manager` datetime DEFAULT '0000-00-00 00:00:00',
+  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `last_ip` varchar(20) DEFAULT NULL,
+  `wechat` varchar(30) DEFAULT NULL,
+  `alipay` varchar(32) DEFAULT NULL,
+  `whatsapp` varchar(32) DEFAULT NULL,
+  `line` varchar(50) DEFAULT NULL,
+  `last_ph` datetime DEFAULT '0000-00-00 00:00:00',
+  `ph_count` int(11) NOT NULL DEFAULT '0',
+  `directs` int(11) NOT NULL DEFAULT '0',
+  `total_ph` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `total_gh` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `status` varchar(1) DEFAULT NULL,
+  `pin` varchar(32) NOT NULL DEFAULT '',
+  `bankname` varchar(50) DEFAULT NULL,
+  `bankbranch` varchar(50) DEFAULT NULL,
+  `bankaccount` varchar(50) DEFAULT NULL,
+  `bankholder` varchar(70) DEFAULT NULL,
+  `pins` int(11) NOT NULL DEFAULT '0',
+  `note1` varchar(255) DEFAULT NULL,
+  `note2` varchar(255) DEFAULT NULL,
+  `autophdays` int(11) NOT NULL DEFAULT '0',
+  `feature` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblmember`
+--
+
+LOCK TABLES `tblmember` WRITE;
+/*!40000 ALTER TABLE `tblmember` DISABLE KEYS */;
+INSERT INTO `tblmember` VALUES (1,'jjadmin',9,'SYS Admin',0,0,NULL,NULL,'jja@tmcc.us','d0970714757783e6cf17b26fb8e2298f','d54d1702ad0f8326224b817c796763c9',NULL,'CN',NULL,'en','RMB','2015-06-03 01:51:00','0000-00-00 00:00:00','2018-01-03 20:46:51','103.219.195.52','',NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','','','','','',1700,NULL,NULL,0,''),(2,'jjpin1',8,'SYS Pin',0,0,NULL,NULL,'jjpin1@tmcc.us','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca',NULL,'CN',NULL,'en','RMB','2015-06-03 01:51:00','0000-00-00 00:00:00','2015-12-28 18:35:52','173.245.48.125','',NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','','','','','',22,NULL,NULL,0,''),(3,'jjmgr1',8,'SYS Manager',0,0,NULL,NULL,'jjmgr@tmcc.us','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca',NULL,'CN',NULL,'en','RMB','2015-06-03 01:51:00','0000-00-00 00:00:00','2015-11-25 11:31:54','::1','',NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','','','','','',0,NULL,NULL,0,''),(4,'jjroot',7,'System Root',0,0,NULL,NULL,'jjroot@tmcc.us','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','13232507619','CN',NULL,'en','RMB','2015-06-03 03:03:00','2015-11-24 16:55:10','2018-01-02 23:55:19','::1','','','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','JJ','','深圳罗湖国贸支行','aa','System Root',5057,NULL,NULL,0,''),(5,'mem001',7,'mem001',4,4,'jjroot','jjroot','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','13902313664','CN',NULL,'en','RMB','2015-06-03 11:11:00','2015-11-24 16:55:02','2018-01-03 01:54:21','103.219.195.52','13902313664','13902313664','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','hider0','中国工商银行','深圳和平','12343434532788','王登辉',11551,NULL,NULL,0,''),(6,'mem002',7,'mem002',5,5,'mem001','mem001','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','15017612207','CN',NULL,NULL,NULL,'2015-11-26 17:37:31','2015-11-28 14:26:29','2017-12-24 06:10:54','::1','','15017612207','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','003N9P2F5VIBVSVAXFM4','招商银行','','6214836555717889','曾浩贤',500,NULL,NULL,0,NULL),(7,'mem003',7,'mem003',6,6,'mem002','mem002','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','13825033994','CN',NULL,NULL,NULL,'2015-11-26 17:46:59','2015-11-28 14:55:29','2017-12-12 14:11:35','::1','','13825033994','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','0121V7FF37A3G01GJTDI','中国工商银行','请打支付宝','111','代镕宏',0,NULL,NULL,0,NULL),(8,'mem004',7,'mem004',7,7,'mem003','mem003','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','18588841689 ','CN',NULL,NULL,NULL,'2015-11-26 17:56:09','2015-11-28 14:55:16','2017-12-22 01:44:42','::1','','18588841689','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','01HTG541W7RZBDCD4JJM','中国工商银行','','请打支付宝','吴瑜英',1,NULL,NULL,0,NULL),(9,'mem005',7,'mem005',8,8,'mem004','mem004','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','13510628616','CN',NULL,NULL,NULL,'2015-11-26 17:57:48','2015-11-28 14:26:57','2017-10-11 22:35:19','::1','jasongoh888','60-164417813','2','3','0000-00-00 00:00:00',0,0,0.00,0.00,'A','Jason','中国建设银行','嘉宾路支行','6217007200031113072','GOH CHIN HONG',401,NULL,NULL,0,NULL),(10,'mem006',7,'mem006',9,9,'mem005','mem005','mem@163.com','d0970714757783e6cf17b26fb8e2298f','6512bd43d9caa6e02c990b0a82652dca','13544209332','CN',NULL,NULL,NULL,'2015-11-26 17:59:23','2015-11-28 14:27:08','2017-12-22 22:03:48','::1','sheirlly5633','60-125247973','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','Sheirlly','中国建设银行','深圳市嘉宾路（支行）','6236687200001552553','LIM POH ENG',305,NULL,NULL,0,NULL),(30,'mem601',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:37:34','0000-00-00 00:00:00','2017-12-16 03:57:01','::1',NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','01W6OK3DMRZ2Y6G8OHKV',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(31,'mem602',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:37:50','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','04496PN209U6YGWHNAFL',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(32,'mem603',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:37:59','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','05MFQS00IY65X78QRT9J',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(33,'mem604',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:05','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','187GGVE1F77RGK4KKM0X',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(34,'mem605',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:12','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','1BC039K01J46030J36KF',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(35,'mem606',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:19','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','1MTVUTRX40W6MD7O35IJ',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(36,'mem607',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:25','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','1OVQ367S4FOCFB4429D0',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(37,'mem608',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:31','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','1X50V142CLB12I396R6M',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(38,'mem609',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:38','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','29SY9IJC0RP6YFX4B54Q',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(39,'mem610',1,NULL,10,10,'mem006','mem006','aa@bb.com','6512bd43d9caa6e02c990b0a82652dca',NULL,'11','CN',NULL,NULL,NULL,'2017-12-16 03:38:45','0000-00-00 00:00:00','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','316DVT78UCA5V153UA62',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(51,'patrick',5,'Patrick',5,5,'mem001','mem001','patrick@gmail.com','e10adc3949ba59abbe56e057f20f883e','25d55ad283aa400af464c76d713c07ad','123','CN',NULL,NULL,NULL,'2018-01-03 00:12:29','2018-01-03 00:29:52','2018-01-03 20:47:48','103.219.195.52','','','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','0VU8747LTP4WR3A02JTA','中国工商银行','','','Patrick',0,NULL,NULL,0,NULL),(52,'calvin',5,NULL,5,5,'mem001','mem001','calvin@gmail.com','e10adc3949ba59abbe56e057f20f883e',NULL,'123456788','SG',NULL,NULL,NULL,'2018-01-03 01:17:03','2018-01-03 01:21:36','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','E4F74V4B8Y8SLV70W5NE',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(53,'bohboh',5,'Boh Chang Min',5,5,'mem001','mem001','bohboh@gmail.com','e10adc3949ba59abbe56e057f20f883e','25d55ad283aa400af464c76d713c07ad','123123123','SG',NULL,NULL,NULL,'2018-01-03 01:36:24','2018-01-03 01:37:59','2018-01-03 01:36:44','103.219.195.52','','','','','0000-00-00 00:00:00',0,0,0.00,0.00,'A','XGQ0OX191BU5ZRAN6DO2','中国工商银行','','','Boh Chang Min',0,NULL,NULL,0,NULL),(54,'steven',5,NULL,5,5,'mem001','mem001','steven@google.com','e10adc3949ba59abbe56e057f20f883e',NULL,'21312312312','SG',NULL,NULL,NULL,'2018-01-03 01:53:53','2018-01-03 01:54:10','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','0K9N5S5O543X1I97R6Q1',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL),(55,'shiokers',1,NULL,51,51,'patrick','patrick','admin@shiokers.com','4291d158464738b9b46967c6a8b0e219',NULL,'12345678','SG',NULL,NULL,NULL,'2018-01-03 08:12:10','0000-00-00 00:00:00','2018-01-03 08:13:06','219.74.229.191',NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',0,0,0.00,0.00,'A','0WOT2WEG9Q2TES9DF74Z',NULL,NULL,NULL,NULL,0,NULL,NULL,0,NULL);
+/*!40000 ALTER TABLE `tblmember` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblnews`
+--
+
+DROP TABLE IF EXISTS `tblnews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblnews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `newsdate` datetime NOT NULL,
+  `title1` varchar(100) NOT NULL,
+  `content1` longtext NOT NULL,
+  `title2` varchar(100) NOT NULL,
+  `content2` longtext NOT NULL,
+  `status` varchar(2) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblnews`
+--
+
+LOCK TABLES `tblnews` WRITE;
+/*!40000 ALTER TABLE `tblnews` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblnews` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblpin`
+--
+
+DROP TABLE IF EXISTS `tblpin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblpin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `managerid` int(11) DEFAULT NULL,
+  `requestdate` datetime NOT NULL,
+  `pin` varchar(40) NOT NULL,
+  `paid` varchar(3) NOT NULL,
+  `status` varchar(3) NOT NULL,
+  `useby` varchar(40) DEFAULT NULL,
+  `usedate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `note` varchar(50) NOT NULL,
+  `note1` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nodupe` (`managerid`,`requestdate`,`pin`),
+  KEY `requestby` (`managerid`)
+) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblpin`
+--
+
+LOCK TABLES `tblpin` WRITE;
+/*!40000 ALTER TABLE `tblpin` DISABLE KEYS */;
+INSERT INTO `tblpin` VALUES (1,5,'2018-01-03 00:11:17','QP4VC66CW9HR7FNE26S8','Y','O','52','2018-01-03 01:22:25','1',''),(2,5,'2018-01-03 00:11:17','AGVFZRNJBY8CG41C8T48','Y','O','51','2018-01-03 00:31:31','1',''),(3,5,'2018-01-03 00:11:17','5LLLA8714S19DVMDN2PB','Y','O','51','2018-01-03 00:31:31','1',''),(4,5,'2018-01-03 00:11:17','E4F74V4B8Y8SLV70W5NE','Y','U','calvin','2018-01-03 01:17:03','1',NULL),(5,5,'2018-01-03 00:11:17','184DP5QS1RFW6YP3591W','Y','O','51','2018-01-03 00:31:31','1',''),(6,5,'2018-01-03 00:11:17','BX96HBGGI6W172Z8VXAR','Y','O','51','2018-01-03 00:31:31','1',''),(7,5,'2018-01-03 00:11:17','X83D34GZK66XGP5RGFI4','Y','O','52','2018-01-03 01:22:25','1',''),(8,5,'2018-01-03 00:11:17','VHHESJLLR5BT22X73GT8','Y','O','52','2018-01-03 01:22:25','1',''),(9,5,'2018-01-03 00:11:17','2QBM5C803YB74I9TCM98','Y','O','51','2018-01-03 00:31:31','1',''),(10,5,'2018-01-03 00:11:17','OU767H0L0N86C939TXVC','Y','O','52','2018-01-03 01:22:25','1',''),(11,5,'2018-01-03 00:11:17','69I6Q864979AFJO13V8L','Y','O','51','2018-01-03 00:31:31','1',''),(12,5,'2018-01-03 00:11:17','QQIM52L923JR8MP8GT2L','Y','O','52','2018-01-03 01:22:25','1',''),(13,5,'2018-01-03 00:11:17','XGQ0OX191BU5ZRAN6DO2','Y','U','bohboh','2018-01-03 01:36:24','1',NULL),(14,5,'2018-01-03 00:11:17','LR0V4N605QT1G97GE4M5','Y','O','52','2018-01-03 01:22:10','1',''),(15,5,'2018-01-03 00:11:17','LMS6GS5UCZICZBT3S8MX','Y','O','52','2018-01-03 01:22:10','1',''),(16,5,'2018-01-03 00:11:17','JF3C31OY2EAWPJ2Q19Y7','Y','O','52','2018-01-03 01:22:10','1',''),(17,5,'2018-01-03 00:11:17','R5H0IP2XFTBBX1D9DJ86','Y','O','52','2018-01-03 01:22:25','1',''),(18,5,'2018-01-03 00:11:17','OT0R35667O661DO51CE8','Y','O','52','2018-01-03 01:22:25','1',''),(19,5,'2018-01-03 00:11:17','4XR5QLNPV505R8XU8KY8','Y','O','51','2018-01-03 00:31:31','1',''),(20,5,'2018-01-03 00:11:17','H95CSHZ0WVD2HY3O9RI6','Y','O','52','2018-01-03 01:22:10','1',''),(21,5,'2018-01-03 00:11:17','DHAQVMVYW8YQ513C2583','Y','O','51','2018-01-03 00:31:31','1',''),(22,5,'2018-01-03 00:11:17','0VU8747LTP4WR3A02JTA','Y','U','patrick','2018-01-03 00:12:29','1',NULL),(23,5,'2018-01-03 00:11:17','D5X22RG7O5M7883RR11H','Y','O','51','2018-01-03 00:31:31','1',''),(24,5,'2018-01-03 00:11:17','E858IUWEWF5DY48I5ZBN','Y','O','52','2018-01-03 01:22:10','1',''),(25,5,'2018-01-03 00:11:17','9T1DTCFA4P6995AYVZ3S','Y','O','51','2018-01-03 00:31:31','1',''),(26,5,'2018-01-03 00:11:17','8J7VJ8KZVI1RV61Y6URJ','Y','O','51','2018-01-03 00:31:31','1',''),(27,5,'2018-01-03 00:11:17','1COP3K9CE542GZHOC9UM','Y','O','51','2018-01-03 00:31:31','1',''),(28,5,'2018-01-03 00:11:17','ACY0SF7496GRX15NC261','Y','O','51','2018-01-03 00:31:31','1',''),(29,5,'2018-01-03 00:11:17','95H2MP5PP5Z0RL5PH3O8','Y','O','51','2018-01-03 00:31:31','1',''),(30,5,'2018-01-03 00:11:17','PD5797C90OUZD8D8Q5BD','Y','O','52','2018-01-03 01:22:25','1',''),(31,5,'2018-01-03 00:11:17','N9FUSTXO13Q6NUE6VUTD','Y','O','52','2018-01-03 01:22:10','1',''),(32,5,'2018-01-03 00:11:17','Y6I4HWCT5PQ4E0AP662F','Y','O','53','2018-01-03 01:38:30','1',''),(33,5,'2018-01-03 00:11:17','105534574LR9F1SMEP58','Y','O','51','2018-01-03 00:31:31','1',''),(34,5,'2018-01-03 00:11:17','YYBSKCLW2QD4KNTO7B1Q','Y','O','7','2018-01-03 01:41:48','1',''),(35,5,'2018-01-03 00:11:17','851N53J76TD0QM2D1435','Y','O','51','2018-01-03 00:31:31','1',''),(36,5,'2018-01-03 00:11:17','NY4ATZ88W2RG076Y2N2D','Y','O','52','2018-01-03 01:22:10','1',''),(37,5,'2018-01-03 00:11:17','BJ2BUE7BBZIDV73DBBG8','Y','O','51','2018-01-03 00:31:31','1',''),(38,5,'2018-01-03 00:11:17','X6G8R7OJJ5Y1Q2U33O5I','Y','O','52','2018-01-03 01:22:25','1',''),(39,5,'2018-01-03 00:11:17','Q3S940MYM427XGQOX9RZ','Y','O','52','2018-01-03 01:22:25','1',''),(40,5,'2018-01-03 00:11:17','J4NM5458CQ6TA2V0599N','Y','O','52','2018-01-03 01:22:10','1',''),(41,5,'2018-01-03 00:11:17','I402OAQPW60LH9MV487U','Y','O','52','2018-01-03 01:22:10','1',''),(42,5,'2018-01-03 00:11:17','66097R2GJPIA7H7X329E','Y','O','51','2018-01-03 00:31:31','1',''),(43,5,'2018-01-03 00:11:17','48YNK69DV045A72621AO','Y','O','51','2018-01-03 00:31:31','1',''),(44,5,'2018-01-03 00:11:17','XPZ52F5341C1FJ5EU9Y5','Y','O','53','2018-01-03 01:38:30','1',''),(45,5,'2018-01-03 00:11:17','R7WK907397948Z6F4U96','Y','O','52','2018-01-03 01:22:25','1',''),(46,5,'2018-01-03 00:11:17','YR63XIVXESX09Y0UCVVB','Y','O','53','2018-01-03 01:38:30','1',''),(47,5,'2018-01-03 00:11:17','D9R44UMP364JKIQDH29V','Y','O','51','2018-01-03 00:31:31','1',''),(48,5,'2018-01-03 00:11:17','G0BBGE27H6P5Q916C8IQ','Y','O','52','2018-01-03 01:22:10','1',''),(49,5,'2018-01-03 00:11:17','6R3CVP43MNUC408DN54A','Y','O','51','2018-01-03 00:31:31','1',''),(50,5,'2018-01-03 00:11:17','KJK63IAU6H90PB85UR3A','Y','O','52','2018-01-03 01:22:10','1',''),(51,5,'2018-01-03 00:11:17','VRCM29R5T701DZN8PCM7','Y','O','52','2018-01-03 01:22:25','1',''),(52,5,'2018-01-03 00:11:17','GV49Y49DAY985VEWH022','Y','O','52','2018-01-03 01:22:10','1',''),(53,5,'2018-01-03 00:11:17','GS61Y7LS806AIHB0CE46','Y','O','52','2018-01-03 01:22:10','1',''),(54,5,'2018-01-03 00:11:17','O3IG92BFN4IO25YYS2L3','Y','O','52','2018-01-03 01:22:25','1',''),(55,5,'2018-01-03 00:11:17','334G8T9GPMGNF1IK163S','Y','O','51','2018-01-03 00:31:31','1',''),(56,5,'2018-01-03 00:11:17','8YEE7J1TF7YMM369RTG3','Y','O','51','2018-01-03 00:31:31','1',''),(57,5,'2018-01-03 00:11:17','XL10413V416ZTZUB30BN','Y','O','53','2018-01-03 01:38:30','1',''),(58,5,'2018-01-03 00:11:17','2K1O1SSUGH0Q6J0YGTXG','Y','O','51','2018-01-03 00:31:31','1',''),(59,5,'2018-01-03 00:11:17','DQN401T57J2MBCU1EAYQ','Y','O','51','2018-01-03 00:31:31','1',''),(60,5,'2018-01-03 00:11:17','98655X5YYF1MCRD73ZD5','Y','O','51','2018-01-03 00:31:31','1',''),(61,5,'2018-01-03 00:11:17','F6P03YV47PEALTODFCCO','Y','O','52','2018-01-03 01:22:10','1',''),(62,5,'2018-01-03 00:11:17','IFCLA035ARW75V6AK0D6','Y','O','52','2018-01-03 01:22:10','1',''),(63,5,'2018-01-03 00:11:17','BZ0D7R3JTFTW9TSL1ZZG','Y','O','51','2018-01-03 00:31:31','1',''),(64,5,'2018-01-03 00:11:17','V43KX9CAG59Q067900C4','Y','O','52','2018-01-03 01:22:25','1',''),(65,5,'2018-01-03 00:11:17','5XKUKC26L6YUIVKFN1OT','Y','O','51','2018-01-03 00:31:31','1',''),(66,5,'2018-01-03 00:11:17','9TXS9686MUH5Z69XH6AF','Y','O','51','2018-01-03 00:31:31','1',''),(67,5,'2018-01-03 00:11:17','9R52XYV8N7MWKRX8K1E7','Y','O','51','2018-01-03 00:31:31','1',''),(68,5,'2018-01-03 00:11:17','OUMLLE07ECI5Z27HY794','Y','O','52','2018-01-03 01:22:25','1',''),(69,5,'2018-01-03 00:11:17','YEIE4AY2M6CS4G66CU39','Y','O','53','2018-01-03 01:38:30','1',''),(70,5,'2018-01-03 00:11:17','JIX6Y2XH6WWPH4J50Y0B','Y','O','52','2018-01-03 01:22:10','1',''),(71,5,'2018-01-03 00:11:17','P9AHXAD08GJVY26G69W0','Y','O','52','2018-01-03 01:22:25','1',''),(72,5,'2018-01-03 00:11:17','Q2V83T6F96B3D4Z92645','Y','O','52','2018-01-03 01:22:25','1',''),(73,5,'2018-01-03 00:11:17','0WOT2WEG9Q2TES9DF74Z','Y','O','51','2018-01-03 00:31:31','1',''),(74,5,'2018-01-03 00:11:17','A5FYGU3307ML9HPNDYXY','Y','O','51','2018-01-03 00:31:31','1',''),(75,5,'2018-01-03 00:11:17','7IVWS55F120KBW518608','Y','O','51','2018-01-03 00:31:31','1',''),(76,5,'2018-01-03 00:11:17','A4A6775R0XTR3O1OG559','Y','O','51','2018-01-03 00:31:31','1',''),(77,5,'2018-01-03 00:11:17','3VF16ZDR2IOKYRL6GD3U','Y','O','51','2018-01-03 00:31:31','1',''),(78,5,'2018-01-03 00:11:17','H189F6DNG929C6D9CGNL','Y','O','52','2018-01-03 01:22:10','1',''),(79,5,'2018-01-03 00:11:17','6B7V144GZ06I1D6E1D48','Y','O','51','2018-01-03 00:31:31','1',''),(80,5,'2018-01-03 00:11:17','E0V24998HHI0YWXI138X','Y','O','51','2018-01-03 00:31:31','1',''),(81,5,'2018-01-03 00:11:17','A50S5T4J6WDPE7I4J426','Y','O','51','2018-01-03 00:31:31','1',''),(82,5,'2018-01-03 00:11:17','41UR2R38H0TTD2Z68TJB','Y','O','51','2018-01-03 00:31:31','1',''),(83,5,'2018-01-03 00:11:17','W97XI5435CWE58452YY7','Y','O','52','2018-01-03 01:22:25','1',''),(84,5,'2018-01-03 00:11:17','AX7C8MX0EB22CI0Z0R3W','Y','O','51','2018-01-03 00:31:31','1',''),(85,5,'2018-01-03 00:11:17','T7QUTMPW6YP0S9HHQW64','Y','O','52','2018-01-03 01:22:25','1',''),(86,5,'2018-01-03 00:11:17','IGBW9475UX7HQ55V642E','Y','O','52','2018-01-03 01:22:10','1',''),(87,5,'2018-01-03 00:11:17','V180AZUOZ4CBW60355MS','Y','O','52','2018-01-03 01:22:25','1',''),(88,5,'2018-01-03 00:11:17','YU3V2P0WUZO3BQ5QL780','Y','O','6','2018-01-03 01:41:31','1',''),(89,5,'2018-01-03 00:11:17','A3Z520CNRRAZRLZ89583','Y','O','51','2018-01-03 00:31:31','1',''),(90,5,'2018-01-03 00:11:17','F5UO073LV9EJHW87HJ5N','Y','O','52','2018-01-03 01:22:10','1',''),(91,5,'2018-01-03 00:11:17','7PFH30VMCKJ9K89O4O8J','Y','O','51','2018-01-03 00:31:31','1',''),(92,5,'2018-01-03 00:11:17','2O90M9TQOAAW76I478F5','Y','O','51','2018-01-03 00:31:31','1',''),(93,5,'2018-01-03 00:11:17','9UW74RD3RF29R5WBO9OS','Y','O','51','2018-01-03 00:31:31','1',''),(94,5,'2018-01-03 00:11:17','80S317I1LQEAVWD10NEJ','Y','O','51','2018-01-03 00:31:31','1',''),(95,5,'2018-01-03 00:11:17','1IBL63904006OLLMW54T','Y','O','51','2018-01-03 00:31:31','1',''),(96,5,'2018-01-03 00:11:17','IGTU6S3PD57N9V6BDZ3V','Y','O','52','2018-01-03 01:22:10','1',''),(97,5,'2018-01-03 00:11:17','55ZNG18HF8UA476DL62V','Y','O','51','2018-01-03 00:31:31','1',''),(98,5,'2018-01-03 00:11:17','CEVX26P4WS22KT867FMG','Y','O','51','2018-01-03 00:31:31','1',''),(99,5,'2018-01-03 00:11:17','5GHK6QZ69FE67RJIK77W','Y','O','51','2018-01-03 00:31:31','1',''),(100,5,'2018-01-03 00:11:17','4BJ3EK85T2ODYZ63XG1G','Y','O','51','2018-01-03 00:31:31','1',''),(101,51,'2018-01-03 00:31:31','0WOT2WEG9Q2TES9DF74Z','Y','U','shiokers','2018-01-03 08:12:10','',''),(102,51,'2018-01-03 00:31:31','105534574LR9F1SMEP58','Y','N',NULL,'0000-00-00 00:00:00','',''),(103,51,'2018-01-03 00:31:31','184DP5QS1RFW6YP3591W','Y','N',NULL,'0000-00-00 00:00:00','',''),(104,51,'2018-01-03 00:31:31','1COP3K9CE542GZHOC9UM','Y','N',NULL,'0000-00-00 00:00:00','',''),(105,51,'2018-01-03 00:31:31','1IBL63904006OLLMW54T','Y','N',NULL,'0000-00-00 00:00:00','',''),(106,51,'2018-01-03 00:31:31','2K1O1SSUGH0Q6J0YGTXG','Y','N',NULL,'0000-00-00 00:00:00','',''),(107,51,'2018-01-03 00:31:31','2O90M9TQOAAW76I478F5','Y','N',NULL,'0000-00-00 00:00:00','',''),(108,51,'2018-01-03 00:31:31','2QBM5C803YB74I9TCM98','Y','N',NULL,'0000-00-00 00:00:00','',''),(109,51,'2018-01-03 00:31:31','334G8T9GPMGNF1IK163S','Y','N',NULL,'0000-00-00 00:00:00','',''),(110,51,'2018-01-03 00:31:31','3VF16ZDR2IOKYRL6GD3U','Y','N',NULL,'0000-00-00 00:00:00','',''),(111,51,'2018-01-03 00:31:31','41UR2R38H0TTD2Z68TJB','Y','N',NULL,'0000-00-00 00:00:00','',''),(112,51,'2018-01-03 00:31:31','48YNK69DV045A72621AO','Y','N',NULL,'0000-00-00 00:00:00','',''),(113,51,'2018-01-03 00:31:31','4BJ3EK85T2ODYZ63XG1G','Y','N',NULL,'0000-00-00 00:00:00','',''),(114,51,'2018-01-03 00:31:31','4XR5QLNPV505R8XU8KY8','Y','N',NULL,'0000-00-00 00:00:00','',''),(115,51,'2018-01-03 00:31:31','55ZNG18HF8UA476DL62V','Y','N',NULL,'0000-00-00 00:00:00','',''),(116,51,'2018-01-03 00:31:31','5GHK6QZ69FE67RJIK77W','Y','N',NULL,'0000-00-00 00:00:00','',''),(117,51,'2018-01-03 00:31:31','5LLLA8714S19DVMDN2PB','Y','N',NULL,'0000-00-00 00:00:00','',''),(118,51,'2018-01-03 00:31:31','5XKUKC26L6YUIVKFN1OT','Y','N',NULL,'0000-00-00 00:00:00','',''),(119,51,'2018-01-03 00:31:31','66097R2GJPIA7H7X329E','Y','N',NULL,'0000-00-00 00:00:00','',''),(120,51,'2018-01-03 00:31:31','69I6Q864979AFJO13V8L','Y','N',NULL,'0000-00-00 00:00:00','',''),(121,51,'2018-01-03 00:31:31','6B7V144GZ06I1D6E1D48','Y','N',NULL,'0000-00-00 00:00:00','',''),(122,51,'2018-01-03 00:31:31','6R3CVP43MNUC408DN54A','Y','N',NULL,'0000-00-00 00:00:00','',''),(123,51,'2018-01-03 00:31:31','7IVWS55F120KBW518608','Y','N',NULL,'0000-00-00 00:00:00','',''),(124,51,'2018-01-03 00:31:31','7PFH30VMCKJ9K89O4O8J','Y','N',NULL,'0000-00-00 00:00:00','',''),(125,51,'2018-01-03 00:31:31','80S317I1LQEAVWD10NEJ','Y','N',NULL,'0000-00-00 00:00:00','',''),(126,51,'2018-01-03 00:31:31','851N53J76TD0QM2D1435','Y','N',NULL,'0000-00-00 00:00:00','',''),(127,51,'2018-01-03 00:31:31','8J7VJ8KZVI1RV61Y6URJ','Y','N',NULL,'0000-00-00 00:00:00','',''),(128,51,'2018-01-03 00:31:31','8YEE7J1TF7YMM369RTG3','Y','N',NULL,'0000-00-00 00:00:00','',''),(129,51,'2018-01-03 00:31:31','95H2MP5PP5Z0RL5PH3O8','Y','N',NULL,'0000-00-00 00:00:00','',''),(130,51,'2018-01-03 00:31:31','98655X5YYF1MCRD73ZD5','Y','N',NULL,'0000-00-00 00:00:00','',''),(131,51,'2018-01-03 00:31:31','9R52XYV8N7MWKRX8K1E7','Y','N',NULL,'0000-00-00 00:00:00','',''),(132,51,'2018-01-03 00:31:31','9T1DTCFA4P6995AYVZ3S','Y','N',NULL,'0000-00-00 00:00:00','',''),(133,51,'2018-01-03 00:31:31','9TXS9686MUH5Z69XH6AF','Y','N',NULL,'0000-00-00 00:00:00','',''),(134,51,'2018-01-03 00:31:31','9UW74RD3RF29R5WBO9OS','Y','N',NULL,'0000-00-00 00:00:00','',''),(135,51,'2018-01-03 00:31:31','A3Z520CNRRAZRLZ89583','Y','N',NULL,'0000-00-00 00:00:00','',''),(136,51,'2018-01-03 00:31:31','A4A6775R0XTR3O1OG559','Y','N',NULL,'0000-00-00 00:00:00','',''),(137,51,'2018-01-03 00:31:31','A50S5T4J6WDPE7I4J426','Y','N',NULL,'0000-00-00 00:00:00','',''),(138,51,'2018-01-03 00:31:31','A5FYGU3307ML9HPNDYXY','Y','N',NULL,'0000-00-00 00:00:00','',''),(139,51,'2018-01-03 00:31:31','ACY0SF7496GRX15NC261','Y','N',NULL,'0000-00-00 00:00:00','',''),(140,51,'2018-01-03 00:31:31','AGVFZRNJBY8CG41C8T48','Y','N',NULL,'0000-00-00 00:00:00','',''),(141,51,'2018-01-03 00:31:31','AX7C8MX0EB22CI0Z0R3W','Y','N',NULL,'0000-00-00 00:00:00','',''),(142,51,'2018-01-03 00:31:31','BJ2BUE7BBZIDV73DBBG8','Y','N',NULL,'0000-00-00 00:00:00','',''),(143,51,'2018-01-03 00:31:31','BX96HBGGI6W172Z8VXAR','Y','N',NULL,'0000-00-00 00:00:00','',''),(144,51,'2018-01-03 00:31:31','BZ0D7R3JTFTW9TSL1ZZG','Y','N',NULL,'0000-00-00 00:00:00','',''),(145,51,'2018-01-03 00:31:31','CEVX26P4WS22KT867FMG','Y','N',NULL,'0000-00-00 00:00:00','',''),(146,51,'2018-01-03 00:31:31','D5X22RG7O5M7883RR11H','Y','N',NULL,'0000-00-00 00:00:00','',''),(147,51,'2018-01-03 00:31:31','D9R44UMP364JKIQDH29V','Y','N',NULL,'0000-00-00 00:00:00','',''),(148,51,'2018-01-03 00:31:31','DHAQVMVYW8YQ513C2583','Y','N',NULL,'0000-00-00 00:00:00','',''),(149,51,'2018-01-03 00:31:31','DQN401T57J2MBCU1EAYQ','Y','N',NULL,'0000-00-00 00:00:00','',''),(150,51,'2018-01-03 00:31:31','E0V24998HHI0YWXI138X','Y','N',NULL,'0000-00-00 00:00:00','',''),(151,52,'2018-01-03 01:22:10','E858IUWEWF5DY48I5ZBN','Y','N',NULL,'0000-00-00 00:00:00','',''),(152,52,'2018-01-03 01:22:10','F5UO073LV9EJHW87HJ5N','Y','N',NULL,'0000-00-00 00:00:00','',''),(153,52,'2018-01-03 01:22:10','F6P03YV47PEALTODFCCO','Y','N',NULL,'0000-00-00 00:00:00','',''),(154,52,'2018-01-03 01:22:10','G0BBGE27H6P5Q916C8IQ','Y','N',NULL,'0000-00-00 00:00:00','',''),(155,52,'2018-01-03 01:22:10','GS61Y7LS806AIHB0CE46','Y','N',NULL,'0000-00-00 00:00:00','',''),(156,52,'2018-01-03 01:22:10','GV49Y49DAY985VEWH022','Y','N',NULL,'0000-00-00 00:00:00','',''),(157,52,'2018-01-03 01:22:10','H189F6DNG929C6D9CGNL','Y','N',NULL,'0000-00-00 00:00:00','',''),(158,52,'2018-01-03 01:22:10','H95CSHZ0WVD2HY3O9RI6','Y','N',NULL,'0000-00-00 00:00:00','',''),(159,52,'2018-01-03 01:22:10','I402OAQPW60LH9MV487U','Y','N',NULL,'0000-00-00 00:00:00','',''),(160,52,'2018-01-03 01:22:10','IFCLA035ARW75V6AK0D6','Y','N',NULL,'0000-00-00 00:00:00','',''),(161,52,'2018-01-03 01:22:10','IGBW9475UX7HQ55V642E','Y','N',NULL,'0000-00-00 00:00:00','',''),(162,52,'2018-01-03 01:22:10','IGTU6S3PD57N9V6BDZ3V','Y','N',NULL,'0000-00-00 00:00:00','',''),(163,52,'2018-01-03 01:22:10','J4NM5458CQ6TA2V0599N','Y','N',NULL,'0000-00-00 00:00:00','',''),(164,52,'2018-01-03 01:22:10','JF3C31OY2EAWPJ2Q19Y7','Y','N',NULL,'0000-00-00 00:00:00','',''),(165,52,'2018-01-03 01:22:10','JIX6Y2XH6WWPH4J50Y0B','Y','N',NULL,'0000-00-00 00:00:00','',''),(166,52,'2018-01-03 01:22:10','KJK63IAU6H90PB85UR3A','Y','N',NULL,'0000-00-00 00:00:00','',''),(167,52,'2018-01-03 01:22:10','LMS6GS5UCZICZBT3S8MX','Y','N',NULL,'0000-00-00 00:00:00','',''),(168,52,'2018-01-03 01:22:10','LR0V4N605QT1G97GE4M5','Y','N',NULL,'0000-00-00 00:00:00','',''),(169,52,'2018-01-03 01:22:10','N9FUSTXO13Q6NUE6VUTD','Y','N',NULL,'0000-00-00 00:00:00','',''),(170,52,'2018-01-03 01:22:10','NY4ATZ88W2RG076Y2N2D','Y','N',NULL,'0000-00-00 00:00:00','',''),(171,52,'2018-01-03 01:22:25','O3IG92BFN4IO25YYS2L3','Y','N',NULL,'0000-00-00 00:00:00','',''),(172,52,'2018-01-03 01:22:25','OT0R35667O661DO51CE8','Y','N',NULL,'0000-00-00 00:00:00','',''),(173,52,'2018-01-03 01:22:25','OU767H0L0N86C939TXVC','Y','N',NULL,'0000-00-00 00:00:00','',''),(174,52,'2018-01-03 01:22:25','OUMLLE07ECI5Z27HY794','Y','N',NULL,'0000-00-00 00:00:00','',''),(175,52,'2018-01-03 01:22:25','P9AHXAD08GJVY26G69W0','Y','N',NULL,'0000-00-00 00:00:00','',''),(176,52,'2018-01-03 01:22:25','PD5797C90OUZD8D8Q5BD','Y','N',NULL,'0000-00-00 00:00:00','',''),(177,52,'2018-01-03 01:22:25','Q2V83T6F96B3D4Z92645','Y','N',NULL,'0000-00-00 00:00:00','',''),(178,52,'2018-01-03 01:22:25','Q3S940MYM427XGQOX9RZ','Y','N',NULL,'0000-00-00 00:00:00','',''),(179,52,'2018-01-03 01:22:25','QP4VC66CW9HR7FNE26S8','Y','N',NULL,'0000-00-00 00:00:00','',''),(180,52,'2018-01-03 01:22:25','QQIM52L923JR8MP8GT2L','Y','N',NULL,'0000-00-00 00:00:00','',''),(181,52,'2018-01-03 01:22:25','R5H0IP2XFTBBX1D9DJ86','Y','N',NULL,'0000-00-00 00:00:00','',''),(182,52,'2018-01-03 01:22:25','R7WK907397948Z6F4U96','Y','N',NULL,'0000-00-00 00:00:00','',''),(183,52,'2018-01-03 01:22:25','T7QUTMPW6YP0S9HHQW64','Y','N',NULL,'0000-00-00 00:00:00','',''),(184,52,'2018-01-03 01:22:25','V180AZUOZ4CBW60355MS','Y','N',NULL,'0000-00-00 00:00:00','',''),(185,52,'2018-01-03 01:22:25','V43KX9CAG59Q067900C4','Y','N',NULL,'0000-00-00 00:00:00','',''),(186,52,'2018-01-03 01:22:25','VHHESJLLR5BT22X73GT8','Y','N',NULL,'0000-00-00 00:00:00','',''),(187,52,'2018-01-03 01:22:25','VRCM29R5T701DZN8PCM7','Y','N',NULL,'0000-00-00 00:00:00','',''),(188,52,'2018-01-03 01:22:25','W97XI5435CWE58452YY7','Y','N',NULL,'0000-00-00 00:00:00','',''),(189,52,'2018-01-03 01:22:25','X6G8R7OJJ5Y1Q2U33O5I','Y','N',NULL,'0000-00-00 00:00:00','',''),(190,52,'2018-01-03 01:22:25','X83D34GZK66XGP5RGFI4','Y','N',NULL,'0000-00-00 00:00:00','',''),(191,53,'2018-01-03 01:38:30','XL10413V416ZTZUB30BN','Y','N',NULL,'0000-00-00 00:00:00','',''),(192,53,'2018-01-03 01:38:30','XPZ52F5341C1FJ5EU9Y5','Y','N',NULL,'0000-00-00 00:00:00','',''),(193,53,'2018-01-03 01:38:30','Y6I4HWCT5PQ4E0AP662F','Y','N',NULL,'0000-00-00 00:00:00','',''),(194,53,'2018-01-03 01:38:30','YEIE4AY2M6CS4G66CU39','Y','N',NULL,'0000-00-00 00:00:00','',''),(195,53,'2018-01-03 01:38:30','YR63XIVXESX09Y0UCVVB','Y','N',NULL,'0000-00-00 00:00:00','',''),(196,6,'2018-01-03 01:41:31','YU3V2P0WUZO3BQ5QL780','Y','N',NULL,'0000-00-00 00:00:00','',''),(197,7,'2018-01-03 01:41:48','YYBSKCLW2QD4KNTO7B1Q','Y','N',NULL,'0000-00-00 00:00:00','',''),(198,5,'2018-01-03 01:49:34','69XP9LS0Z185IB6G996Y','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(199,5,'2018-01-03 01:49:34','Z7BPG6M92TLH0S72P485','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(200,5,'2018-01-03 01:49:34','62JJGC129UY2BRI7T985','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(201,5,'2018-01-03 01:49:34','U5V56KS5V091Q64ZTKO6','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(202,5,'2018-01-03 01:49:34','X1XGUDZEBVEM0YL1DGJU','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(203,5,'2018-01-03 01:49:34','LRK19AHVQIW1LX8M6G1I','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(204,5,'2018-01-03 01:49:34','VXCMPFCME21HS1T36AN0','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(205,5,'2018-01-03 01:49:34','40GNONF5PB0GN0OLZ4YG','Y','O','54','2018-01-03 01:54:39','2',''),(206,5,'2018-01-03 01:49:34','T2C02777I3R8GHN36JVQ','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(207,5,'2018-01-03 01:49:34','LDPH0CF565ALM9WU40X1','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(208,5,'2018-01-03 01:49:34','2AN91JWE0PNZKC14U6O9','Y','O','54','2018-01-03 01:54:39','2',''),(209,5,'2018-01-03 01:49:34','XW5IBYTX04U3L2PO4EF5','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(210,5,'2018-01-03 01:49:34','1YBPTA7CE61ML295B6EO','Y','O','54','2018-01-03 01:54:39','2',''),(211,5,'2018-01-03 01:49:34','5SYZ9Y99YAE9OP3F3W8U','Y','O','6','2018-01-03 01:56:53','2','11'),(212,5,'2018-01-03 01:49:34','569XJLJGBZ3ECE38Z92U','Y','O','54','2018-01-03 01:54:39','2',''),(213,5,'2018-01-03 01:49:34','EESM1M2030A5P3YIW6H4','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(214,5,'2018-01-03 01:49:34','VU38HB57RL3F6V9ACIG2','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(215,5,'2018-01-03 01:49:34','41W8M8M80Z06YZJ0RFZA','Y','O','54','2018-01-03 01:54:39','2',''),(216,5,'2018-01-03 01:49:34','X96G9WT31PX654AZQ0I9','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(217,5,'2018-01-03 01:49:34','W7CABT0N1300AV27MN12','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(218,5,'2018-01-03 01:49:34','T4QPWZB8LG121KTI5UFL','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(219,5,'2018-01-03 01:49:34','SPA6903LL0CZFXHV29Z6','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(220,5,'2018-01-03 01:49:34','P43RAS45T2RDQTFYA123','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(221,5,'2018-01-03 01:49:34','R813500U59WDTS7HS5YO','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(222,5,'2018-01-03 01:49:34','XEACG369P63JR93K3412','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(223,5,'2018-01-03 01:49:34','A8X9JAY8370ER5OIRB7I','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(224,5,'2018-01-03 01:49:34','TSAFZ1JBE8CKU4AV8ROP','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(225,5,'2018-01-03 01:49:34','2ELLTXABYHH3W062UMRE','Y','O','54','2018-01-03 01:54:39','2',''),(226,5,'2018-01-03 01:49:34','OT53M7AOH315EXPS935F','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(227,5,'2018-01-03 01:49:34','2EDY91L4V76Y4Y8O3CN5','Y','O','54','2018-01-03 01:54:39','2',''),(228,5,'2018-01-03 01:49:34','BQZ7P77RHJJW68J71PDD','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(229,5,'2018-01-03 01:49:34','8P473K6V97599S27VT37','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(230,5,'2018-01-03 01:49:34','2KLVR4GC0UHMEK6KC6N1','Y','O','54','2018-01-03 01:54:39','2',''),(231,5,'2018-01-03 01:49:34','V38ZFZR0WS8Y6LU0E8L2','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(232,5,'2018-01-03 01:49:34','6279Z3204K8JZ64C2BM4','Y','O','6','2018-01-03 01:57:38','2','12'),(233,5,'2018-01-03 01:49:34','C509I043EF2Y4PCBTVV1','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(234,5,'2018-01-03 01:49:34','Q1653H24MIXI0S46Q947','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(235,5,'2018-01-03 01:49:34','IMW441IB7PHXHB3VF97J','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(236,5,'2018-01-03 01:49:34','UZZEIK4HPD14OCO0J0ZP','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(237,5,'2018-01-03 01:49:34','TOCP959RUL246IK28ODJ','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(238,5,'2018-01-03 01:49:34','56572M350A58KAD2APIP','Y','O','54','2018-01-03 01:54:39','2',''),(239,5,'2018-01-03 01:49:34','TG50CX2TWN1I391L16PK','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(240,5,'2018-01-03 01:49:34','6V401AV7765XQYR211AK','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(241,5,'2018-01-03 01:49:34','5AQ6G0WEG6K1LL7HVULZ','Y','O','6','2018-01-03 01:56:12','2',''),(242,5,'2018-01-03 01:49:34','IMNXB9V96DAV37IJ93P1','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(243,5,'2018-01-03 01:49:34','BYH1KCE84T8T9LY27KU2','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(244,5,'2018-01-03 01:49:34','0K9N5S5O543X1I97R6Q1','Y','U','steven','2018-01-03 01:53:53','2',NULL),(245,5,'2018-01-03 01:49:34','940XU929VG6JR582732D','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(246,5,'2018-01-03 01:49:34','SCJB73X6GVNGBU27N74D','Y','N',NULL,'0000-00-00 00:00:00','2',NULL),(247,5,'2018-01-03 01:49:34','1E55090A7EVB6536XLSH','Y','O','54','2018-01-03 01:54:39','2',''),(248,54,'2018-01-03 01:54:39','1E55090A7EVB6536XLSH','Y','N',NULL,'0000-00-00 00:00:00','',''),(249,54,'2018-01-03 01:54:39','1YBPTA7CE61ML295B6EO','Y','N',NULL,'0000-00-00 00:00:00','',''),(250,54,'2018-01-03 01:54:39','2AN91JWE0PNZKC14U6O9','Y','N',NULL,'0000-00-00 00:00:00','',''),(251,54,'2018-01-03 01:54:39','2EDY91L4V76Y4Y8O3CN5','Y','N',NULL,'0000-00-00 00:00:00','',''),(252,54,'2018-01-03 01:54:39','2ELLTXABYHH3W062UMRE','Y','N',NULL,'0000-00-00 00:00:00','',''),(253,54,'2018-01-03 01:54:39','2KLVR4GC0UHMEK6KC6N1','Y','N',NULL,'0000-00-00 00:00:00','',''),(254,54,'2018-01-03 01:54:39','40GNONF5PB0GN0OLZ4YG','Y','N',NULL,'0000-00-00 00:00:00','',''),(255,54,'2018-01-03 01:54:39','41W8M8M80Z06YZJ0RFZA','Y','N',NULL,'0000-00-00 00:00:00','',''),(256,54,'2018-01-03 01:54:39','56572M350A58KAD2APIP','Y','N',NULL,'0000-00-00 00:00:00','',''),(257,54,'2018-01-03 01:54:39','569XJLJGBZ3ECE38Z92U','Y','N',NULL,'0000-00-00 00:00:00','',''),(258,6,'2018-01-03 01:56:12','5AQ6G0WEG6K1LL7HVULZ','Y','N',NULL,'0000-00-00 00:00:00','',''),(259,6,'2018-01-03 01:56:53','5SYZ9Y99YAE9OP3F3W8U','Y','N',NULL,'0000-00-00 00:00:00','','11'),(260,6,'2018-01-03 01:57:38','6279Z3204K8JZ64C2BM4','Y','N',NULL,'0000-00-00 00:00:00','','12');
+/*!40000 ALTER TABLE `tblpin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblpinlog`
+--
+
+DROP TABLE IF EXISTS `tblpinlog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblpinlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `requestby` varchar(30) NOT NULL,
+  `requestdate` datetime NOT NULL,
+  `issueby` varchar(20) NOT NULL,
+  `pins` int(11) NOT NULL,
+  `paid` varchar(3) NOT NULL,
+  `note` varchar(255) NOT NULL,
+  `leader` varchar(20) NOT NULL,
+  `leader1` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `leader` (`leader`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblpinlog`
+--
+
+LOCK TABLES `tblpinlog` WRITE;
+/*!40000 ALTER TABLE `tblpinlog` DISABLE KEYS */;
+INSERT INTO `tblpinlog` VALUES (1,'mem001','2018-01-03 00:11:17','jjadmin',100,'Y','','mem001',NULL),(2,'mem001','2018-01-03 01:49:34','jjadmin',50,'Y','','mem001',NULL);
+/*!40000 ALTER TABLE `tblpinlog` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblpintran`
+--
+
+DROP TABLE IF EXISTS `tblpintran`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblpintran` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idfrom` int(11) NOT NULL,
+  `idto` int(11) NOT NULL,
+  `efrom` varchar(60) NOT NULL,
+  `eto` varchar(60) NOT NULL,
+  `qty` int(11) NOT NULL DEFAULT '0',
+  `trdate` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nodupe` (`idfrom`,`trdate`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblpintran`
+--
+
+LOCK TABLES `tblpintran` WRITE;
+/*!40000 ALTER TABLE `tblpintran` DISABLE KEYS */;
+INSERT INTO `tblpintran` VALUES (1,1,5,'jjadmin','mem001',100,'2018-01-03 00:11:17'),(2,5,51,'mem001','patrick',50,'2018-01-03 00:31:31'),(3,5,52,'mem001','calvin',20,'2018-01-03 01:22:10'),(4,5,52,'mem001','calvin',20,'2018-01-03 01:22:25'),(5,5,53,'mem001','bohboh',5,'2018-01-03 01:38:30'),(6,5,6,'mem001','mem002',1,'2018-01-03 01:41:31'),(7,5,7,'mem001','mem003',1,'2018-01-03 01:41:48'),(8,1,5,'jjadmin','mem001',50,'2018-01-03 01:49:34'),(9,5,54,'mem001','steven',10,'2018-01-03 01:54:39'),(10,5,6,'mem001','mem002',1,'2018-01-03 01:56:12'),(11,5,6,'mem001','mem002',1,'2018-01-03 01:56:53'),(12,5,6,'mem001','mem002',1,'2018-01-03 01:57:38');
+/*!40000 ALTER TABLE `tblpintran` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblsetup`
+--
+
+DROP TABLE IF EXISTS `tblsetup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblsetup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain` varchar(50) NOT NULL,
+  `plan` varchar(5) NOT NULL,
+  `pincost` int(11) NOT NULL,
+  `pinrebate` int(11) NOT NULL,
+  `phlist` varchar(200) NOT NULL,
+  `exrate` varchar(20) NOT NULL,
+  `currency` varchar(10) NOT NULL,
+  `currencyname` varchar(30) NOT NULL,
+  `phdays` varchar(10) NOT NULL DEFAULT '0',
+  `banklist` varchar(1024) DEFAULT NULL,
+  `maintain` int(11) NOT NULL DEFAULT '0',
+  `manualdate` int(11) NOT NULL,
+  `time_offset` varchar(20) NOT NULL,
+  `masterpass` varchar(20) NOT NULL,
+  `allowph` int(11) NOT NULL DEFAULT '1',
+  `allowgh` int(11) NOT NULL DEFAULT '1',
+  `lang` int(11) NOT NULL DEFAULT '2',
+  `feature` varchar(50) NOT NULL,
+  `nextph` varchar(20) DEFAULT NULL,
+  `next_limit` int(11) NOT NULL DEFAULT '300',
+  `next_state` varchar(2) NOT NULL DEFAULT 'B',
+  `maxaccount` int(11) NOT NULL DEFAULT '999',
+  `username_len` int(11) NOT NULL DEFAULT '0',
+  `password_len` int(11) NOT NULL DEFAULT '0',
+  `phone_len` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblsetup`
+--
+
+LOCK TABLES `tblsetup` WRITE;
+/*!40000 ALTER TABLE `tblsetup` DISABLE KEYS */;
+INSERT INTO `tblsetup` VALUES (1,'mmmtaiwan.com','1',60,0,'100, 200, 300, 400, 500, 600, 700, 800, 900, 1000','7','RMB','Renminbi','0','中国工商银行,中国建设银行,中国银行,中国农业银行,交通银行,招商银行,中国中信银行,上海浦东发展银行,兴业银行,中国民生银行,中国光大银行,平安银行,华夏银行,北京银行,广发银行,上海银行,江苏银行,恒丰银行,北京农村商业银行,重庆农村商业银行,渤海银行,上海农村商业银行,浙商银行,南京银行,广州农村商业银行,汇丰银行（中国）,宁波银行,徽商银行,杭州银行,天津银行,盛京银行广州银行,哈尔滨银行,大连银行成都农村商业银行,吉林银行,江南农村商业银行,包商银行,成都银行,东亚银行（中国）,渣打银行（中国）,龙江银行,天津农村商业银行,东莞农村商业银行,汉口银行,佛山顺德农村商业银行,昆仑银行,花旗银行（中国）,重庆银行,东莞银行,中国邮政储蓄银行,长沙',0,0,'0','gg1123212',0,0,1,'','18:00:00',300,'0',16,6,2,0);
+/*!40000 ALTER TABLE `tblsetup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblsupport`
+--
+
+DROP TABLE IF EXISTS `tblsupport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblsupport` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mem_id` int(11) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `question` varchar(10) NOT NULL,
+  `subject` varchar(40) NOT NULL,
+  `content` varchar(512) NOT NULL,
+  `mdate` datetime NOT NULL,
+  `rcontent` varchar(255) NOT NULL,
+  `rdate` datetime NOT NULL,
+  `status` varchar(2) NOT NULL,
+  `action` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mem_id` (`mem_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblsupport`
+--
+
+LOCK TABLES `tblsupport` WRITE;
+/*!40000 ALTER TABLE `tblsupport` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblsupport` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-01-03 20:55:42

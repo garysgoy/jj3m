@@ -1,0 +1,3 @@
+<?
+setcookie("language","en");
+?>
