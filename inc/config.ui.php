@@ -20,7 +20,12 @@ $mls->wallet = array("My Wallet","我的钱包","我的錢包");
 $mls->support = array("Support Ticket","我的反馈","我的反饋");
 $mls->logout = array("Logout","安全退出","安全退出");
 
+$mls->pin_mgt = array("Sell PIN","出售激活码","出售激活碼");
+$mls->pin0 = array("Sell Register PIN","出售注册码","出售註冊碼");
+$mls->pin1 = array("Sell Activate PIN","出售激活码","出售激活碼");
+$mls->pin2 = array("Sell Que PIN","出售排单币","出售排單幣");
 $mls->sellpin = array("Sell PIN","出售激活码","出售激活碼");
+
 $mls->addgh = array("Add GH","新增接受帮助","新增接受幫助");
 $mls->memberlist = array("Member List","会员列表","會員列表");
 $mls->matching = array("Matching","帮助匹配","幫助匹配");
@@ -129,10 +134,24 @@ if ($user->rank>=8) {
 			"icon" => "fa-cogs",
 			"url" => APP_URL . '/_a_matching.php'
 		),
-		"sellpin" => array(
-			"title" => $mls->sellpin[$lang],
-			"icon" => "fa-cogs",
-			"url" => APP_URL . '/_a_sellpin.php'
+		"pin_mgt" => array(
+			"title" => $mls->pin_mgt[$lang],
+			"icon" => "fa-sitemap",
+			"sub" => array(
+				"pin0" => array(
+					"title" => $mls->pin0[$lang],
+					"url" => APP_URL."/_a_sellpin.php"
+				),
+				"pin1" => array(
+					"title" => $mls->pin1[$lang],
+					"url" => APP_URL."/_a_sellpin1.php"
+				),
+				"pin2" => array(
+					"title" => $mls->pin2[$lang],
+
+					"url" => APP_URL."/_a_sellpin2.php"
+				)
+			)
 		),
 		"addgh" => array(
 			"title" => $mls->addgh[$lang],

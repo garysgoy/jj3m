@@ -8,8 +8,8 @@ if ($user->rank<8) {
 $pintype = "";
 
 //$page_css[] = "";
-$page_nav["sellpin"]["active"] = true;
-$page_title = $mls->sellpin[$lang];
+$page_nav["pin_mgt"]['sub']['pin0']["active"] = true;
+$page_title = $mls->pin0[$lang];
 
 $ls = new stdClass();
 $ls->title = array("Change Password","更改密码","更改密碼");
