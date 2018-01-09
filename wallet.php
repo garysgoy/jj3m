@@ -9,6 +9,15 @@ $page_title = $mls->wallet[$lang];
 
 $ls = new stdClass();
 
+$ls->wallet_ph = array("Help Wallet","互助钱包","互助錢包");
+$ls->wallet_reg = array("Register Wallet","注册钱包","註冊錢包");
+$ls->wallet_ref = array("Refer Wallet","推荐钱包","推薦錢包");
+$ls->wallet_mgr = array("Manager Wallet","经理奖钱包","經理獎錢包");
+$ls->rmb = array("RMB","人民币","人民幣");
+$ls->wallet = array("Wallet","钱包","錢包");
+$ls->record = array("Record","记录","紀錄");
+$ls->withdraw = array("Withdraw","提取","提取");
+
 $ls->sn = array("S/NO","序号","序號");
 $ls->amount = array("Amount (Mavro)","金额 (Mavro)","金额 (Mavro)");
 $ls->date = array("Time","下单日期","下單日期");
@@ -59,39 +68,39 @@ $register    = ggFetchObject("select sum(future_amount) as amt from tblmavro whe
   <div class="container wallet">
   <div class="col-md-3">
     <div>
-      <h2><i class="fa fa-money"></i> 互助钱包</h2>
-      <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;">人民币</strong>
-      <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD">提取</a></p>
+      <h2><i class="fa fa-money"></i> <? echo $ls->wallet_ph[$lang]; ?></h2>
+      <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;"><? echo $ls->rmb[$lang]; ?></strong>
+      <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
     </div>
   </div>
 
   <div class="col-md-3">
     <div>
-      <h2><i class="fa fa-money"></i> 注册奖钱包</h2>
-      <p style="color:#00ff5a;">流动： <? echo number_format($register->amt,0); ?> 人民币</p>
-      <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD">提取</a></p>
+      <h2><i class="fa fa-money"></i> <? echo $ls->wallet_reg[$lang]; ?></h2>
+      <p style="color:#00ff5a;">流动： <? echo number_format($register->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+      <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
     </div>
   </div>
 
 	<div class="col-md-3">
 		<div>
-			<h2><i class="fa fa-money"></i> 推荐奖金钱包</h2>
-			<p style="color:#ff0000;">待定： <? echo number_format($referralu->amt,0); ?> 人民币</p>
-			<p style="color:#00ff5a;">流动： <? echo number_format($referral->amt,0); ?> 人民币</p>
-      <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#requestHelpR">提取</a></p>
+			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_ref[$lang]; ?></h2>
+			<p style="color:#ff0000;">待定： <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00ff5a;">流动： <? echo number_format($referral->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+      <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#requestHelpR"><? echo $ls->withdraw[$lang]; ?></a></p>
 		</div>
 	</div>
 		<div class="col-md-3">
 		<div>
-			<h2><i class="fa fa-money"></i> 经理奖金钱包</h2>
-			<p style="color:#ff0000;">待定： <? echo number_format($manageru->amt,0); ?> 人民币</p>
-			<p style="color:#00bcff;">托管： 0 人民币</p>
-			<p style="color:#00ff5a;">流动： <? echo number_format($manager->amt,0); ?> 人民币</p>
+			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_mgr[$lang]; ?></h2>
+			<p style="color:#ff0000;">待定： <? echo number_format($manageru->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00bcff;">托管： 0 <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00ff5a;">流动： <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
 <?
 if ($user->rank < 6) {
-    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>等待提取</a></p>";
+    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>WWW 等待提取</a></p>";
 } else if ($user->rank >= 6) {
-    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpM'>提取</a></p>";
+    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpM'>".$ls->withdraw[$lang]."</a></p>";
 }
 ?>
       </div>
@@ -107,11 +116,11 @@ include("_inc_gethelp_m.php");
 <div class="container">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-book"></i> 钱包记录</h3>
+		<h3 class="panel-title"><i class="fa fa-book"></i> <? echo $ls->wallet[$lang]; ?> <? echo $ls->record[$lang]; ?></h3>
 	  </div>
 	  <div class="panel-body">
     <div class="easyui-tabs" style="width:auto;height:auto">
-        <div title="互助钱包纪录" style="padding:5px">
+        <div title="<? echo $ls->wallet_ph[$lang]; ?>" style="padding:5px">
   <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_ph.php"
       pagination="true" pageSize="10" nowrap="true"
@@ -135,7 +144,7 @@ include("_inc_gethelp_m.php");
         </div>
 
     <!-- GG REF -->
-  <div title="推荐奖金钱包纪录" style="padding:10px">
+  <div title="<? echo $ls->wallet_ref[$lang]; ?>" style="padding:10px">
   <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_ref.php"
       pagination="true" pageSize="10" nowrap="false"
@@ -158,7 +167,7 @@ include("_inc_gethelp_m.php");
   </table>
     </div>
     <!-- GG MGR -->
-    <div title="经理奖金钱包纪录" style="padding:10px">
+    <div title="<? echo $ls->wallet_mgr[$lang]; ?>" style="padding:10px">
 
   <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_mgr.php"

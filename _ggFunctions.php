@@ -128,14 +128,18 @@ function ggAccessLog1($username, $type, $note) {
 
 function ggRank($rank,$type) {
   global $lang;
+  $ls->rank1 = array("Member","普通会员","普通會員");
+  $ls->rank5 = array("Manager","注册经理","註冊經理");
+  $ls->rank6 = array("Senior Manager","合格经理","合格經理");
+  $ls->rank7 = array("Top Manager","高级经理","高級經理");
 	if ($rank==5) {
-		$ret = "注册经理";
+		$ret = $ls->rank5[$lang];
 	} else if ($rank==6) {
-		$ret = "合格经理";
+    $ret = $ls->rank6[$lang];
 	} else if ($rank==7) {
-		$ret = "高级经理";
+    $ret = $ls->rank7[$lang];
 	} else {
-		$ret = array("Member","普通会员","普通會員")[$lang];
+		$ret = $ls->rank1[$lang];
 	}
 	if ($rank>=5) {
 		if ($type==1) {
