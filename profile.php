@@ -1,6 +1,6 @@
 <?php
 include_once("inc/ggInit.php");
-
+2
 //$page_css[] = "";
 $page_title = $mls->profile[$lang];
 $page_nav["account"]["sub"]["profile"]["active"] = true;
