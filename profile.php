@@ -68,13 +68,13 @@ include("inc/ggHeader.php");
 		  </div>
 		  <div class="form-group">
 			<label for="fullname"><? echo $ls->fullname[$lang]; ?><span class="required-tag">*</span></label>
-			<input type="text" class="form-control" name="fullname" id="fullname" value="<? echo $user->fullname; ?>" placeholder="银行账户姓名" <? echo ($user->fullname=="")?"required":"readonly"; ?> />
+			<input type="text" class="form-control" name="fullname" id="fullname" value="<? echo $user->fullname; ?>" placeholder="<? echo $ls->fullname[$lang]; ?>" <? echo ($user->fullname=="")?"required":"readonly"; ?> />
 			<!--<span style="font-size:12px; color:#999;">* 一定要和银行账户姓名一样, 设定之后就不能更改</span>
 		  -->
 		</div>
 		  <div class="form-group">
 			<label for="mobile"><? echo $ls->mobile[$lang]; ?> <span class="required-tag">*</span></label>
-			<input type="text" class="form-control" name="phone" id="phone" value="<? echo $user->phone; ?>" placeholder="手机号码" <? echo ($user->phone=="")?"required":"readonly"; ?> />
+			<input type="text" class="form-control" name="phone" id="phone" value="<? echo $user->phone; ?>" placeholder="<? echo $ls->mobile[$lang]; ?>" <? echo ($user->phone=="")?"required":"readonly"; ?> />
 		  </div>
 		  <div class="form-group">
 			<label for="wechat"><? echo $ls->wechat[$lang]; ?></label><br/>
