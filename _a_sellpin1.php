@@ -5,7 +5,7 @@ if ($user->rank<8) {
   header("location: login.php");
 }
 
-$pintype = "";
+$pintype = "1";
 
 //$page_css[] = "";
 $page_nav["sellpin"]["active"] = true;
