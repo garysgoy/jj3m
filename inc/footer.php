@@ -2,7 +2,7 @@
 <div class="page-footer">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
-			<span class="txt-color-white">3M System <span class="hidden-xs"> - </span> Copyright © 2017</span>
+			<span class="txt-color-white">3M System <span class="hidden-xs"> - </span> Copyright © 2018</span>
 		</div>
 
 <?
