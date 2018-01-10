@@ -15,6 +15,8 @@ $bankaccount = $_REQUEST['bankacc'];
 $phone 		= $_REQUEST['phone'];
 $wechat 	= $_REQUEST['wechat'];
 $alipay 	= $_REQUEST['alipay'];
+$btc 	= $_REQUEST['btc'];
+$eth 	= $_REQUEST['eth'];
 $whatsapp 	= $_REQUEST['whatsapp'];
 $line 		= $_REQUEST['line'];
 $bankname 	= $_REQUEST['bankname'];
@@ -104,7 +106,7 @@ if ($alipay <> "") {
 }
 
 if ($msg=="") {
-	$rep = ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$whatsapp,$line,$bankname,$bankbranch);
+	$rep = ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$whatsapp,$line,$bankname,$bankbranch);
 }
 
 if ($msg == "") {
@@ -114,11 +116,11 @@ if ($msg == "") {
 	echo json_encode(array('msg'=>$msg));
 }
 
-function ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$whatsapp,$line,$bankname,$bankbranch) {
+function ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$whatsapp,$line,$bankname,$bankbranch) {
 	global $db,$user,$ls,$msg, $lang, $password2_5;
 	$ret = 0;
 
-	$rs1 = $db->query("update tblmember set fullname='$fullname',bankholder='$fullname',bankaccount='$bankaccount',phone='$phone',wechat='$wechat',alipay='$alipay',whatsapp='$whatsapp',line='$line',bankname='$bankname',bankbranch='$bankbranch' where id = $user->id");
+	$rs1 = $db->query("update tblmember set fullname='$fullname',bankholder='$fullname',bankaccount='$bankaccount',phone='$phone',wechat='$wechat',alipay='$alipay',btc='$btc',eth='$eth',whatsapp='$whatsapp',line='$line',bankname='$bankname',bankbranch='$bankbranch' where id = $user->id");
 
 	if ($user->password2 == "") {
 		$rs1 = $db->query("update tblmember set password2 = '$password2_5' where id = $user->id");
