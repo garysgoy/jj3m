@@ -33,14 +33,8 @@
                          <td colspan="2" style="text-align:center;">
                           <div class="form-group">
                             <select id="HelpAmount" name="HelpAmount" class="form-control">
-                            <?
-                               $phlist = explode(",",$setup->phlist);
-                               $count = count($phlist);
-                                for ($i=0; $i < $count; $i++) {
-                                    $amt = $phlist[$i] * $setup->exrate;
-                                    echo "<option value='$amt' ".($i==($count-1)? "selected":"").">$amt</option>";
-                                }
-                            ?>
+                              <? echo ggPhAmounts(); ?>
+                            </select>
                           </div>
                          </td>
                        </tr>

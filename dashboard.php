@@ -910,12 +910,23 @@ function doFake(helpid) {
 </script>
 
 <?
+function ggPhAmounts() {
+  global $setup;
+  $ret='';
+  $phlist = explode(",",$setup->phlist);
+  $count = count($phlist);
+  for ($i=0; $i < $count; $i++) {
+      $amt = $phlist[$i] * $setup->exrate;
+      $ret .= "<option value='$amt' ".($i==($count-1)? "selected":"").">$amt</option>";
+  }
+  return $ret;
+}
 
 function ggHelpCount($t) {
   global $user;
   $help = ggFetchValue("select count(id) from tblhelp where mem_id = $user->id and g_type='$t' and status<>'X'");
   return $help;
 }
-include("inc/ggFooter.php");
 
+include("inc/ggFooter.php");
 ?>
