@@ -6,6 +6,7 @@ $ls->login = array("Login to System","MMM 会员登入","MMM 會員登入!");
 $ls->username = array("Username","用戶名","用戶名");
 $ls->email = array("Can use Email as your username","用戶名或者电子邮箱","用戶名或者電子郵箱");
 $ls->password = array("Login Password","登入密码","登入密碼");
+$ls->sec_code = array("Security Code","验证码","驗證碼");
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +73,7 @@ $ls->password = array("Login Password","登入密码","登入密碼");
             <br><b style='color:green;font-size:18px;'><? echo $ls->title[$lang]; ?></b></img>
             </div>
 
-            <div class="hpanel" style="opacity: 0.7;">
+            <div class="hpanel" style="opacity: 0.8;">
                 <div class="panel-body">
                         <form action="" id="loginForm" method="post">
                             <input type="hidden" id="act" value="login">
@@ -85,13 +86,21 @@ $ls->password = array("Login Password","登入密码","登入密碼");
                                 <label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
                                 <input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
+                                    <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php?&rand='+Math.random()">
+                                        <img id="captcha_img" src="captcha.php?&random="+Math.random() width="110px;" height="100%">
+                                    </a>
+                                </label>
+                                <input type="password" placeholder="<? echo $ls->sec_code[$lang]; ?>" required value="" name="sec_code" id="sec_code" class="form-control">
+                            </div>
 
 <?
 if ($ErrMsg<>"") {
   echo "<h3 style='color:red'>$ErrMsg</h3>";
 }
 ?>
-                            <button  id="login-btn" class="btn btn-success btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
+                            <button  id="login-btn" class="btn btn-success btn-xl btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
 <!--
                             <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
 -->
@@ -131,12 +140,19 @@ if ($ErrMsg<>"") {
         }
     });
 
+    $(document).ready(function(){
+        $("#loginForm").submit(function(event){
+            event.preventDefault();
+        });
+    });
+
     function doLogin() {
         var act = $("#act").val();
         var username = $("#username").val();
         var password = $('#password').val();
+        var sec_code = $('#sec_code').val();
 
-        $.post("_action_login.php",{act:act,username:username,password:password},function(result){
+        $.post("_action_login.php",{act:act,username:username,password:password,sec_code:sec_code},function(result){
             if(result.status == 'success') {
               document.location.href = "dashboard.php";
             } else {

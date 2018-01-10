@@ -6,8 +6,6 @@ $page_title = $mls->register[$lang];
 $page_nav["register"]["active"] = true;
 
 $setup = load_setup();
-$setup->maxaccount = 16;
-$setup->maxphone = 16;
 
 $ls = new stdClass();
 $ls->title = array("Register New User","注册新用户","註冊新用戶");

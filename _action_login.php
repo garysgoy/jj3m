@@ -10,6 +10,7 @@ $req = ($debug)? $_GET:$_POST;
 $act=$req['act'];
 $username=$req['username'];
 $password=$req['password'];
+$sec_code=$req['sec_code'];
 
 $lang=0;
 $ls = new stdClass();
@@ -17,6 +18,8 @@ $ls->username_req = array("Username can not be blank","用户名不能为空","�
 $ls->password_req = array("Password can not be blank","密码不能为空","密碼不能為空");
 $ls->success 			= array("Login success","登入成功","登入成功");
 $ls->invalid_login = array("Invalid username or password","账号或密码错误","帳號或密碼錯誤");
+$ls->invalid_code = array("Invalid security code","验证码错误","驗證碼錯誤");
+
 if (!isset($req['act']) || $req['act']!='login') {
   echo json_encode(array("status"=>"fail","msg"=>"Invalid Action"));
   exit;
@@ -35,6 +38,7 @@ $v = new FormValidator();
 $v->addValidation(1,$username,"req",$ls->username_req[$lang]);
 $v->addValidation(2,$password,"req",$ls->password_req[$lang]);
 $v->addValidation(3,$user_id,"req",$ls->invalid_login[$lang]);
+$v->addValidation(4,$sec_code,"eq=".$_SESSION['captcha_code'],$ls->invalid_code[$lang]);
 
 if (!$v->ValidateForm()) {
   $ret = array("status"=>"fail", "msg"=>$v->getError());
