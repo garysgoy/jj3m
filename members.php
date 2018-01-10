@@ -1,8 +1,11 @@
 <?php
 include_once("inc/ggInit.php");
-
 if ($user->logged==0 || $user->rank<1) {
   header("location: login.php");
+}
+
+if ($user->rank==1 && $user->fullname=="") {
+  header("location: profile.php");
 }
 
 //$page_css[] = "";

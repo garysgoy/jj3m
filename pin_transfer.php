@@ -2,7 +2,13 @@
 include ('_dbconfig.php');
 include ('_ggFunctions.php');
 
-$user = load_user(0);
+if ($user->logged==0 || $user->rank<1) {
+  header("location: login.php");
+}
+
+if ($user->rank==1 && $user->fullname=="") {
+  header("location: profile.php");
+}
 
 $debug = false;
 $lang = isset($lang)? $lang:0;

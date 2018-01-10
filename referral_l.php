@@ -3,10 +3,13 @@ error_reporting(E_ALL);
 include ('_dbconfig.php');
 include ('_ggFunctions.php');
 
+$debug=true;
+$req = ($debug)? $_GET:$req;
+
 	$rank_c = array("Member","Manager","Senior Manager","Country Manager");
 
-	if (isset($_POST['id'])) {
-		$id = $_POST['id'];
+	if (isset($req['id'])) {
+		$id = $req['id'];
 	} else {
 		$user = load_user(0);
 		$id = $user->id;
@@ -20,10 +23,10 @@ include ('_ggFunctions.php');
 	$ls->rankMem = array("Member","普通会员","普通会员");
 	$ls->nofullname = array("Name Not Set","尚未设定","尚未設定");
 
-	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-	$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 30;
-	$sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'username';
-	$order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';	$offset = ($page-1)*$rows;
+	$page = isset($req['page']) ? intval($req['page']) : 1;
+	$rows = isset($req['rows']) ? intval($req['rows']) : 30;
+	$sort = isset($req['sort']) ? strval($req['sort']) : 'username';
+	$order = isset($req['order']) ? strval($req['order']) : 'asc';	$offset = ($page-1)*$rows;
 
 	$result = array();
 	$items = array();

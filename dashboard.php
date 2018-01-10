@@ -5,6 +5,10 @@ if ($user->logged==0 || $user->rank<1) {
   header("location: login.php");
 }
 
+if ($user->rank==1 && $user->fullname=="") {
+  header("location: profile.php");
+}
+
 //$page_css[] = "";
 $page_title = $mls->dashboard[$lang];
 $page_nav["dashboard"]["active"] = true;
