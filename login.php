@@ -88,8 +88,8 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
-                                    <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php?&rand='+Math.random()">
-                                        <img id="captcha_img" src="captcha.php?&rand="+Math.random() width="110px;" height="100%">
+                                    <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
+                                        <img id="captcha_img" src="captcha.php" width="110px">
                                     </a>
                                 </label>
                                 <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" required name="sec_code" id="sec_code" class="form-control">
