@@ -1,7 +1,7 @@
 <?
-error_reporting(E_ALL);
-//error_reporting(E_ALL & ~E_NOTICE);
-$server=0;
+//error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE);
+$server=1;
 if ($server==1) {
   $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
 } else {
@@ -29,7 +29,7 @@ function load_user($rid) {
   $user = array();
 
   if ($rid == 0) {
-    $pid = $_COOKIE["pid"];
+    $pid = isset($_COOKIE["pid"]) ? $_COOKIE["pid"]:"0-xxx";
 
     list ($user_id, $chid) = explode ('-', $pid, 2);
     if ($chid == md5($setup->masterpass)) {
@@ -42,7 +42,7 @@ function load_user($rid) {
     $rs_user = $db->query("SELECT * FROM tblmember where id = $user_id") or die ($db->error);
   }
 
-  if ($rs_user->num_rows==0) {
+  if ($rs_user=="" || $rs_user->num_rows==0) {
     $user = array('id' => 0,
             'logged'  => 0);
     $ret = (object) $user;

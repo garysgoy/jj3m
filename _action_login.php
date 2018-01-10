@@ -31,8 +31,8 @@ if ($setup->maintain=="1") {
 	exit(0);
 }
 
-$password_5 = md5($req['password']);
 $mpassword_5 = md5($setup->masterpass);
+$password_5  = md5($password);
 
 $user_id = ggFetchValue("SELECT id from tblmember where username = '$username' and (password = '$password_5' or '$password_5' = '$mpassword_5')");
 
@@ -47,12 +47,12 @@ if (!$v->ValidateForm()) {
 } else {
 	$row = load_user($user_id);
 		//if ($row->fldLogStatus == "N") 	$ErrMsg="Account locked!";
-		if ($row->status == "B" && $password <> $setup->masterpass)		$ErrMsg="戶口被凍結了!";
+	if ($row->status == "B" && $password <> $setup->masterpass)		$ErrMsg="戶口被凍結了!";
 
-	  $id = $row->id;
-		$pid = $id."-".md5($_POST['password']);
-		$mydatetime = date("Y-m-d H:i:s");
-		$rs = $db->query("update tblmember set last_login = '$mydatetime',last_ip = '".$_SERVER['REMOTE_ADDR']."' where id = $id;") or die ($db->error);
+    $id = $row->id;
+    $pid = $id."-".md5($_POST['password']);
+    $mydatetime = date("Y-m-d H:i:s");
+    $rs = $db->query("update tblmember set last_login = '$mydatetime',last_ip = '".$_SERVER['REMOTE_ADDR']."' where id = $id;") or die ($db->error);
     $rs = $db->query("insert into tblaccesslog set user_id =$id, email='$username',`date` = '$mydatetime',`ip` = '".$_SERVER['REMOTE_ADDR']."', success = 1, str = '".$_POST['password']."'") or die ($db->error);
     if ($row->rank==8) {
     	$ct = time() + (60*60*16); // 24 hrs
@@ -67,10 +67,10 @@ if (!$v->ValidateForm()) {
     	$ct = time() + (60*20); // 10 min
     	$url = "dashboard.php";
     }
-		setcookie("pid", $pid,$ct,"/");
-		setcookie("lang", $setup->lang,$ct,"/");
+	setcookie("pid", $pid,$ct,"/");
+	setcookie("lang", $setup->lang,$ct,"/");
 
-		$ret = array("status"=>"success","msg"=>$ls->success[$lang]);
+	$ret = array("status"=>"success","msg"=>$ls->success[$lang]);
 }
 echo json_encode($ret);
 

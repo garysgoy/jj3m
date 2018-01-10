@@ -94,13 +94,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                                 </label>
                                 <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
                             </div>
-
-<?
-if ($ErrMsg<>"") {
-  echo "<h3 style='color:red'>$ErrMsg</h3>";
-}
-?>
-                            <button  id="login-btn" class="btn btn-success btn-xl btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
+                            <button  id="login-btn" class="btn btn-success btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
 <!--
                             <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
 -->
