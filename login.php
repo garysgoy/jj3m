@@ -123,9 +123,9 @@ if ($ErrMsg<>"") {
 <!-- Vendor scripts -->
 <script src="./js/libs/jquery-3.2.1.min.js"></script>
 <script src="./js/bootstrap/bootstrap.min.js"></script>
-<script src="./js/3m/toastr.min.js"></script>
 
 <!--
+<script src="./js/3m/toastr.min.js"></script>
 <script src="./js/libs/jquery-ui-1.10.3.min.js"></script>
 <script src="/assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="/assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
@@ -134,16 +134,16 @@ if ($ErrMsg<>"") {
 <script src="/assets/vendor/toastr/build/toastr.min.js"></script>
 -->
 <script>
-    $(document).keypress(function (e) {
-        if (e.which == 13) {
-            doLogin();
-        }
-    });
-
     $(document).ready(function(){
         $("#loginForm").submit(function(event){
             event.preventDefault();
         });
+    });
+
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            doLogin();
+        }
     });
 
     function doLogin() {
@@ -160,7 +160,7 @@ if ($ErrMsg<>"") {
               //show_msg(result.msg);
             }
         },"json");
-}
+    }
 </script>
 </body>
 
