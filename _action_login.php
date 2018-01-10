@@ -2,15 +2,10 @@
 session_start();
 include("inc/ggDbconfig.php");
 include("inc/ggFunctions.php");
-include("_ggValidate.php");
+include("inc/ggValidate.php");
 
 $debug = false;
 $req = ($debug)? $_GET:$_POST;
-
-$act=$req['act'];
-$username=$req['username'];
-$password=$req['password'];
-$sec_code=$req['sec_code'];
 
 $lang=0;
 $ls = new stdClass();
@@ -24,6 +19,13 @@ if (!isset($req['act']) || $req['act']!='login') {
   echo json_encode(array("status"=>"fail","msg"=>"Invalid Action"));
   exit;
 }
+
+$act=$req['act'];
+$username=$req['username'];
+$password=$req['password'];
+$sec_code=$req['sec_code'];
+$captcha_code = $_SESSION['captcha_code'];
+
 if ($setup->maintain=="1") {
 	header("location: maintain.php");
 	exit(0);
@@ -38,7 +40,7 @@ $v = new FormValidator();
 $v->addValidation(1,$username,"req",$ls->username_req[$lang]);
 $v->addValidation(2,$password,"req",$ls->password_req[$lang]);
 $v->addValidation(3,$user_id,"req",$ls->invalid_login[$lang]);
-$v->addValidation(4,$sec_code,"eq=".$_SESSION['captcha_code'],$ls->invalid_code[$lang]);
+$v->addValidation(4,$sec_code,"eq=".$captcha_code,$ls->invalid_code[$lang]);
 
 if (!$v->ValidateForm()) {
   $ret = array("status"=>"fail", "msg"=>$v->getError());

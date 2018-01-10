@@ -52,8 +52,8 @@ if ($use_easyui) {
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/demo.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="<?php echo ASSETS_URL; ?>/img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="<?php echo ASSETS_URL; ?>/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="<?php echo ASSETS_URL; ?>/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="<?php echo ASSETS_URL; ?>/img/favicon.ico" type="image/x-icon">
 
 		<!-- GG Disabled - GOOGLE FONT
 		   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">

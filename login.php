@@ -92,7 +92,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                                         <img id="captcha_img" src="captcha.php" width="110px">
                                     </a>
                                 </label>
-                                <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" required name="sec_code" id="sec_code" class="form-control">
+                                <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
                             </div>
 
 <?

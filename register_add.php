@@ -1,7 +1,7 @@
 <?
 include ('inc/ggDbconfig.php');
 include ('inc/ggFunctions.php');
-include ('_ggValidate.php');
+include ('inc/ggValidate.php');
 
 $debug = false;
 //$lang=0;
