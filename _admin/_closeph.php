@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 
 //$rr = $db->query("update tblhelp set status='C' where status = 'D'")  or die($db->error);

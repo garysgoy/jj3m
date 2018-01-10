@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 include("../_sms.php");
 
 $rs = $db->query("select * from tblhelp where sms=0 and (status='P' or status='C') limit 3") or die("Err ".$db->error);

@@ -1,6 +1,6 @@
 <?
-include ('_dbconfig.php');
-include ('_ggFunctions.php');
+include ('inc/ggDbconfig.php');
+include ('inc/ggFunctions.php');
 
 if ($user->logged==0 || $user->rank<1) {
   header("location: login.php");

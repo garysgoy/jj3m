@@ -11,7 +11,7 @@ require_once("inc/config.ui.php");
 YOU CAN SET CONFIGURATION VARIABLES HERE BEFORE IT GOES TO NAV, RIBBON, ETC.
 E.G. $page_title = "Custom Title" */
 
-include("_dbconfig.php");
+include("inc/ggDbconfig.php");
 /*
 $user = load_user(0);
 if (isset($rank) and $user->rank < $rank) {
@@ -21,7 +21,7 @@ if ($user->fullname=="" && $page<>"Profile") {
   header("location: profile.php");
 }
 */
-include("_ggFunctions.php");
+include("inc/ggFunctions.php");
 
 $page_title = "";
 

@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $q1 = $db->query("update tblmember set nickname=email, phone='',bankbranch='',bankaccount='',bankholder='',fullname=email,wechat='' where pin like 'xxwilson%'") or die($db->error);
 $q = $db->query("select * from tblmember where fullname like 'goy%' order by id");

@@ -1,5 +1,5 @@
 <?
-include ('_dbconfig.php');
+include ('inc/ggDbconfig.php');
 
 $ls = new stdClass();
 $ls->nopin = array("No PIN Available","没有激活码","沒有激活碼");

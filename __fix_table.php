@@ -1,5 +1,5 @@
 <?
-include("_dbconfig.php");
+include("inc/ggDbconfig.php");
 
 $db->query("ALTER TABLE `tblmember` ADD `btc` VARCHAR(40) NULL DEFAULT NULL AFTER `whatsapp`, ADD `eth` VARCHAR(40) NULL DEFAULT NULL AFTER `btc`;") ;
 if ($db->error=="") {

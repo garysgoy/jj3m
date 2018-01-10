@@ -1,6 +1,6 @@
 <?
-include("_dbconfig.php");
-include("_ggFunctions.php");
+include("inc/ggDbconfig.php");
+include("inc/ggFunctions.php");
 
 $setup = load_setup();
 $user = load_user(0);

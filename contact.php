@@ -1,6 +1,6 @@
 <?
 include_once("inc/ggInit.php");
-include_once("_ggFunctions.php");
+include_once("inc/ggFunctions.php");
 
 //$page_css[] = "";
 $page_title = $mls->support[$lang];;

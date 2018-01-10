@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 // Renumber PH to remove jumping numbers
 // Need to run dashboard_rph.php for commission recalculation

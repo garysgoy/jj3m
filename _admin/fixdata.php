@@ -1,5 +1,5 @@
 <?
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 
 $fix = $_REQUEST['fix'];
 $a   = $_REQUEST['a'];

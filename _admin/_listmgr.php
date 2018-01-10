@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $mgr = $db->query("select * from tblmember where note1 <> '' order by nickname") or die("err ".$db->error);
 echo "<table border=1 cellspacing=0 cellpadding=5>";

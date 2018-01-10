@@ -1,5 +1,5 @@
 <?
-include("_dbconfig.php");
+include("inc/ggDbconfig.php");
 
 $debug = false;
 $pass_len = 6;

@@ -1,7 +1,7 @@
 <?
 
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $rs = $db->query("SELECT * FROM  `tblhelp` WHERE id IN ( 15035, 15036, 15048, 15051, 15052, 15053, 15073, 15077, 15079, 15106, 15107, 15122, 15123, 15125, 15134, 15137, 15138, 15141, 15143, 15149, 15153, 15188, 15213, 15214, 15215 )");
 

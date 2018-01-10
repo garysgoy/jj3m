@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $rs = $db->query("select * from tblhelpdetail where stage <> 2 and stage <> 4");
 while ($row = mysqli_fetch_object($rs)) {

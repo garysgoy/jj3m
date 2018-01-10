@@ -2,7 +2,7 @@
 
 $q = isset($_POST['q']) ? strval($_POST['q']) : '';
 
-include ("../_dbconfig.php");
+include ("../inc/ggDbconfig.php");
 
 $mem = $db->query("select * from tblmember where username like '$q%' and username not like 'jj%' order by username") or die("Select ".$db->error);
 $rows = array();

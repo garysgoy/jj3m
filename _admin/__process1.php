@@ -1,8 +1,8 @@
 <?
 //include("../_util.php");
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 include("__util.php");
-include("../_ggFunctions.php");
+include("../inc/ggFunctions.php");
 include("../_sms.php");
 
 $id = $_REQUEST['id'];

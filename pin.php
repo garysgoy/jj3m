@@ -45,7 +45,7 @@ $ls->pin_in  = array("Transfer In ","激活码转入","激活碼轉入");
 $ls->pin_out = array("Transfer Out","激活码转出","激活碼轉出");
 
 include("inc/ggHeader.php");
-include("_ggFunctions.php");
+include("inc/ggFunctions.php");
 
 $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user->id and status='N'");
 

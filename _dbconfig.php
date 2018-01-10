@@ -1,6 +1,6 @@
 <?
-//error_reporting(E_ALL);
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL);
+//  error_reporting(E_ALL & ~E_NOTICE);
 $server=0;
 if ($server==1) {
   $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
@@ -25,8 +25,7 @@ $lang = isset($_COOKIE['lang'])? $_COOKIE['lang']:0;
 
 
 function load_user($rid) {
-  global $db;
-  $setup = load_setup();
+  global $db,$setup;
   $user = array();
 
   if ($rid == 0) {
@@ -58,7 +57,7 @@ function load_user($rid) {
 
 function load_setup() {
   global $db;
-  $rs = $db->query("SELECT * FROM tblsetup") or die($db->error);
+  $rs = $db->query("SELECT * FROM tblsetup where app_code='cxt'") or die($db->error);
   $ret = $rs->fetch_object();
   return $ret;
 }

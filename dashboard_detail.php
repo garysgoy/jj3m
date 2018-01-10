@@ -1,6 +1,6 @@
 <?
-include("_dbconfig.php");
-include("_ggFunctions.php");
+include("inc/ggDbconfig.php");
+include("inc/ggFunctions.php");
 
 $hid = (isset($_REQUEST['hid']))? $_REQUEST['hid']:0;
 

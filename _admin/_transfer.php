@@ -1,7 +1,7 @@
 <?
 $pagetitle = "Sell PINs";
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $max = (isset($_REQUEST['max']))? $_REQUEST['max']:50;
 

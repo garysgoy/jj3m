@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?
-include ('_dbconfig.php');
-include ('_ggFunctions.php');
+include ('inc/ggDbconfig.php');
+include ('inc/ggFunctions.php');
 
 $user = load_user(0);
 $setup = load_setup();

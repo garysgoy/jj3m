@@ -1,5 +1,5 @@
 <?
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 
 $a = List_1(); // Switch Referral / Manager
 

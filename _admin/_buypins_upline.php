@@ -1,6 +1,6 @@
 <?
-include ("../_dbconfig.php");
-include ("../_ggFunctions.php");
+include ("../inc/ggDbconfig.php");
+include ("../inc/ggFunctions.php");
 
 $mem = isset($_REQUEST['mem']) ? strval($_REQUEST['mem']) : 100;
 $mgr = ggFetchObject("select * from tblmember where id = $mem") or die("Select ".$db->error);

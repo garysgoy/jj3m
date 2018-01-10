@@ -1,5 +1,5 @@
 <?
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 
 $rs = $db->query("select * from tblmember");
 while ($row = mysqli_fetch_object($rs)) {

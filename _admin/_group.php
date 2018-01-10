@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $rs = $db->query("select * from tblmember where email='mmm.rayzie@gmail.com' or email='dzull182@yahoo.com.my' or email='mmm.rayzie@gmail.com' or email='mmm.rayzie@gmail.com'");
 $ctr = 1;

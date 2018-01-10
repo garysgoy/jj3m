@@ -1,7 +1,7 @@
 <?
 $pagetitle = "Add GH";
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 include("__util.php");
 
 $user = load_user(0);

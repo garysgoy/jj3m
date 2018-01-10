@@ -1,6 +1,6 @@
 <?
 include ('_util.php');
-include ('_ggFunctions.php');
+include ('inc/ggFunctions.php');
 
 	$user = load_user(0);
 	$ls = new stdClass();

@@ -1,6 +1,6 @@
 <?
-include("_dbconfig.php");
-include("_ggFunctions.php");
+include("inc/ggDbconfig.php");
+include("inc/ggFunctions.php");
 
 $id = isset($_REQUEST['id'])? $_REQUEST['id'] : 0;
 $pr = isset($_REQUEST['pr'])? $_REQUEST['pr'] : 0;

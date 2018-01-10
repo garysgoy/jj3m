@@ -1,7 +1,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $rs = $db->query("select h.* from tblhelp as h, tblmember as m where h.mem_id=m.id and h.status='B' order by username");
 

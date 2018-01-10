@@ -1,5 +1,5 @@
 <?
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 
 $user = load_user(0);
 

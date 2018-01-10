@@ -1,7 +1,7 @@
 <?
 
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $rs = $db->query("SELECT DATE(g_date) as udate, sum(g_amount) as uamount
 FROM tblhelp where g_type='P' and status = 'O' GROUP BY udate ORDER BY udate") or die ("err ". $db->error);

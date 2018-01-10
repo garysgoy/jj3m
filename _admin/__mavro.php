@@ -76,7 +76,7 @@ left: 0;
 <div class="main">
 <?
 include("_util.php");
-include("_ggFunctions.php");
+include("inc/ggFunctions.php");
 include("__util.php");
 
 	$KoolControlsFolder = "../KoolControls";

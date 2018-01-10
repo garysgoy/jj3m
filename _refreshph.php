@@ -1,5 +1,5 @@
 <?
-include("_dbconfig.php");
+include("inc/ggDbconfig.php");
 include("_ggFunctions");
 
 $xx = ggRefreshPH(9);

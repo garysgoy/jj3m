@@ -128,6 +128,7 @@ function ggAccessLog1($username, $type, $note) {
 
 function ggRank($rank,$type) {
   global $lang;
+  $ls = new stdClass();
   $ls->rank1 = array("Member","普通会员","普通會員");
   $ls->rank5 = array("Manager","注册经理","註冊經理");
   $ls->rank6 = array("Senior Manager","合格经理","合格經理");

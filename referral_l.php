@@ -1,7 +1,7 @@
 <?
 error_reporting(E_ALL);
-include ('_dbconfig.php');
-include ('_ggFunctions.php');
+include ('inc/ggDbconfig.php');
+include ('inc/ggFunctions.php');
 
 $debug=true;
 $req = ($debug)? $_GET:$req;

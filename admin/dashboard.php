@@ -12,7 +12,7 @@ if ($user->id == 0 || $user->rank<8) {
 }
 
 //include("inc/ggHeader.php");
-//include("_ggFunctions.php");
+//include("inc/ggFunctions.php");
 ?>
 
 <!-- ==========================CONTENT STARTS HERE ========================== -->

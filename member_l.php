@@ -1,7 +1,7 @@
 <?
 error_reporting(E_ALL);
-include ('_dbconfig.php');
-include ('_ggFunctions.php');
+include ('inc/ggDbconfig.php');
+include ('inc/ggFunctions.php');
 
 
 	if (isset($_POST['id'])) {
@@ -11,6 +11,7 @@ include ('_ggFunctions.php');
 		$id = $user->id;
 	}
 
+	$ls = new stdClass();
 	$ls->statusA = array("Active","活跃","活跃");
 	$ls->statusB = array("Block","封号","封号");
 	$ls->rankMgr = array("Manager","註冊经理","註冊经理");

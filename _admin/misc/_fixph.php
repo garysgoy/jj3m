@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 // When confirm PH (Mainlty for Happy and also for WW)
 // 1. Mavro confirm Immediate or Matuyrity of PH

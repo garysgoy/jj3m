@@ -1,7 +1,7 @@
 <?
 include("../_util.php");
 include("__util.php");
-include("../_ggFunctions.php");
+include("../inc/ggFunctions.php");
 
 $mem_id = rand(2,10);
 $amount = rand(1,7)*1000;

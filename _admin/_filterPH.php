@@ -1,6 +1,6 @@
 <?
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $max = 2000;
 $help = $db->query("select * from tblhelp where g_type='P' and (status='O' or status='P') order by priority desc, g_date limit $max") or die("err ".$db->error);

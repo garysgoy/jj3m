@@ -1,6 +1,6 @@
 <?
-include("_dbconfig.php");
-include("_ggFunctions.php");
+include("inc/ggDbconfig.php");
+include("inc/ggFunctions.php");
 
 $xx = $db->query("truncate tblmavro");
 $ph = $db->query("select * from tblhelp where g_type='P' and status <> 'X'");

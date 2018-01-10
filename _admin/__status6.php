@@ -1,12 +1,12 @@
 <?php
-include("../_dbconfig.php");
-include("../_ggFunctions.php");
+include("../inc/ggDbconfig.php");
+include("../inc/ggFunctions.php");
 
 $user = load_user();
 
 if ($user->id == 0 || $user->rank<9) {
     echo '<script language="JavaScript" type="text/javascript">
-    top.location.href = "../index.php"; 
+    top.location.href = "../index.php";
     </script>';
     exit(0);
 }

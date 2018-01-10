@@ -1,5 +1,5 @@
 <?php
-include("../_dbconfig.php");
+include("../inc/ggDbconfig.php");
 
 
 if ($user->id == 0 || $user->rank<9) {

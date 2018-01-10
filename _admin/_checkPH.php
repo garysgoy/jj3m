@@ -17,8 +17,8 @@
 </style>
 </head>
 <?
-	include("../_dbconfig.php");
-	include("../_ggFunctions.php");
+	include("../inc/ggDbconfig.php");
+	include("../inc/ggFunctions.php");
 
 	$option = (isset($_REQUEST['option']))? $_REQUEST['option']:0;
 	$setup = load_setup();

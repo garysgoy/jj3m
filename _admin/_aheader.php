@@ -1,5 +1,5 @@
 <?
-include ("../_dbconfig.php");
+include ("../inc/ggDbconfig.php");
 
 echo '<a href="__status.php">Status</a>&nbsp;&nbsp;';
 echo '<a href="buypins.php">Buy Pins</a>&nbsp;&nbsp;';

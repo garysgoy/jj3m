@@ -1,6 +1,6 @@
 <?
-	include("_dbconfig.php");
-	include("_ggFunctions.php");
+	include("inc/ggDbconfig.php");
+	include("inc/ggFunctions.php");
 
 	$mavro = isset($_REQUEST['mavro']) ? $_REQUEST['mavro'] : "";
 	$amount = isset($_REQUEST['amount']) ? $_REQUEST['amount'] : 0;

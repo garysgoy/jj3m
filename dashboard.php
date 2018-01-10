@@ -40,7 +40,7 @@ $ls->gh_comment = array("Message","备注","備註");
 $ls->successfulph = array("PH Success","提供帮助顺利完成","提供帮助顺利完成");
 
 include("inc/ggHeader.php");
-include("_ggFunctions.php");
+include("inc/ggFunctions.php");
 
 ?>
 <!-- ==========================CONTENT STARTS HERE ========================== -->
