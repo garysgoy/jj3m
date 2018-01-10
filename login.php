@@ -25,8 +25,8 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
     <!-- Vendor styles -->
 <!--    <link rel="stylesheet" href="css/3m/main.css" />
--->
     <link rel="stylesheet" href="css/font-awesome.min.css" />
+-->
 <!--
     <link rel="stylesheet" href="/assets/vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="/assets/vendor/animate.css/animate.css" />
@@ -89,10 +89,10 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
                                     <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php?&rand='+Math.random()">
-                                        <img id="captcha_img" src="captcha.php?&random="+Math.random() width="110px;" height="100%">
+                                        <img id="captcha_img" src="captcha.php?&rand="+Math.random() width="110px;" height="100%">
                                     </a>
                                 </label>
-                                <input type="password" placeholder="<? echo $ls->sec_code[$lang]; ?>" required value="" name="sec_code" id="sec_code" class="form-control">
+                                <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" required name="sec_code" id="sec_code" class="form-control">
                             </div>
 
 <?
