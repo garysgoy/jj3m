@@ -1,7 +1,9 @@
 <?
 //error_reporting(E_ALL);
 error_reporting(E_ALL & ~E_NOTICE);
-$server=1;
+// Auto detect Local or Server
+$server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
+
 if ($server==1) {
   $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
 } else {

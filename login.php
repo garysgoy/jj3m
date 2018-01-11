@@ -1,4 +1,6 @@
 <?
+include("inc/ggDbconfig.php");
+
 $lang=0;
 $ls = new stdClass();
 $ls->title = array("3M System","3M 互助系统","3M 互助系統");
