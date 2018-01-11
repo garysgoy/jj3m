@@ -5,7 +5,7 @@
 3. Load setup from database (Change to setup.php?)
 4.
 -----------*/
-// Auto detect Local or Server
+
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
 
 if ($server==0) {
@@ -42,6 +42,7 @@ function load_user($rid) {
   $user = array();
 
   if ($rid == 0) {
+    // Need some check if what to remove notice of offset
     $pid = isset($_COOKIE["pid"]) ? $_COOKIE["pid"]:"0-xxx";
 
     list ($user_id, $chid) = explode ('-', $pid, 2);

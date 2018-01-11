@@ -39,18 +39,21 @@ if ($use_easyui) {
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/3m/toastr.min.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/my-style.css">
 <? } ?>
-		<?
+<?
 			if ($page_css) {
 				foreach ($page_css as $css) {
 					//echo '<link rel="stylesheet" type="text/css" media="screen" href="'.ASSETS_URL.'/css/'.$css.'">';
 				}
 			}
-		?>
+?>
 
-
+<?
+// Only show demo selection on local
+if ($server==0) {
+?>
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/demo.min.css">
-
+<? } ?>
 		<!-- FAVICONS -->
 		<link rel="shortcut icon" href="<?php echo ASSETS_URL; ?>/img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="<?php echo ASSETS_URL; ?>/img/favicon.ico" type="image/x-icon">
@@ -284,8 +287,12 @@ if ($show_speech) {
 						</div>
 						<!-- end voice command -->
 <? } ?>
-						<!-- multiple lang dropdown : find all flags in the flags page -->
+<?
+if ($setup->lang<90) {
+// This app use 90 meaning only english
+?>
 
+						<!-- multiple lang dropdown : find all flags in the flags page -->
 						<ul class="header-dropdown-list hidden-xs">
 							<li>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -303,9 +310,8 @@ if ($show_speech) {
 								</ul>
 							</li>
 						</ul>
-
 						<!-- end multiple lang -->
-
+<? } ?>
 					</div>
 					<!-- end pulled right: nav area -->
 		<script>
