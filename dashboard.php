@@ -37,7 +37,33 @@ $ls->gh_amount = array("Help Amount","提领金额","提領金額");
 $ls->gh_amountp = array("RMB","人民币","人民幣");
 $ls->gh_comment = array("Message","备注","備註");
 
+
 $ls->successfulph = array("PH Success","提供帮助顺利完成","提供帮助顺利完成");
+
+// PH & GH Box
+$ls->cancel = array("Cancel","取消","取消");
+$ls->cancelled = array("Cancelled","已取消","已取消");
+$ls->waiting1 = array("Waiting (","等待中 (","等待中 (");
+$ls->waiting2 = array(" Days)"," 天)"," 天)");
+$ls->matching = array("Matching","配对中","配對中");
+$ls->w_matching = array("To be match","待配对","待配對");
+$ls->aph = array("Request to Provide Help","申请提供帮助","申請提供幫助");
+$ls->agh = array("Request for Get Help","申请接受帮助","申請接受幫助");
+$ls->date = array("Date","日期","日期");
+$ls->status = array("Status","状态","狀態");
+$ls->match_code = array("Match Code","配对编号","配對編號");
+$ls->detail = array("Detail","详细","詳細");
+$ls->wallet = array("Wallet","钱包","錢包");
+$ls->src_wallet = array("Wallet","钱包","錢包");
+$ls->src_deposit = array("Deposit reward","互助","互助");
+$ls->src_sponsor = array("Sponsor reward","推荐奖金","推薦獎金");
+$ls->src_manager = array("Manager reward","经理奖金","經歷獎金");
+$ls->src_special = array("Special reward","特别奖金","特別獎金");
+$ls->matched = array("Matched","已经配对","已經配對");
+$ls->completed = array("Completed","已经完成","已經完成");
+$ls->failed = array("Failed","已经失效","已經失效");
+$ls->blocked = array("Blocked","已经被封锁","已經被封鎖");
+
 
 include("inc/ggHeader.php");
 include("inc/ggFunctions.php");
@@ -294,63 +320,15 @@ include("_inc_gethelp.php");
             <div class="modal-content">
                 <div class="modal-header btn-success">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">详细资料</h4>
+                  <h4 class="modal-title" id="myModalLabel"><? echo $ls->detail[$lang]; ?></h4>
                 </div>
                 <div class="modal-body">
                   <form action="" method="post" id="provideHelpForm" name="provideHelpForm" class="form-control" style="height: 420px;">
                     <div class="modal-body">
                     <table width=100%>
                     <tr><td width=50%>
-                     <table class='table2_1' width=100%>
-                       <tr>
-                         <td colspan="2"><? echo $ls->titleph[$lang]; ?></td>
-                       </tr>
-                       <tr>
-                         <td style="text-align:left;" width='40%'>
-                            打款者：<br>
-                            姓名：<br>
-                            银行名字：<br>
-                            银行分行：<br>
-                            银行号码：<br>
-                            支付宝：<br>
-                            微信支付：<br>
-                            手机号码：<br>
-                            联络方式：<br>
-                            <br>
-                            经理人账号：<br>
-                            姓名：<br>
-                            手机号码：<br>
-                            联络方式：
-                         </td><td style="text-align:left; vertical-align:top;">
-                           <span id="helpdetail1"></span>
-                         </td>
-                       </tr>
-                     </table></td><td>
-                     <table class='table2_2' width=100%>
-                       <tr>
-                         <td colspan="2"><? echo $ls->titlegh[$lang]; ?></td>
-                       </tr>
-                       <tr>
-                         <td style="text-align:left;" width='40%'>
-                            收款者：<br>
-                            姓名：<br>
-                            银行名字：<br>
-                            银行分行：<br>
-                            银行号码：<br>
-                            支付宝：<br>
-                            微信支付：<br>
-                            手机号码：<br>
-                            联络方式：<br>
-                            <br>
-                            经理人账号：<br>
-                            姓名：<br>
-                            手机号码：<br>
-                            联络方式：
-                         </td><td style="text-align:left; vertical-align:top;">
-                           <span id="helpdetail2"></span>
-                         </td>
-                       </tr>
-                     </table></td></tr></table>
+                      <? echo ggDetailTable(); ?>
+                    </td></tr></table>
                     </div>
                     <div style="clear:both;"></div>
                     <div class="modal-footer" style="text-align: left">
@@ -428,92 +406,13 @@ if ($ctr == 0) {
       <div class="col-md-9" style="background-color:#fff;">
       <div class="table-responsive">
         <?
-          // GG GHBox
-          $now = new datetime("now");
-          $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='P' order by id desc");
-          while ($row = mysqli_fetch_object($rs)) {
-              $class = ($row->g_type=='P')? 'table2_1':'table2_2';
-              $oth = load_user($row->oth_id);
-              $mem = load_user($uid);
-              if ($row->stage == 2 || $row->stage == 4) {
-                $time_remain = "";
-              } else {
-                $time_remain = ggTimeRemain($now,$row->g_timer);
-              }
-              echo "<table width='100%' class='$class'>";
-              echo "<tr><td>状态</td><td>配对编号</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>金额</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
-
-              $preview = "";
-              if ($row->images<>"") {
-                $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
-              }
-
-              if ($row->stage<3) {
-                $img = "star".($row->stage+1).".png";
-              } else if ($row->stage==3) {
-                $img = "question.png";
-              } else {
-                $img = "cross.png";
-              }
-
-              if ($row->g_type=='P') {
-                echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td><td>-></td><td>$row->g_amount 人民币<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>详细</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td></tr>";
-              } else {
-                echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td><td>-></td><td>$row->g_amount 人民币<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>详细</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td></tr>";
-              }
-              echo "</table><p style='height: 1px'></p>";
-          }
+          echo ggPhDBox();
         ?>
       </div>
     </div>
     <div class="col-md-3">
 <?
-  // GG PHBox1
-  //$uid = ($uid>0) ? $uid:$user->id;
-  if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='P' and status<>'X'")) {
-    $now = new DateTime("NOW");
-    while ($row = mysqli_fetch_object($rs)) {
-      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
-      $g_date = new DateTime($row->g_date);
-      $interval = $now->diff($g_date);
-      $days = $interval->format("%d");
-
-      if ($row->status=="X") {
-         $color = 'silver';
-         $status = "已取消";
-      } else if ($row->status=="P") {
-         $color = '#bcd979';
-         $status = "配对中";
-         $pending1 = "待配对<br>";
-         $pending2 = number_format($row->g_pending)."  人民币<br>";
-      } else if ($row->status=="C") {
-         $color = '#bcd979';
-         $status = "已经配对";
-      } else if ($row->status=="D") {
-         $color = '#bcd979';
-         $status = "已经完成";
-      } else if ($row->status=="F") {
-         $color = '#bcd979';
-         $status = "<b class=red>订单失效</b>";
-      } else if ($row->status=="B") {
-         $color = '#bcd979';
-         $status = "<b class=red>订单已被封锁</b>";
-      } else {
-         $color = '#bcd979';
-         $status = "等待中 （$days 天）";
-      }
-      $cancel = "";
-      if ($row->status=="O" and $days < 7) {
-          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>取消</a>";
-      }
-      // GG PHBox2
-      echo "<table width='100%' class=$class>";
-      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
-      echo "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>申请提供帮助: <br>".ggHID($row->id)."</td></tr>";
-      echo "<tr><td style='text-align:left; vertical-align:top;'>参与者:<br>金额:<br>$pending1 日期:<br>状态:</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." 人民币<br>$pending2 ".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
-      echo "</table><br>";
-    }
-  }
+  echo ggPhBox();
 ?>
       <table id="dgin" width=100%></table>
  </div>
@@ -523,104 +422,14 @@ if ($ctr == 0) {
         <div class="col-md-9" style="background-color:#fff;">
       <div class="table-responsive">
         <?
-          // GG GHBox
-          $now = new datetime("now");
-          $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='G' order by id desc");
-          while ($row = mysqli_fetch_object($rs)) {
-              $class = ($row->g_type=='P')? 'table2_1':'table2_2';
-              $oth = load_user($row->oth_id);
-              $mem = load_user($uid);
-              if ($row->stage == 2 || $row->stage == 4) {
-                $time_remain = "";
-              } else {
-                $time_remain = ggTimeRemain($now,$row->g_timer);
-              }
-              echo "<table width='100%' class='$class'>";
-              echo "<tr><td>状态</td><td>配对编号</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>金额</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
-
-              $preview = "";
-              if ($row->images<>"") {
-                $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
-              }
-
-  	          if ($row->stage<3) {
-  				      $img = "star".($row->stage+1).".png";
-  	          } else if ($row->stage==3) {
-  	          	$img = "question.png";
-  	          } else {
-                $img = "cross.png";
-              }
-
-              if ($row->g_type=='P') {
-                echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td><td>-></td><td>$row->g_amount 人民币<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>详细</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td></tr>";
-              } else {
-                echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td><td>-></td><td>$row->g_amount 人民币<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>详细</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td></tr>";
-              }
-              echo "</table><p style='height: 1px'></p>";
-          }
+          echo ggGhDBox();
         ?>
 
       </div>
     </div>
     <div class="col-md-3">
 <?
-  // GG GHBox1
-  //$uid = ($uid>0) ? $uid:$user->id;
-  if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='G' and status<>'X'")) {
-    $now = new DateTime("NOW");
-    while ($row = mysqli_fetch_object($rs)) {
-      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
-      $g_date = new DateTime($row->g_date);
-      $interval = $now->diff($g_date);
-      $days = $interval->format("%d");
-
-      $pending="";
-      $pending2 = "";
-      if ($row->status=="X") {
-         $color = 'silver';
-         $status = "已取消";
-      } else if ($row->status=="P") {
-         $color = '#bcd979';
-         $status = "配对中";
-         $pending1 = "待配对<br>";
-         $pending2 = number_format($row->g_pending)."  人民币<br>";
-      } else if ($row->status=="D") {
-         $color = '#bcd979';
-         $status = "已经完成";
-       } else if ($row->status=="C") {
-         $color = '#bcd979';
-         $status = "已经配对";
-      } else if ($row->status=="B") {
-         $color = '#bcd979';
-         $status = "<b class=red>订单已被封锁</b>";
-      } else {
-         $color = '#bcd979';
-         $status = "等待中 （$days 天）";
-      }
-
-      $source1 = "钱包:<br>";
-      if ($row->note == 'deposit') {
-        $source2 = '互助<br>';
-      } else if ($row->note == 'referral') {
-        $source2 = '推荐奖金<br>';
-      } else if ($row->note == 'manager') {
-        $source2 = '经理奖金<br>';
-      } else {
-        $source2 = "特别奖金<br>";
-      }
-
-      $cancel = "";
-      if ($row->status=="O" and $days < 7) {
-          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>取消</a>";
-      }
-      // GG PHBox2
-      echo "<table width='100%' class=$class>";
-      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
-      echo "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>申请接受帮助: <br>".ggHID($row->id)."</td></tr>";
-      echo "<tr><td style='text-align:left; vertical-align:top;'>参与者:<br>金额:<br>$pending1 $source1 日期:<br>状态:</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." 人民币<br>$pending2 $source2".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
-      echo "</table><br>";
-    }
-  }
+  echo ggGhBox();
 ?>
  </div>
  <!-- <div class="clear:both;"></div>-->
@@ -926,6 +735,255 @@ function ggHelpCount($t) {
   global $user;
   $help = ggFetchValue("select count(id) from tblhelp where mem_id = $user->id and g_type='$t' and status<>'X'");
   return $help;
+}
+
+function ggPhDBox() {
+    global $db, $setup, $user, $ls, $lang, $uid;
+
+    $now = new datetime("now");
+    $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='P' order by id desc");
+    while ($row = mysqli_fetch_object($rs)) {
+        $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+        $oth = load_user($row->oth_id);
+        $mem = load_user($uid);
+        if ($row->stage == 2 || $row->stage == 4) {
+          $time_remain = "";
+        } else {
+          $time_remain = ggTimeRemain($now,$row->g_timer);
+        }
+        echo "<table width='100%' class='$class'>";
+        echo "<tr><td>".$ls->status[$lang]."</td><td>".$ls->match_code[$lang]."</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>".$ls->ph_amount[$lang]."</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
+
+        $preview = "";
+        if ($row->images<>"") {
+          $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
+        }
+
+        if ($row->stage<3) {
+          $img = "star".($row->stage+1).".png";
+        } else if ($row->stage==3) {
+          $img = "question.png";
+        } else {
+          $img = "cross.png";
+        }
+
+        if ($row->g_type=='P') {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td></tr>";
+        } else {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td></tr>";
+        }
+        echo "</table><p style='height: 1px'></p>";
+    }
+
+}
+
+function ggGhDBox() {
+  global $db, $setup, $user, $lang, $ls,$uid;
+    $now = new datetime("now");
+    $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='G' order by id desc");
+    while ($row = mysqli_fetch_object($rs)) {
+        $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+        $oth = load_user($row->oth_id);
+        $mem = load_user($uid);
+        if ($row->stage == 2 || $row->stage == 4) {
+          $time_remain = "";
+        } else {
+          $time_remain = ggTimeRemain($now,$row->g_timer);
+        }
+        echo "<table width='100%' class='$class'>";
+        echo "<tr><td>".$ls->status[$lang]."</td><td>".$ls->match_code[$lang]."</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>".$ls->gh_amount[$lang]."</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
+
+        $preview = "";
+        if ($row->images<>"") {
+          $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
+        }
+
+        if ($row->stage<3) {
+          $img = "star".($row->stage+1).".png";
+        } else if ($row->stage==3) {
+          $img = "question.png";
+        } else {
+          $img = "cross.png";
+        }
+
+        if ($row->g_type=='P') {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td></tr>";
+        } else {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td></tr>";
+        }
+        echo "</table><p style='height: 1px'></p>";
+    }
+    return $ret;
+}
+
+function ggPhBox() {
+    global $db, $setup, $user, $ls, $lang, $uid;
+    $ret = "";
+
+    if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='P' and status<>'X' order by g_date desc")) {
+    $now = new DateTime("NOW");
+    while ($row = mysqli_fetch_object($rs)) {
+      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+      $g_date = new DateTime($row->g_date);
+      $interval = $now->diff($g_date);
+      $days = $interval->format("%d");
+
+      if ($row->status=="X") {
+         $color = 'silver';
+         $status = $ls->cancelled[$lang];
+      } else if ($row->status=="P") {
+         $color = '#bcd979';
+         $status = $ls->matching[$lang];
+         $pending1 = $ls->w_matching[$lang]."<br>";
+         $pending2 = number_format($row->g_pending)."  $setup->currency<br>";
+      } else if ($row->status=="C") {
+         $color = '#bcd979';
+         $status = $ls->matched[$lang];
+      } else if ($row->status=="D") {
+         $color = '#bcd979';
+         $status = $ls->completed[$lang];
+      } else if ($row->status=="F") {
+         $color = '#bcd979';
+         $status = "<b class=red>".$ls->failed[$lang]."</b>";
+      } else if ($row->status=="B") {
+         $color = '#bcd979';
+         $status = "<b class=red>".$ls->blocked[$lang]."</b>";
+      } else {
+         $color = '#bcd979';
+         $status = $ls->waiting1[$lang].$days.$ls->waiting2[$lang];
+      }
+      $cancel = "";
+      if ($row->status=="O" and $days < 7) {
+          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>".$ls->cancel[$lang]."</a>";
+      }
+      // GG PHBox2
+      $ret .= "<table width='100%' class=$class>";
+      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
+      $ret .= "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>".$ls->aph[$lang].": <br>".ggHID($row->id)."</td></tr>";
+      $ret .= "<tr><td style='text-align:left; vertical-align:top;'>".$ls->participants[$lang].":<br>".$ls->ph_amount[$lang].":<br>$pending1 ".$ls->date[$lang].":<br>".$ls->status[$lang].":</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." $setup->currency<br>$pending2 ".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
+      $ret .= "</table><br>";
+    }
+  }
+  return $ret;
+}
+
+
+function ggGhBox() {
+  global $db, $setup, $user,$uid,$ls,$lang;
+  $ret = "";
+
+  if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='G' and status<>'X'")) {
+    $now = new DateTime("NOW");
+    while ($row = mysqli_fetch_object($rs)) {
+      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+      $g_date = new DateTime($row->g_date);
+      $interval = $now->diff($g_date);
+      $days = $interval->format("%d");
+
+      $pending="";
+      $pending2 = "";
+      if ($row->status=="X") {
+         $color = 'silver';
+         $status = $ls->cancelled[$lang];
+      } else if ($row->status=="P") {
+         $color = '#bcd979';
+         $status = $ls->matching[$lang];
+         $pending1 = $ls->w_matching[$lang]."<br>";
+         $pending2 = number_format($row->g_pending)."  $setup->currency<br>";
+      } else if ($row->status=="D") {
+         $color = '#bcd979';
+         $status = "已经完成";
+       } else if ($row->status=="C") {
+         $color = '#bcd979';
+         $status = "已经配对";
+      } else if ($row->status=="B") {
+         $color = '#bcd979';
+         $status = "<b class=red>订单已被封锁</b>";
+      } else {
+         $color = '#bcd979';
+         $status = $ls->waiting1[$lang].$days.$ls->waiting2[$lang];
+      }
+
+      $source1 = $ls->src_wallet[$lang].":<br>";
+      if ($row->note == 'deposit') {
+        $source2 = $ls->src_deposit[$lang]."<br>";
+      } else if ($row->note == 'referral') {
+        $source2 = $ls->src_sponsor[$lang]."<br>";
+      } else if ($row->note == 'manager') {
+        $source2 = $ls->src_manager[$lang]."<br>";
+      } else {
+        $source2 = $ls->src_special[$lang]."<br>";
+      }
+
+      $cancel = "";
+      if ($row->status=="O" and $days < 7) {
+          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>取消</a>";
+      }
+      // GG PHBox2
+      $ret .= "<table width='100%' class=$class>";
+      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
+      $ret .= "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>".$ls->agh[$lang].": <br>".ggHID($row->id)."</td></tr>";
+      $ret .= "<tr><td style='text-align:left; vertical-align:top;'>".$ls->participants[$lang].":<br>".$ls->gh_amount[$lang].":<br>$pending1 $source1 ".$ls->date[$lang].":<br>".$ls->status[$lang].":</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." $setup->currency<br>$pending2 $source2".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
+      $ret .= "</table><br>";
+    }
+  }
+  return $ret;
+}
+
+function ggDetailTable() {
+  global $ls,$lang;
+?>
+     <table class='table2_1' width=100%>
+     <tr>
+       <td colspan="2"><? echo $ls->titleph[$lang]; ?></td>
+     </tr>
+     <tr>
+       <td style="text-align:left;" width='40%'>
+          打款者：<br>
+          姓名：<br>
+          银行名字：<br>
+          银行分行：<br>
+          银行号码：<br>
+          支付宝：<br>
+          微信支付：<br>
+          手机号码：<br>
+          联络方式：<br>
+          <br>
+          经理人账号：<br>
+          姓名：<br>
+          手机号码：<br>
+          联络方式：
+       </td><td style="text-align:left; vertical-align:top;">
+         <span id="helpdetail1"></span>
+       </td>
+     </tr>
+   </table></td><td>
+   <table class='table2_2' width=100%>
+     <tr>
+       <td colspan="2"><? echo $ls->titlegh[$lang]; ?></td>
+     </tr>
+     <tr>
+       <td style="text-align:left;" width='40%'>
+          收款者：<br>
+          姓名：<br>
+          银行名字：<br>
+          银行分行：<br>
+          银行号码：<br>
+          支付宝：<br>
+          微信支付：<br>
+          手机号码：<br>
+          联络方式：<br>
+          <br>
+          经理人账号：<br>
+          姓名：<br>
+          手机号码：<br>
+          联络方式：
+       </td><td style="text-align:left; vertical-align:top;">
+         <span id="helpdetail2"></span>
+       </td>
+     </tr>
+   </table>
+<?
 }
 
 include("inc/ggFooter.php");
