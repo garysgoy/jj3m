@@ -1,16 +1,23 @@
 <?
-//error_reporting(E_ALL);
-error_reporting(E_ALL & ~E_NOTICE);
+/*----------
+1. Detect Local or server and connect DB
+2. Set timezone
+3. Load setup from database (Change to setup.php?)
+4.
+-----------*/
 // Auto detect Local or Server
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
 
-if ($server==1) {
-  $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
-} else {
+if ($server==0) {
   $db = new mysqli("localhost", "root", "root","jj3m");
+  error_reporting(E_ALL);
+} else {
+  $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
+  error_reporting(E_ALL & ~E_NOTICE);
 }
+
 if ($db->connect_errno) {
-    echo "Failed to connect to MySQL: GG (" . $db->connect_errno . ") " . $db->connect_error;
+    echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
     echo "<br>Server =".$server;
     exit();
 }
@@ -23,7 +30,11 @@ $setup = load_setup();
 
 $user = load_user(0);
 
-$lang = isset($_COOKIE['lang'])? $_COOKIE['lang']:0;
+if ($setup->lang >= 90) {
+  $lang = $setup->lang - 90;
+} else {
+  $lang = (isset($_COOKIE['lang']) && $_COOKIE['lang']>=0)? $_COOKIE['lang']:0;
+}
 
 function load_user($rid) {
   global $db;
