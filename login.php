@@ -81,12 +81,12 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                             <input type="hidden" id="act" value="login">
                             <div class="form-group">
                                 <label class="control-label" for="username"><? echo $ls->username[$lang]; ?></label>
-                                <input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" class="form-control">
+                                <input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" autocomplete="off" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
-                                <input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" class="form-control">
+                                <input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
@@ -138,7 +138,9 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
     $(document).keypress(function (e) {
         if (e.which == 13) {
-            doLogin();
+            if ($("#login_btn").attr("disabled") == false) {
+                doLogin();
+            }
         }
     });
 
@@ -148,12 +150,14 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
         var password = $('#password').val();
         var sec_code = $('#sec_code').val();
 
+        $("#login_btn").attr("disabled",true);
         $.post("_action_login.php",{act:act,username:username,password:password,sec_code:sec_code},function(result){
             if(result.status == 'success') {
               document.location.href = "dashboard.php";
             } else {
                 alert(result.msg);
-              //show_msg(result.msg);
+                $("#login_btn").attr("disabled",false);
+                //show_msg(result.msg);
             }
         },"json");
     }
