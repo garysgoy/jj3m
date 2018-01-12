@@ -326,6 +326,12 @@ function ggNextPH($op) {
 }
 
 function ggTimeRemain($now,$now1) {
+  global $lang;
+
+  $fs= new stdClass();
+  $fs->hour = array("Hour","小时","小時");
+  $fs->min = array("Min","分钟","小時");
+  $fs->expired = array("Expired","超时了","超時了");
   $ret = "";
   $now2 = new datetime("$now1");
   if ($now2 >= $now) {
@@ -334,9 +340,9 @@ function ggTimeRemain($now,$now1) {
     $days = $interval->format("%d");
     $hours = $interval->format("%h");
     $mins = $interval->format("%i");
-    $ret = ($days*24 + $hours) ." 小时 ". $mins ." 分钟";
+    $ret = ($days*24 + $hours) .' '.$fs->hour[$lang].' '. $mins .' '.$fs->min[$lang];
   } else {
-    $ret = "<b class=red>超时了</b>";
+    $ret = "<b class=red>".$fs->expired."</b>";
   }
   return $ret;
 }

@@ -892,13 +892,13 @@ function ggGhBox() {
          $pending2 = number_format($row->g_pending)."  $setup->currency<br>";
       } else if ($row->status=="D") {
          $color = '#bcd979';
-         $status = "已经完成";
+         $status = $ls->completed[$lang];
        } else if ($row->status=="C") {
          $color = '#bcd979';
-         $status = "已经配对";
+         $status = $ls->matched[$lang];
       } else if ($row->status=="B") {
          $color = '#bcd979';
-         $status = "<b class=red>订单已被封锁</b>";
+         $status = "<b class=red>".$ls->blocked[$lang]."</b>";
       } else {
          $color = '#bcd979';
          $status = $ls->waiting1[$lang].$days.$ls->waiting2[$lang];

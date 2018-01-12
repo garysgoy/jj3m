@@ -2,7 +2,10 @@
 include("inc/ggDbconfig.php");
 include("inc/ggFunctions.php");
 
-$hid = (isset($_REQUEST['hid']))? $_REQUEST['hid']:0;
+$debug = false;
+$req = ($debug)? $_GET:$_POST;
+
+$hid = (isset($req['hid']))? $req['hid']:0;
 
 $hd = $db->query("select * from tblhelpdetail where id = $hid");
 $row = mysqli_fetch_object($hd);
