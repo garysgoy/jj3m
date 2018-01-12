@@ -723,7 +723,7 @@ function ggPhAmounts() {
   $count = count($phlist);
   for ($i=0; $i < $count; $i++) {
       $amt = $phlist[$i] * $setup->exrate;
-      $ret .= "<option value='$amt' ".($i==($count-1)? "selected":"").">$amt</option>";
+      $ret .= "<option value='$amt' ".($i==0? "selected":"").">$amt</option>";
   }
   return $ret;
 }

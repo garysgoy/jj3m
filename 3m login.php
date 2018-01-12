@@ -42,7 +42,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 -->
 </head>
 
-<body class="blank" style=" background-image:url(images/bg/background1.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
+<body class="blank" style=" background-image:url(images/bg/background2.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
 
 
 

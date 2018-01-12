@@ -63,7 +63,7 @@ if (!$v->ValidateForm()) {
         $ct = time() + (60*60*4); // 4 hrs
         $url = "_a_dashboard.php";
     } else if ($row->fullname=="") {
-        $ct = time() + (60*60*1); // 4 hrs
+        $ct = time() + (60*60*1); // 1 hrs
         $url = "profile.php";
     } else {
         $ct = time() + (60*30); // 30 min

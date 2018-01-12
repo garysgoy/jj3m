@@ -17,10 +17,10 @@ $page_title = $mls->wallet[$lang];
 
 $ls = new stdClass();
 
-$ls->wallet_ph = array("Help Wallet","互助钱包","互助錢包");
-$ls->wallet_reg = array("Register Wallet","注册钱包","註冊錢包");
-$ls->wallet_ref = array("Refer Wallet","推荐钱包","推薦錢包");
-$ls->wallet_mgr = array("Manager Wallet","经理奖钱包","經理獎錢包");
+$ls->wallet_ph = array("Help Reward","互助钱包","互助錢包");
+$ls->wallet_reg = array("Register Reward","注册钱包","註冊錢包");
+$ls->wallet_ref = array("Refer Reqard","推荐钱包","推薦錢包");
+$ls->wallet_mgr = array("Manager Reward","经理奖钱包","經理獎錢包");
 $ls->rmb = array("RMB","人民币","人民幣");
 $ls->wallet = array("Wallet","钱包","錢包");
 $ls->record = array("Record","记录","紀錄");
@@ -47,6 +47,8 @@ $ls->reward = array("Reward","诚信奖","诚信奖");
 $ls->comment = array("Comment","備註","備註");
 $ls->username = array("Username","用户名","用户名");
 
+$ls->w_available = array("Available","流动","流動");
+$ls->w_onhold = array("Onhold","待定","待定");
 $ls->title = array("Mavro","馬夫洛","馬夫洛");
 
 include("inc/ggHeader.php");
@@ -74,39 +76,39 @@ $register    = ggFetchObject("select sum(future_amount) as amt from tblmavro whe
 		<!--<div class="container content-body">-->
 			<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，欢迎回来！</div-->
   <div class="container wallet">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div>
       <h2><i class="fa fa-money"></i> <? echo $ls->wallet_ph[$lang]; ?></h2>
-      <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;"><? echo $ls->rmb[$lang]; ?></strong>
+      <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;"><? echo $setup->currency; ?></strong>
       <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
     </div>
   </div>
-
+<!--
   <div class="col-md-3">
     <div>
       <h2><i class="fa fa-money"></i> <? echo $ls->wallet_reg[$lang]; ?></h2>
-      <p style="color:#00ff5a;">流动： <? echo number_format($register->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+      <p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+      <p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?> <? echo number_format($register->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
       <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
     </div>
   </div>
-
-	<div class="col-md-3">
+-->
+	<div class="col-md-4">
 		<div>
 			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_ref[$lang]; ?></h2>
-			<p style="color:#ff0000;">待定： <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-			<p style="color:#00ff5a;">流动： <? echo number_format($referral->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($referral->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
       <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#requestHelpR"><? echo $ls->withdraw[$lang]; ?></a></p>
 		</div>
 	</div>
-		<div class="col-md-3">
+		<div class="col-md-4">
 		<div>
 			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_mgr[$lang]; ?></h2>
-			<p style="color:#ff0000;">待定： <? echo number_format($manageru->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-			<p style="color:#00bcff;">托管： 0 <? echo $ls->rmb[$lang]; ?></p>
-			<p style="color:#00ff5a;">流动： <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($manageru->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+			<p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
 <?
 if ($user->rank < 6) {
-    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>WWW 等待提取</a></p>";
+    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>等待提取</a></p>";
 } else if ($user->rank >= 6) {
     echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpM'>".$ls->withdraw[$lang]."</a></p>";
 }

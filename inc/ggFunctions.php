@@ -380,4 +380,11 @@ function ggManager($c) {
 	}
 	return $ret;
 }
+
+function ggPinCount($pin_type ="") {
+  global $user;
+  $ret = ggFetchValue("select count(id) as ctr from tblpin".$pin_type." where managerid=$user->id and status='N'");
+  return $ret;
+}
+
 ?>

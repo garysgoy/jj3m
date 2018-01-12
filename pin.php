@@ -166,7 +166,7 @@ $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user-
 <script>
 function doTransfer() {
   $('#sharePinForm').form('submit',{
-    url: "pin_transfer.php",
+    url: "_action_pin.php",
     onSubmit: function(){
       return $(this).form('validate');
     },

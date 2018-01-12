@@ -88,7 +88,7 @@ $v->addValidation(5,$email,"req",$ls->email_req[$lang]);
 $v->addValidation(6,$email,"email",$ls->email_regexp[$lang]);
 
 $v->addValidation(7,$phone,"req",$ls->phone_req[$lang]);
-$v->addValidation(8,$phone,"regexp=/^[1][3-9][0-9]{9}$/",$ls->phone_regexp[$lang]);
+//$v->addValidation(8,$phone,"regexp=/^[1][3-9][0-9]{9}$/",$ls->phone_regexp[$lang]);
 $v->addValidation(9,$pcount,"lt=1",$ls->phone_max[$lang]);
 
 $v->addValidation(9,$password,"req",$ls->password_req[$lang]);
