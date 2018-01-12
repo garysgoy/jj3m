@@ -37,7 +37,6 @@ $ls->gh_amount = array("Help Amount","提领金额","提領金額");
 $ls->gh_amountp = array("RMB","人民币","人民幣");
 $ls->gh_comment = array("Message","备注","備註");
 
-
 $ls->successfulph = array("PH Success","提供帮助顺利完成","提供帮助顺利完成");
 
 // PH & GH Box
@@ -691,7 +690,7 @@ function doConfirm(helpid) {
 }
 
 function doFake(helpid) {
-    $.messager.confirm('<? echo $ls->complain[$lanf]; ?>', '<b class=red><? echo $ls->complain1[$lang]; ?></b>', function(r){
+    $.messager.confirm('<? echo $ls->complain[$lang]; ?>', '<b class=red><? echo $ls->complain1[$lang]; ?></b>', function(r){
         if (r) {
             $("#loading").show();
             jQuery.ajax({
@@ -702,12 +701,12 @@ function doFake(helpid) {
                     $("#loading").hide();
                     var res = JSON.parse(res);
                     if (res.success) {
-                        $.messager.alert("没收到款项，假收据","<b class=blue>已经标识为假收据</b>","info",function(r) {
+                        $.messager.alert("<? echo $ls->complain[$lang]; ?>","<b class=blue>已经标识为假收据</b>","info",function(r) {
             				      $("#loading").show();
                             location.reload();
                         });
                     } else {
-                        $.messager.alert("没收到款项，假收据款","出错: " + res.msg);
+                        $.messager.alert("<? echo $ls->complain[$lang]; ?>","出错: " + res.msg);
                     }
                 }
             });
@@ -878,7 +877,7 @@ function ggGhBox() {
       $interval = $now->diff($g_date);
       $days = $interval->format("%d");
 
-      $pending="";
+      $pending1="";
       $pending2 = "";
       if ($row->status=="X") {
          $color = 'silver';

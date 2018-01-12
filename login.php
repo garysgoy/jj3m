@@ -88,6 +88,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                                 <label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
                                 <input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
                             </div>
+<? if ($setup->use_captcha==1) { ?>
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
                                     <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
@@ -96,6 +97,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
                                 </label>
                                 <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
                             </div>
+<? } ?>
                             <button  id="login-btn" class="btn btn-success btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
 <!--
                             <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
