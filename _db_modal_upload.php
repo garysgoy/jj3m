@@ -11,18 +11,18 @@
         <form class="form-horizontal" name="ff2" id="ff2" method="post" action="_db_upload.php" enctype="multipart/form-data">
         <input type="hidden" name="help_id" id="help_id"/>
                     <div class="form-group m-b-xs">
-                        <label class="col-sm-2 control-label m-t-im">选择文件</label>
+                        <label class="col-sm-2 control-label m-t-im"><? echo $ls->choose_file[$lang]; ?></label>
                         <div class="col-sm-8 m-t-im">
                             <input name="imgFile" id="upfile" type="file" class="filestyle" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
                         </div>
                     </div>
                     <div class="form-group m-b-xs">
-                        <label class="col-sm-2 control-label m-t-im">支付方式</label>
+                        <label class="col-sm-2 control-label m-t-im"><? echo $ls->payment_method[$lang]; ?></label>
                         <div class="col-sm-7 m-t-im">
                             <select name="zflx" class="form-control">
-                              <option value="支付宝">支付宝</option>
-                              <option value="微信">微信</option>
-                              <option value="银行卡">银行卡</option>
+                              <option value="<? echo $ls->alipay[$lang]; ?>"><? echo $ls->alipay[$lang]; ?></option>
+                              <option value="<? echo $ls->wechat[$lang]; ?>"><? echo $ls->wechat[$lang]; ?></option>
+                              <option value="<? echo $ls->bank_card[$lang]; ?>"><? echo $ls->bank_card[$lang]; ?></option>
                             </select>
                         </div>
                     </div>
@@ -32,9 +32,9 @@
 <?
 $use_post = false;
 if ($use_post) { ?>
-                          <input type="sumbit" id="ff2s" class="btn btn-success btn-s-xs btn" value="上传">
+                          <input type="sumbit" id="ff2s" class="btn btn-success btn-s-xs btn" value="<? echo $ls->upload[$lang]; ?>">
 <? } else { ?>
-                          <a class="btn btn-success btn-s-xs btn" id="ff2s" onclick="upload()"> 上传 </a>
+                          <a class="btn btn-success btn-s-xs btn" id="ff2s" onclick="upload()"> <? echo $ls->upload[$lang]; ?> </a>
 <? } ?>
                         </div>
                     </div>

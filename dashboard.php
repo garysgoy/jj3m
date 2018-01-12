@@ -53,6 +53,7 @@ $ls->date = array("Date","日期","日期");
 $ls->status = array("Status","状态","狀態");
 $ls->match_code = array("Match Code","配对编号","配對編號");
 $ls->detail = array("Detail","详细","詳細");
+$ls->helpdetail = array("Help Detail","帮助详细","幫助詳細");
 $ls->wallet = array("Wallet","钱包","錢包");
 $ls->src_wallet = array("Wallet","钱包","錢包");
 $ls->src_deposit = array("Deposit reward","互助","互助");
@@ -64,6 +65,21 @@ $ls->completed = array("Completed","已经完成","已經完成");
 $ls->failed = array("Failed","已经失效","已經失效");
 $ls->blocked = array("Blocked","已经被封锁","已經被封鎖");
 
+$ls->confirm_rec = array("Confirm Reveive","确认收款","確認收款");
+$ls->confirm_rec1 = array("Confirm you reveived the payment？","确定你收到款吗？","確定你收到款嗎？");
+$ls->success = array("Success","操作成功","操作成功");
+$ls->complain = array("Complain","举报","據報");
+$ls->complain1 = array("Are you sure you did not receive the payment?","确定你没有收到款项, 要投訴吗?","確定你沒有收到款項，要投訴嗎?");
+$ls->bank_card = array("Bank Card","银行卡","銀行卡");
+$ls->alipay = array("Alipay","支付宝","支付寶");
+$ls->wechat = array("Wechat","微信支付","微信支付");
+$ls->btc = array("Bitcoin","比特币","比特幣");
+$ls->eth = array("Ether","以太币","已太幣");
+$ls->choose_file = array("Choose File","选择文件","選擇文件");
+$ls->payment_method = array("Payment Method","支付方式","支付方式");
+$ls->upload = array("Upload","上传","上傳");
+$ls->cancel0 = array("Cancel Help","取消提供帮助","取消提供幫助");
+$ls->cancel1 = array("Are you sure you want to cancel this help","确定你要取消这个提供帮助吗？","確定你要取消這個提供幫助嗎？");
 
 include("inc/ggHeader.php");
 include("inc/ggFunctions.php");
@@ -320,25 +336,9 @@ include("_inc_gethelp.php");
             <div class="modal-content">
                 <div class="modal-header btn-success">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel"><? echo $ls->detail[$lang]; ?></h4>
+                  <h4 class="modal-title" id="myModalLabel"><? echo $ls->helpdetail[$lang]; ?></h4>
                 </div>
-                <div class="modal-body">
-                  <form action="" method="post" id="provideHelpForm" name="provideHelpForm" class="form-control" style="height: 420px;">
-                    <div class="modal-body">
-                    <table width=100%>
-                    <tr><td width=50%>
-                      <? echo ggDetailTable(); ?>
-                    </td></tr></table>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <div class="modal-footer" style="text-align: left">
-                      <span id="action"></span>
-                      <a href="#" onclick="doClose()"class="btn btn-default" data-dismiss="modal">关闭</a>
-<!--                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                      <input name="submit" type="submit" class="btn btn-success" onclick="doPH()" value="提供帮助" />
--->
-                    </div>
-                  </form>
+                <div id="detailBody" class="modal-body">
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -554,7 +554,7 @@ function doPH() {
 }
 
 function doCancel(id) {
-    $.messager.confirm('取消提供帮助', '你确定要取消提供帮助订单吗?', function(r){
+    $.messager.confirm('<? echo $ls->cancel0[$lang]; ?>', '<? echo $ls->cancel1[$lang]; ?>', function(r){
         if (r) {
               $("#loading").show();
               jQuery.ajax({
@@ -565,11 +565,11 @@ function doCancel(id) {
                       $("#loading").hide();
                       var res = JSON.parse(res);
                     if (res.success) {
-                        $.messager.alert("取消提供帮助","<b class=blue>订单已取消</b>","info",function(r) {
+                        $.messager.alert("<? echo $ls->cancel0[$lang]; ?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
                             location.reload();
                         });
                     } else {
-                        $.messager.alert("取消提供帮助","信息: " + res.msg);
+                        $.messager.alert("<? echo $ls->cancel0[$lang]; ?>", res.msg);
                     }
                 }
             });
@@ -582,9 +582,7 @@ function doDetail(hid) {
   $.post("dashboard_detail.php",{hid: hid},function(res){
       var res = JSON.parse(res);
       if (res.success) {
-        $("#helpdetail1").html(res.msg1);
-        $("#helpdetail2").html(res.msg2);
-        $("#action").html(res.action);
+        $("#detailBody").html(res.msg+'<br><br>&nbsp;&nbsp;'+res.action);
       	$("#loading").hide();
       }
   });
@@ -668,7 +666,7 @@ function doChange() {
 }
 
 function doConfirm(helpid) {
-    $.messager.confirm('确认收款', '确定你收到款项吗?', function(r){
+    $.messager.confirm("<? echo $ls->confirm_rec[$lang]; ?>", "<? echo $ls->confirm_rec1[$lang]; ?>", function(r){
         if (r) {
             $("#loading").show();
             jQuery.ajax({
@@ -679,12 +677,12 @@ function doConfirm(helpid) {
                     $("#loading").hide();
                     var res = JSON.parse(res);
                     if (res.success) {
-                        $.messager.alert("确认收款","<b class=blue>已经收到您的收款确认</b>","info",function(r) {
+                        $.messager.alert("<? echo $ls->confirm_rec[$lang]; ?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
             				$("#loading").show();
                             location.reload();
                         });
                     } else {
-                        $.messager.alert("确认收款","Error Msg: " + res.msg);
+                        $.messager.alert("<? echo $ls->confirm_rec[$lang]; ?>","Error Msg: " + res.msg);
                     }
                 }
             });
@@ -693,7 +691,7 @@ function doConfirm(helpid) {
 }
 
 function doFake(helpid) {
-    $.messager.confirm('没收到款项，假收据', '<b class=red>确定你没有收到款项, 要上报假收据吗?</b>', function(r){
+    $.messager.confirm('<? echo $ls->complain[$lanf]; ?>', '<b class=red><? echo $ls->complain1[$lang]; ?></b>', function(r){
         if (r) {
             $("#loading").show();
             jQuery.ajax({
@@ -917,7 +915,7 @@ function ggGhBox() {
 
       $cancel = "";
       if ($row->status=="O" and $days < 7) {
-          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>取消</a>";
+          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>".$ls->cancel[$lang]."</a>";
       }
       // GG PHBox2
       $ret .= "<table width='100%' class=$class>";
@@ -928,62 +926,6 @@ function ggGhBox() {
     }
   }
   return $ret;
-}
-
-function ggDetailTable() {
-  global $ls,$lang;
-?>
-     <table class='table2_1' width=100%>
-     <tr>
-       <td colspan="2"><? echo $ls->titleph[$lang]; ?></td>
-     </tr>
-     <tr>
-       <td style="text-align:left;" width='40%'>
-          打款者：<br>
-          姓名：<br>
-          银行名字：<br>
-          银行分行：<br>
-          银行号码：<br>
-          支付宝：<br>
-          微信支付：<br>
-          手机号码：<br>
-          联络方式：<br>
-          <br>
-          经理人账号：<br>
-          姓名：<br>
-          手机号码：<br>
-          联络方式：
-       </td><td style="text-align:left; vertical-align:top;">
-         <span id="helpdetail1"></span>
-       </td>
-     </tr>
-   </table></td><td>
-   <table class='table2_2' width=100%>
-     <tr>
-       <td colspan="2"><? echo $ls->titlegh[$lang]; ?></td>
-     </tr>
-     <tr>
-       <td style="text-align:left;" width='40%'>
-          收款者：<br>
-          姓名：<br>
-          银行名字：<br>
-          银行分行：<br>
-          银行号码：<br>
-          支付宝：<br>
-          微信支付：<br>
-          手机号码：<br>
-          联络方式：<br>
-          <br>
-          经理人账号：<br>
-          姓名：<br>
-          手机号码：<br>
-          联络方式：
-       </td><td style="text-align:left; vertical-align:top;">
-         <span id="helpdetail2"></span>
-       </td>
-     </tr>
-   </table>
-<?
 }
 
 include("inc/ggFooter.php");
