@@ -36,7 +36,7 @@ $ls->gh_available = array("Available","可提人民币","可提人民幣");
 $ls->gh_amount = array("Help Amount","提领金额","提領金額");
 $ls->gh_amountp = array("RMB","人民币","人民幣");
 $ls->gh_comment = array("Message","备注","備註");
-
+$ls->my_directs = array("My Directs","我的直推","我的直推");
 $ls->successfulph = array("PH Success","提供帮助顺利完成","提供帮助顺利完成");
 
 // PH & GH Box
@@ -352,7 +352,7 @@ include("_inc_gethelp.php");
 	<div class="col-md-8">
 		<select name="mygroup" class="form-control" onchange="window.location = this.options[this.selectedIndex].value;">
 			<option value="dashboard.php?uid=<? echo $user->id; ?>">YOU</option>
-      <optgroup label="-------------------------------------------------"></optgroup><optgroup label="我的直推"></optgroup>
+      <optgroup label="-------------------------------------------------"></optgroup><optgroup label="<? echo $ls->my_directs[$lang]; ?>"></optgroup>
 <?
 $dir = $db->query("select * from tblmember where referral=$user->id");
 $ctr = 0;

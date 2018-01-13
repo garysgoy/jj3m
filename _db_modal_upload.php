@@ -60,11 +60,11 @@ function upload() {
         async:true,
         success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
             if (data.status=='success') {
-              $.messager.alert("提交方式","提交成功","info",function(r) {
+              $.messager.alert("<? echo $ls->upload[$lang]; ?>","<? echo $ls->success[$lang]; ?>","info",function(r) {
                 location.reload();
               });
             } else {
-              $.messager.alert("提交失败",data.msg,"error",function(r) {
+              $.messager.alert("<? echo $ls->upload[$lang]; ?>",data.msg,"error",function(r) {
                 location.reload();
               });
             }
