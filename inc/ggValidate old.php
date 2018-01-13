@@ -91,14 +91,13 @@ define("E_VAL_ALPHA_S_CHECK_FAILED","Please provide alphabetic input for %s");
 define("E_VAL_EMAIL_CHECK_FAILED","Please provide a valid email address");
 define("E_VAL_LESSTHAN_CHECK_FAILED","Enter a value less than %f for %s");
 define("E_VAL_GREATERTHAN_CHECK_FAILED","Enter a value greater than %f for %s");
-define("E_VAL_GREATEREQUAL_CHECK_FAILED","Enter a value greater or equal to %f for %s");
 define("E_VAL_REGEXP_CHECK_FAILED","Please provide a valid input for %s");
 define("E_VAL_DONTSEL_CHECK_FAILED","Wrong option selected for %s");
 define("E_VAL_SELMIN_CHECK_FAILED","Please select minimum %d options for %s");
 define("E_VAL_SELONE_CHECK_FAILED","Please select an option for %s");
 define("E_VAL_EQELMNT_CHECK_FAILED","Value of %s should be same as that of %s");
 define("E_VAL_NEELMNT_CHECK_FAILED","Value of %s should not be same as that of %s");
-define("E_VAL_IN_LIST_CHECK_FAILED","Value of %s should not be same as that of %s");
+define("E_VAL_EQUAL_CHECK_FAILED","Value of %s should be same as that of %s");
 
 
 
@@ -301,16 +300,6 @@ if ($use_var) {
 		return false;
 	}
 
-	function validate_inlist($command_value,$input_value, $variable_name,&$default_error_message)
-	{
-    if (is_string($command_value)) {
-        $params = explode(',', $command_value);
-    }
-
-    return in_array($input_value, $params);
-
-	}
-
 	function validate_email($email)
 	{
 			return preg_match("/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,4}(\.[a-z]{2})?)$/i", $email);
@@ -346,7 +335,7 @@ if ($use_var) {
 			if($command_value != $input_value)
 			{
 				$bret=false;
-				$default_error_message = sprintf(E_VAL_EQUAL_CHECK_FAILED,$variable_name);
+				$default_error_message = sprintf(E_VAL_EQUAL_CHECK_FAILED,$variable_name,$command_value);
 			}
 		}
 		return $bret;
@@ -405,28 +394,6 @@ if ($use_var) {
 			if($float_inputval <= $greaterthan)
 			{
 				$default_error_message = sprintf(E_VAL_GREATERTHAN_CHECK_FAILED,
-										$greaterthan,
-										$variable_name);
-				$bret = false;
-			}//if
-		}
-		return $bret ;
-	}
-
-	function validate_greaterequal($command_value,$input_value,$variable_name,&$default_error_message)
-	{
-		$bret = true;
-		if(false == $this->validate_for_numeric_input($input_value,$bret))
-		{
-			return $bret;
-		}
-		if($bret)
-		{
-			$greaterthan = doubleval($command_value);
-			$float_inputval = doubleval($input_value);
-			if($float_inputval < $greaterthan)
-			{
-				$default_error_message = sprintf(E_VAL_GREATEREQUAL_CHECK_FAILED,
 										$greaterthan,
 										$variable_name);
 				$bret = false;
@@ -614,16 +581,6 @@ if ($use_var) {
 													$default_error_message);
 							break;
 						}
-			case "ge":
-			case "greaterequal":
-						{
-							$bret = $this->validate_greaterequal($command_value,
-													$input_value,
-													$variable_name,
-													$default_error_message);
-							break;
-						}
-
 			case "gt":
 			case "greaterthan":
 						{
@@ -726,15 +683,6 @@ if ($use_var) {
 								$bret= false;
 								$default_error_message = sprintf(E_VAL_NEELMNT_CHECK_FAILED,$variable_name,$command_value);
 							}
-							break;
-						}
-			case "in":
-			case "inlist":
-						{
-							$bret = $this->validate_inlist($command_value,
-													$input_value,
-													$variable_name,
-													$default_error_message);
 							break;
 						}
 

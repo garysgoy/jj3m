@@ -527,26 +527,20 @@ if ($sys_msg<>"") {
 });
 function doPH() {
   $('#provideHelpForm').form('submit',{
-    url: "dashboard_ph.php",
+    url: "_action_ph.php",
     onSubmit: function(){
       return $(this).form('validate');
     },
     success: function(res){
       var res = JSON.parse(res);
-      if (res.success) {
+      if (res.status =="success") {
         $.messager.alert("<? echo $ls->titleph[$lang]; ?>","<? echo $ls->successfulph[$lang]; ?>","info",function(r){
           location.reload();
         });
       } else {
-         if (res.msg == "1") {
-            $.messager.alert("<? echo $ls->titleph[$lang] ?>","<? echo $ls->wait[$lang]; ?>","error",function(r){
-              location.reload();
-            });
-         } else {
-            $.messager.alert("<? echo $ls->titleph[$lang] ?>","<b class=red>"+res.msg+"</b>","error",function(r){
-              location.reload();
-            });
-         }
+        $.messager.alert("<? echo $ls->titleph[$lang] ?>",res.msg,"error",function(r){
+          location.reload();
+        });
       }
     }
   });
