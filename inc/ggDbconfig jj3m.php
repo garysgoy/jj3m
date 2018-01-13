@@ -71,7 +71,7 @@ function load_user($rid) {
 
 function load_setup() {
   global $db, $setup;
-  $rs = $db->query("SELECT * FROM tblsetup where app_code='3m'") or die($db->error);
+  $rs = $db->query("SELECT * FROM tblsetup where app_code='jj'") or die($db->error);
   $ret = $rs->fetch_object();
   return $ret;
 }
