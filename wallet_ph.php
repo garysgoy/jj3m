@@ -8,8 +8,7 @@
 	$user = load_user(0);
 	$setup = load_setup();
 
-	$lang=1;
-  $ls = new stdClass();
+	$ls = new stdClass();
 	$ls->statusA = array("Active","活跃","活跃");
 	$ls->statusB = array("Block","封号","封号");
 	$ls->rankMgr = array("Manager","註冊经理","註冊经理");
