@@ -55,7 +55,7 @@ function upload() {
 
     $("#ff2").ajaxSubmit({
         type: 'post', // 提交方式 get/post
-        url: '_db_upload.php', // 需要提交的 url
+        url: '_action_upload.php', // 需要提交的 url
         dataType: "json",
         async:true,
         success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
