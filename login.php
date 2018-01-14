@@ -91,7 +91,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 <? if ($setup->use_captcha==1) { ?>
                             <div class="form-group">
                                 <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
-                                    <a style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
+                                    <a tabindex=-1 style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
                                         <img id="captcha_img" src="captcha.php" width="110px">
                                     </a>
                                 </label>
