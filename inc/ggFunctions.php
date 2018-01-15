@@ -247,7 +247,7 @@ function ggTimeRemain($now,$now1) {
     $mins = $interval->format("%i");
     $ret = ($days*24 + $hours) .' '.$fs->hour[$lang].' '. $mins .' '.$fs->min[$lang];
   } else {
-    $ret = "<b class=red>".$fs->expired."</b>";
+    $ret = "<b class=red>".$fs->expired[$lang]."</b>";
   }
   return $ret;
 }

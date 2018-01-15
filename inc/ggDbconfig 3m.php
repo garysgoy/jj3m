@@ -7,6 +7,7 @@
 -----------*/
 
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
+$app_code = "jj";
 
 if ($server==0) {
   $db = new mysqli("localhost", "root", "root","jj3m");
@@ -70,8 +71,8 @@ function load_user($rid) {
 }
 
 function load_setup() {
-  global $db, $setup;
-  $rs = $db->query("SELECT * FROM tblsetup where app_code='3m'") or die($db->error);
+  global $db, $setup,$app_code;
+  $rs = $db->query("SELECT * FROM tblsetup where app_code='$app_code'") or die($db->error);
   $ret = $rs->fetch_object();
   return $ret;
 }

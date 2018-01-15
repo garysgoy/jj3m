@@ -41,8 +41,8 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
     <link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/helper.css" />
 -->
 </head>
-
-<body class="blank" style=" background-image:url(images/bg/background1.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
+<? $bgfile = ($app_code=="jj")? "1":"2"; ?>
+<body class="blank" style=" background-image:url(images/bg/background<? echo $bgfile; ?>.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
 
 
 
