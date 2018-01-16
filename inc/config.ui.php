@@ -197,7 +197,11 @@ $no_main_header = false; //set true for lock.php and login.php
 if ($user->rank >= 8) {
 	$page_body_prop = array("class" => "smart-style-7"); //optional properties for <body>
 } else {
-	$page_body_prop = array("class" => "smart-style-3"); //optional properties for <body>
+	if ($app_code=="jj") {
+		$page_body_prop = array("class" => "smart-style-3"); //optional properties for <body>
+	} else {
+		$page_body_prop = array("class" => "smart-style-7"); //optional properties for <body>
+	}
 }
 $page_html_prop = array(); //optional properties for <html>
 ?>

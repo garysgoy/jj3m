@@ -3,7 +3,8 @@
 1. Detect Local or server and connect DB
 2. Set timezone
 3. Load setup from database (Change to setup.php?)
-4.
+4. Lode user
+5. Set language
 -----------*/
 
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
@@ -71,7 +72,7 @@ function load_user($rid) {
 }
 
 function load_setup() {
-  global $db, $setup;
+  global $db, $setup,$app_code;
   $rs = $db->query("SELECT * FROM tblsetup where app_code='$app_code'") or die($db->error);
   $ret = $rs->fetch_object();
   return $ret;

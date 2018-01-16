@@ -81,6 +81,8 @@ class CustomValidator
 
 /** Default error messages*/
 define("E_VAL_REQUIRED_VALUE","Please enter the value for %s");
+define("E_VAL_MIN_CHECK_FAILED","Please enter min value of %d for %s");
+define("E_VAL_MAX_CHECK_FAILED","Please enter max value of %d for %s");
 define("E_VAL_MAXLEN_EXCEEDED","Maximum length exceeded for %s.");
 define("E_VAL_MINLEN_CHECK_FAILED","Please enter input with length more than %d for %s");
 define("E_VAL_ALNUM_CHECK_FAILED","Please provide an alpha-numeric input for %s");
@@ -367,6 +369,36 @@ if ($use_var) {
 		return $bret;
 	}
 
+	function validate_min($command_value,$input_value,
+                $variable_name,&$default_error_message)
+	{
+		$bret = true;
+		if(isset($input_value) )
+		{
+			if(doubleval($command_value) > doubleval($input_value))
+			{
+				$bret=false;
+				$default_error_message = sprintf(E_VAL_MIN_CHECK_FAILED,$command_value,$variable_name);
+			}
+		}
+		return $bret;
+	}
+
+	function validate_max($command_value,$input_value,
+                $variable_name,&$default_error_message)
+	{
+		$bret = true;
+		if(isset($input_value) )
+		{
+			if(doubleval($command_value) < doubleval($input_value))
+			{
+				$bret=false;
+				$default_error_message = sprintf(E_VAL_MAX_CHECK_FAILED,$command_value,$variable_name);
+			}
+		}
+		return $bret;
+	}
+
 	function validate_lessthan($command_value,$input_value,
                 $variable_name,&$default_error_message)
 	{
@@ -600,6 +632,22 @@ if ($use_var) {
 			case "notequal":
 						{
 							$bret = $this->validate_notequal($command_value,
+													$input_value,
+													$variable_name,
+													$default_error_message);
+							break;
+						}
+			case "min":
+						{
+							$bret = $this->validate_min($command_value,
+													$input_value,
+													$variable_name,
+													$default_error_message);
+							break;
+						}
+			case "max":
+						{
+							$bret = $this->validate_max($command_value,
 													$input_value,
 													$variable_name,
 													$default_error_message);

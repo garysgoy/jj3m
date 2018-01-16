@@ -617,21 +617,22 @@ function openComplete() {
 }
 
 function GHAction(type) {
+    var act = "GH";
     var mavro = "deposit";
     var amount = document.getElementById('sell_amount'+type).value;
 
       jQuery.ajax({
           type: "POST",
-          url: 'dashboard_gh.php',
-          data: {mavro: mavro, amount: amount},
+          url: '_action_gh.php',
+          data: {act:act, mavro: mavro, amount: amount},
           success: function(res) {
               var res = JSON.parse(res);
-              if (res.success) {
-                  $.messager.alert("接受帮助","<b class=blue>已经收到你的接受帮助申请</b>","info",function(r) {
+              if (res.status == 'success') {
+                  $.messager.alert("<? echo $ls->titlegh[$lang];?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
                       location.reload();
                   });
               } else {
-                  $.messager.alert("接受帮助t","你的申请失败:<br><br><br> " + res.msg,"error");
+                  $.messager.alert("<?php echo $ls->titlegh[$lang]; ?>",res.msg,"error");
               }
           }
       });

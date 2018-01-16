@@ -7,7 +7,7 @@
                   <h4 class="modal-title" id="myModalLabel"><? echo $ls->titlegh[$lang]; ?></h4>
                 </div>
                 <div class="modal-body">
-                  <form action="" method="post" id="getHelpForm" name="get_help" class="bs-docs-example form-control" style="height: 440px;">
+                  <form action="" method="post" id="getHelpForm" name="get_help" class="bs-docs-example form-control" style="height: 310px;">
                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                           <td colspan="2" style="text-align:left;">
@@ -43,6 +43,9 @@
                             </div>
                           </td>
                         </tr>
+<?
+$use_comment = false;
+if ($use_comment) { ?>
                        <tr>
                          <td colspan="2"><strong><? echo $ls->gh_comment[$lang]; ?></strong><!--span id="PHLimitBalance" style="font-size: 12px;"></span--></td>
                        </tr>
@@ -51,7 +54,9 @@
                             <textarea name="remarks" class="form-control" style="resize:none;" cols="30" rows="4" placeholder="<? echo $ls->ph_commentp[$lang]; ?>"></textarea>
                          </td>
                        </tr>
-                          <tr><td colspan="2">&nbsp;</td></tr>
+                          <tr><td colspan="2">&nbsp;</td>
+                        </tr>
+<? } ?>
                         <tr>
                           <td style="text-align:left; vertical-align:top; padding-right:5px;"><input name="checkbox" type="checkbox" id="checkbox" value="true" checked="checked" /></td>
                           <td style="text-align:left; font-size:12px;"><? echo $ls->ph_warning[$lang]; ?></td>
