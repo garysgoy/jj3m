@@ -1,8 +1,8 @@
 <?
-include("inc/ggDbconfig.php");
-include("inc/ggFunctions.php");
+include("_dbconfig.php");
+include("_ggFunctions.php");
 
-$ls = new stdclass();
+$ls = new stdClass();
 $ls->close = array("Close","关闭","關閉");
 $ls->confirm_receive = array("Confirm Receive","确认收到款","確認收到款");
 $ls->complain = array("Complain","举报","據報");
@@ -18,8 +18,11 @@ $ls->amount = array("Amount ".$setup->currency,"金额 (".$setup->currency.")","
 $ls->hash_key = array("Hash Key","哈希值 (Hash Key)","哈希值 (Hash Key)");
 $ls->message = array("Message for Recepient","留言给收款者","留言給收款者");
 
-$debug = false;
+$ls->ph_group = array("Sender ID<br>Fullname<br>Bank name<br>Bank Branch<br>Bank Account<br>Alipay<br>Wechat<br>Phone<br><br>Payer Manager<br>Manager Fullname<br>Manager Phone");
+
+$debug=false;
 $req = ($debug)? $_GET:$_POST;
+
 
 $hid = (isset($req['hid']))? $req['hid']:0;
 
@@ -29,8 +32,27 @@ $mem = load_user($row->mem_id);
 $oth = load_user($row->oth_id);
 $mem_mgr = load_user($mem->manager);
 $oth_mgr = load_user($oth->manager);
-
-if ($setup->china_bank==0) {
+$ret1 = "$oth->username<br>$oth->fullname<br>$oth->bankname<br>$oth->bankbranch<br>
+      $oth->bankaccount<br>
+      $oth->alipay<br>
+      $oth->wechat<br>
+      $oth->phone<br><br>
+      $oth_mgr->username<br>
+      $oth_mgr->fullname<br>
+      $oth_mgr->phone<br><br>
+      ";
+$ret2 = "$mem->username<br>
+      $mem->fullname<br>
+      $mem->bankname<br>
+      $mem->bankbranch<br>
+      $mem->bankaccount<br>
+      $mem->alipay<br>
+      $mem->wechat<br>
+      $mem->phone<br><br><br>
+      $mem_mgr->username<br>
+      $mem_mgr->fullname<br>
+      $mem_mgr->phone<br><br>
+      ";
   $btn_close = "&nbsp;&nbsp;<button type='button' class='btn btn-default' data-dismiss='modal'>".$ls->close[$lang]."</button>";
   if ($row->g_type=="G") {
     $disabled = "disabled";
@@ -54,26 +76,10 @@ if ($setup->china_bank==0) {
        $action .= $btn_close;
     }
   }
+$ret =  "<table width=100%>";
+$ret .= "<tr><td><table width=100% border=1 style='background-color:green'><tr><td colspan=2 align=center>Provide Help</td></tr><tr><td valign=top>".$ls->ph_group[$lang]."</td><td>$ret1</td></tr></table></td>";
+$ret .= "<td><table width=100% border=1 style='background-color:yellow'><tr><td colspan=2 align=center>Get Help</td></tr><tr><td valign=top>".$ls->ph_group[$lang]."</td><td>$ret1</td></tr></table></td></tr>";
 
-  $d1 = "<div class='col-sm-12 col-lg-4' align=left><div clas='form-group'>";
-  $d2 = "</div></div><div class='col-sm-12 col-lg-8'><div class='form-group'>";
-  $d3 = "</div></div>";
-  if ($row->g_type=="P") {
-    $p1 = $mem;
-    $p2 = $oth;
-  } else {
-    $p1 = $oth;
-    $p2 = $mem;
-  }
-  $ret = "<div class='row'>
-    $d1 ".$ls->sender_id[$lang]." $d2 <input type='text' class='form-control input-sm' disabled value='$p1->username'>$d3
-    $d1 ".$ls->receipient_id[$lang]." $d2 <input type='text' class='form-control input-sm' disabled value='$p2->username'>$d3
-    $d1 ".$ls->btc_address[$lang]." $d2 <input id='btc' type='text' class='form-control input-sm' disabled value='$p2->btc'>$d3
-    $d1 ".$ls->eth_address[$lang]." $d2 <input type='text' class='form-control input-sm' disabled value='$p2->eth'>$d3
-    $d1 ".$ls->amount[$lang]." $d2 <input type='text' class='form-control input-sm' disabled value='$row->g_amount'>$d3
-    $d1 ".$ls->hash_key[$lang]." $d2 <input type='text' class='form-control input-sm' id='hash' name='hash' $disabled value='$row->hash'> $d3
-    $d1 ".$ls->message[$lang]."$d2 <textarea rows=3 class='form-control input-sm' id='message' $disabled name='message'>$row->message</textarea>$d3
-    </div>";
-}
-echo json_encode(array('success'=>1,'msg'=>$ret,'action'=>$action));
+echo json_encode(array("success"=>1,"msg"=>$ret,"action"=>$action));
+
 ?>

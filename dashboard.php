@@ -31,8 +31,8 @@ $ls->ph_commentp = array("Please indicate your message to the other party, eg: T
 $ls->ph_warning = array("I understand and accept the risk, and I decide to join this program","我已完全了解所有风险。我决定参与, 尊重3M的文化与传统","我已完全了解所有風險。我決定參與，尊重3M的文化與傳統");
 $ls->close = array("Close","关闭","關閉");
 
-$ls->gh_balance = array("Balance &nbsp;","现有人民币","現有人民幣");
-$ls->gh_available = array("Available","可提人民币","可提人民幣");
+$ls->gh_balance = array("Balance &nbsp;","现有金额","現有金額");
+$ls->gh_available = array("Available","可提金额","可提金額");
 $ls->gh_amount = array("Help Amount","提领金额","提領金額");
 $ls->gh_amountp = array("RMB","人民币","人民幣");
 $ls->gh_comment = array("Message","备注","備註");
@@ -515,13 +515,12 @@ function doDetail(hid) {
   //document.getElementById("helpdetail").innerHTML = id;
   $("#loading").show();
   $.post("dashboard_detail.php",{hid: hid},function(res){
-      var res = JSON.parse(res);
       if (res.success) {
         $("#detailBody1").html(res.msg);
         $("#detailFooter1").html(res.action);
       	$("#loading").hide();
       }
-  });
+  },"json");
 }
 
 function doPayment(hid) {

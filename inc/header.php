@@ -288,7 +288,7 @@ if ($show_speech) {
 						<!-- end voice command -->
 <? } ?>
 <?
-if ($setup->lang<90) {
+if ($setup->lang<90 || $server==0) {
 // This app use 90 meaning only english
 ?>
 

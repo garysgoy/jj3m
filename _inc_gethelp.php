@@ -13,11 +13,11 @@
                           <td colspan="2" style="text-align:left;">
                             <div class="input-group" style="padding-bottom:5px;">
                               <span class="input-group-addon" id="sizing-addon1"><? echo $ls->gh_balance[$lang]; ?></span>
-                              <input type="text" name="rmb" value="<? echo number_format(ggMavro(0),2); ?>" class="form-control" placeholder="人民币" aria-describedby="sizing-addon1" readonly />
+                              <input type="text" name="rmb" value="<? echo number_format(ggMavro(0),2); ?>" class="form-control" placeholder="<? echo $ls->gh_balance[$lang]; ?>" aria-describedby="sizing-addon1" readonly />
                             </div>
                             <div class="input-group" style="padding-bottom:5px;">
                               <span class="input-group-addon" id="sizing-addon1"><? echo $ls->gh_available[$lang]; ?></span>
-                              <input type="text" name="rmb-sell" value="<? echo number_format(ggMavro(1),2); ?>" class="form-control" placeholder="可出售人民币" aria-describedby="sizing-addon1" readonly />
+                              <input type="text" name="rmb-sell" value="<? echo number_format(ggMavro(1),2); ?>" class="form-control" placeholder="<? echo $ls->gh_available[$lang]; ?>" aria-describedby="sizing-addon1" readonly />
 			   			                <input type="hidden" name="balance_difference" value="0">
 				                    </div>
                             <!--div class="input-group" style="padding-bottom:5px;">
@@ -39,7 +39,7 @@
                         <tr>
                           <td colspan="2" align="center">
                             <div class="form-group">
-                                <input name="sell_amountd" type="text" class="form-control" id="sell_amountd" placeholder="<? echo $ls->gh_amountp[$lang]; ?>" required /><!--br/><span id="currency2"></span-->
+                                <input name="sell_amountd" type="text" class="form-control" id="sell_amountd" placeholder="<? echo $ls->gh_amount[$lang]; ?>" required /><!--br/><span id="currency2"></span-->
                             </div>
                           </td>
                         </tr>
