@@ -44,14 +44,17 @@ if ($row->g_type=="G") {
 }
 
 if ($row->g_type=="P") {
+   $d1 = "<div class='col-sm-12 col-lg-4' align=left><div clas='form-group'>";
+   $d2 = "</div></div><div class='col-sm-12 col-lg-8'><div class='form-group'>";
+   $d3 = "</div></div>";
    $ret = "<div class='row'>
-      <div class='col-sm-12 col-lg-4' align=right>Sender ID</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$mem->username'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient ID</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->username'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient BTC Address</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->btc'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient ETH Address</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->eth'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Amount $</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$row->g_amount'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Hash Key</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' id='hash' name='hash'></div>
-      <div class='col-sm-12 col-lg-4' align=right>Message for Recipient</div><div class='col-sm-12 col-lg-8'><textarea rows=5 class='form-control input-sm' id='message' name='message'></textarea></div>
+      $d1 Sender ID $d2 <input type='text' class='form-control input-sm' disabled value='$mem->username'>$d3
+      $d1 Recipient ID $d2 <input type='text' class='form-control input-sm' disabled value='$oth->username'>$d3
+      $d1 Recipient BTC Address $d2 <input id='btc' type='text' class='form-control input-sm' disabled value='$oth->btc'>$d3
+      $d1 Recipient ETH Address $d2 <input type='text' class='form-control input-sm' disabled value='$oth->eth'>$d3
+      $d1 Amount $ $d2 <input type='text' class='form-control input-sm' disabled value='$row->g_amount'>$d3
+      $d1 Hash Key $d2 <input type='text' class='form-control input-sm' id='hash' name='hash'> $d3
+      $d1 Message for Recipient $d2 <textarea rows=5 class='form-control input-sm' id='message' name='message'></textarea>$d3
       </div>";
 } else {
    $ret = "<div class='row'>

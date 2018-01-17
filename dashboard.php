@@ -340,7 +340,8 @@ include("_inc_gethelp.php");
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="myModalLabel"><? echo $ls->helpdetail[$lang]; ?></h4>
                 </div>
-                <div id="detailBody" class="modal-body">
+                <div class="modal-body">
+                  <div id="detailBody"></div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -441,93 +442,30 @@ if ($ctr == 0) {
 </div>
 </div>
 </div>
-<!-- GG Complete -->
-<?
-$upload_win = 1;
-if ($upload_win) {
-?>
 
-   <div id="complete" class="easyui-window" title="上传打款单据" data-options="modal:false,minimizable:false,maximizable:false,collapsible:false,closed:true,iconCls:'icon-save'" style="width:500px;height:400px;padding:10px;">
-        <form id="ff2" method="post">
-            请选择你要上传的打款单据。系统只接受 JPG, PNG, GIF 档案 (限制 5MB)<br>
-            <input id="fileToUpload" type="file" name="fileToUpload">
-            <input id="help_id" type="hidden" name="help_id" value="">
-            <img id="imagePreview" style="display: none; max-width: auto; height: 200px;" src="#" alt="Transaction Confirmation" /><br><br>
-            <button class="btn btn-success" style="padding-left: 25px;" type="submit">上传图档</button>
-            <a href="#" class="btn btn-default" onclick="$('#complete').window('close')">关闭</a>
-        </form>
-    </div>
-<?
-}
-?>
-<!-- GG End Complete -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-color-green">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel"><? echo $ls->helpdetail[$lang]; ?></h4>
+      </div>
+      <div class="modal-body" id="detailBody1">
+      </div>
+      <div class="modal-footer" id="detailFooter1">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <!-- end Page Content -->
 <!-- GG Scripts -->
 
 <script type="text/javascript">
-   $(document).ready(function() {
-        var options = {
-            url: 'dashboard_upload.php',
-            success: showResponse
-        };
-        $('#ff2').submit(function(event) {
-            event.preventDefault();
-             if ($('#imagePreview').attr('src') == '' || $('#imagePreview').attr('src') == '#' || $('#imagePreview').attr('src').length <= 10) {
-                $.messager.alert("请选择一个档案!");
-            } else {
-          			//$("#loading").show();
-                $(this).ajaxSubmit(options);
-            }
-            return false;
-        });
-        var imagePreview = $("#imagePreview");
-        $('.panel-tool-close').click(function(event) {
-            imagePreview.replaceWith( imagePreview = imagePreview.clone( true ) );
-            $('#imagePreview').attr('src','#');
-            $('#imagePreview').css({'display':'none'});
-        });
-    });
-    function showResponse(responseText, statusText, xhr, $form) {
-      	$("#loading").hide();
-        var res = JSON.parse(responseText);
-        if (!res.success) {
-            $.messager.alert("上传打款单据","错误信息: " + res.msg, "error");
-        } else {
-            $.messager.alert("上传打款单据","已经收到你打款的单据","info",function(){
-              	$("#loading").show();
-                location.reload();
-            });
-        }
-    }
-    function showResponse1(responseText, statusText, xhr, $form) {
-        alert("ok");
-    }
-
-     $("#fileToUpload").change(function(){
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#imagePreview').css({'display':'initial'});
-                $('#imagePreview').attr('src', reader.result);
-            }
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-$(function(){
-/*toastr.options = {
-    "closeButton": true,
-    "timeOut": "180000",
-}; */
-<?
-/*
-if ($sys_msg<>"") {
-  echo "toastr.warning('$sys_msg')";
-}
-*/
-?>
-});
 function doPH() {
   $('#provideHelpForm').form('submit',{
     url: "_action_ph.php",
@@ -550,39 +488,64 @@ function doPH() {
 }
 
 function doCancel(id) {
-    $.messager.confirm('<? echo $ls->cancel0[$lang]; ?>', '<? echo $ls->cancel1[$lang]; ?>', function(r){
-        if (r) {
-              $("#loading").show();
-              jQuery.ajax({
-                type: "POST",
-                url: 'dashboard_cancel.php',
-                data: {id: id},
-                success: function(res) {
-                      $("#loading").hide();
-                      var res = JSON.parse(res);
-                    if (res.success) {
-                        $.messager.alert("<? echo $ls->cancel0[$lang]; ?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
-                            location.reload();
-                        });
-                    } else {
-                        $.messager.alert("<? echo $ls->cancel0[$lang]; ?>", res.msg);
-                    }
-                }
-            });
+  $.messager.confirm('<? echo $ls->cancel0[$lang]; ?>', '<? echo $ls->cancel1[$lang]; ?>', function(r){
+    if (r) {
+      $("#loading").show();
+      jQuery.ajax({
+        type: "POST",
+        url: 'dashboard_cancel.php',
+        data: {id: id},
+        success: function(res) {
+              $("#loading").hide();
+              var res = JSON.parse(res);
+            if (res.success) {
+                $.messager.alert("<? echo $ls->cancel0[$lang]; ?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
+                    location.reload();
+                });
+            } else {
+                $.messager.alert("<? echo $ls->cancel0[$lang]; ?>", res.msg);
+            }
         }
-    });
+      });
+    }
+  });
 }
+
 function doDetail(hid) {
   //document.getElementById("helpdetail").innerHTML = id;
   $("#loading").show();
   $.post("dashboard_detail.php",{hid: hid},function(res){
       var res = JSON.parse(res);
       if (res.success) {
-        $("#detailBody").html(res.msg+'<br><br>&nbsp;&nbsp;'+res.action);
+        $("#detailBody1").html(res.msg);
+        $("#detailFooter1").html(res.action);
       	$("#loading").hide();
       }
   });
 }
+
+function doPayment(hid) {
+  var act = "payment";
+  var hash = $('#hash').val();
+  var message = $('#message').val();
+
+  jQuery.ajax({
+    type: "POST",
+    url: '_action_payment.php',
+    data: {act:act,hid:hid,hash:hash,message:message},
+    success: function(res) {
+      var res = JSON.parse(res);
+      if (res.status == 'success') {
+          $.messager.alert("<? echo $ls->payment[$lang];?>","<b class=blue>"+res.msg+"</b>","info",function(r) {
+              location.reload();
+          });
+      } else {
+          $.messager.alert("<?php echo $ls->payment[$lang]; ?>",res.msg,"error");
+      }
+    }
+  });
+}
+
 // doStar
 function doStarph(hid) {
     $("#loading").show();
@@ -612,27 +575,6 @@ function doUpload() {
         toastr.success("Uploading image, do not refresh page!");
         $(this).ajaxSubmit(options);
     }
-}
-function doPayment() {
-    var act = "payment";
-    var hash = $('#hash').val();
-    var message = $('#message').val();
-
-    jQuery.ajax({
-        type: "POST",
-        url: '_action_payment.php',
-        data: {act:act, hash:hash,message:message},
-        success: function(res) {
-            var res = JSON.parse(res);
-            if (res.status == 'success') {
-                $.messager.alert("<? echo $ls->payment[$lang];?>","<b class=blue>"+res.msg+"</b>","info",function(r) {
-                    location.reload();
-                });
-            } else {
-                $.messager.alert("<?php echo $ls->payment[$lang]; ?>",res.msg,"error");
-            }
-        }
-    });
 }
 
 function openComplete() {
@@ -733,9 +675,220 @@ function doFake(helpid) {
         }
     });
 }
+
 </script>
 
 <?
-include("_db_functions.php");
+function ggPhAmounts() {
+  global $setup;
+  $ret='';
+  $phlist = explode(",",$setup->phlist);
+  $count = count($phlist);
+  for ($i=0; $i < $count; $i++) {
+      $amt = $phlist[$i] * $setup->exrate;
+      $ret .= "<option value='$amt' ".($i==0? "selected":"").">$amt</option>";
+  }
+  return $ret;
+}
+
+function ggHelpCount($t) {
+  global $user;
+  $help = ggFetchValue("select count(id) from tblhelp where mem_id = $user->id and g_type='$t' and status<>'X'");
+  return $help;
+}
+
+function ggPhDBox() {
+    global $db, $setup, $user, $ls, $lang, $uid;
+
+    $now = new datetime("now");
+    $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='P' order by id desc");
+    while ($row = mysqli_fetch_object($rs)) {
+        $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+        $oth = load_user($row->oth_id);
+        $mem = load_user($uid);
+        if ($row->stage == 2 || $row->stage == 4) {
+          $time_remain = "";
+        } else {
+          $time_remain = ggTimeRemain($now,$row->g_timer);
+        }
+        echo "<table width='100%' class='$class'>";
+        echo "<tr><td>".$ls->status[$lang]."</td><td>".$ls->match_code[$lang]."</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>".$ls->ph_amount[$lang]."</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
+
+        $preview = "";
+        if ($row->images<>"") {
+          $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
+        }
+
+        if ($row->stage<3) {
+          $img = "star".($row->stage+1).".png";
+        } else if ($row->stage==3) {
+          $img = "question.png";
+        } else {
+          $img = "cross.png";
+        }
+
+        if ($row->g_type=='P') {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#myModal'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname</td></tr>";
+        } else {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname</td></tr>";
+        }
+        echo "</table><p style='height: 1px'></p>";
+    }
+
+}
+
+function ggGhDBox() {
+  global $db, $setup, $user, $lang, $ls,$uid;
+    $now = new datetime("now");
+    $rs = $db->query("select * from tblhelpdetail where mem_id=$uid and g_type='G' order by id desc");
+    while ($row = mysqli_fetch_object($rs)) {
+        $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+        $oth = load_user($row->oth_id);
+        $mem = load_user($uid);
+        if ($row->stage == 2 || $row->stage == 4) {
+          $time_remain = "";
+        } else {
+          $time_remain = ggTimeRemain($now,$row->g_timer);
+        }
+        echo "<table width='100%' class='$class'>";
+        echo "<tr><td>".$ls->status[$lang]."</td><td>".$ls->match_code[$lang]."</td><td><? echo $ls->titleph[$lang]; ?></td><td></td><td>".$ls->gh_amount[$lang]."</td><td></td><td><? echo $ls->titlegh[$lang]; ?></td></tr>";
+
+        $preview = "";
+        if ($row->images<>"") {
+          $preview = "<a href='$row->images' target='_blank'><img src='images/preview.jpg' width='25px' height='25px'></a>";
+        }
+
+        if ($row->stage<3) {
+          $img = "star".($row->stage+1).".png";
+        } else if ($row->stage==3) {
+          $img = "question.png";
+        } else {
+          $img = "cross.png";
+        }
+
+        if ($row->g_type=='P') {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td></tr>";
+        } else {
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname<br>$oth->bankname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname<br>$mem->bankname</td></tr>";
+        }
+        echo "</table><p style='height: 1px'></p>";
+    }
+    return $ret;
+}
+
+function ggPhBox() {
+    global $db, $setup, $user, $ls, $lang, $uid;
+    $ret = "";
+
+    if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='P' and status<>'X' order by g_date desc")) {
+    $now = new DateTime("NOW");
+    while ($row = mysqli_fetch_object($rs)) {
+      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+      $g_date = new DateTime($row->g_date);
+      $interval = $now->diff($g_date);
+      $days = $interval->format("%d");
+
+      if ($row->status=="X") {
+         $color = 'silver';
+         $status = $ls->cancelled[$lang];
+      } else if ($row->status=="P") {
+         $color = '#bcd979';
+         $status = $ls->matching[$lang];
+         $pending1 = $ls->w_matching[$lang]."<br>";
+         $pending2 = number_format($row->g_pending)."  $setup->currency<br>";
+      } else if ($row->status=="C") {
+         $color = '#bcd979';
+         $status = $ls->matched[$lang];
+      } else if ($row->status=="D") {
+         $color = '#bcd979';
+         $status = $ls->completed[$lang];
+      } else if ($row->status=="F") {
+         $color = '#bcd979';
+         $status = "<b class=red>".$ls->failed[$lang]."</b>";
+      } else if ($row->status=="B") {
+         $color = '#bcd979';
+         $status = "<b class=red>".$ls->blocked[$lang]."</b>";
+      } else {
+         $color = '#bcd979';
+         $status = $ls->waiting1[$lang].$days.$ls->waiting2[$lang];
+      }
+      $cancel = "";
+      if ($row->status=="O" and $days < 7) {
+          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>".$ls->cancel[$lang]."</a>";
+      }
+      // GG PHBox2
+      $ret .= "<table width='100%' class=$class>";
+      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
+      $ret .= "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>".$ls->aph[$lang].": <br>".ggHID($row->id)."</td></tr>";
+      $ret .= "<tr><td style='text-align:left; vertical-align:top;'>".$ls->participants[$lang].":<br>".$ls->ph_amount[$lang].":<br>$pending1 ".$ls->date[$lang].":<br>".$ls->status[$lang].":</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." $setup->currency<br>$pending2 ".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
+      $ret .= "</table><br>";
+    }
+  }
+  return $ret;
+}
+
+
+function ggGhBox() {
+  global $db, $setup, $user,$uid,$ls,$lang;
+  $ret = "";
+
+  if ($rs = $db->query("select * from tblhelp where mem_id=$uid and g_type='G' and status<>'X'")) {
+    $now = new DateTime("NOW");
+    while ($row = mysqli_fetch_object($rs)) {
+      $class = ($row->g_type=='P')? 'table2_1':'table2_2';
+      $g_date = new DateTime($row->g_date);
+      $interval = $now->diff($g_date);
+      $days = $interval->format("%d");
+
+      $pending1="";
+      $pending2 = "";
+      if ($row->status=="X") {
+         $color = 'silver';
+         $status = $ls->cancelled[$lang];
+      } else if ($row->status=="P") {
+         $color = '#bcd979';
+         $status = $ls->matching[$lang];
+         $pending1 = $ls->w_matching[$lang]."<br>";
+         $pending2 = number_format($row->g_pending)."  $setup->currency<br>";
+      } else if ($row->status=="D") {
+         $color = '#bcd979';
+         $status = $ls->completed[$lang];
+       } else if ($row->status=="C") {
+         $color = '#bcd979';
+         $status = $ls->matched[$lang];
+      } else if ($row->status=="B") {
+         $color = '#bcd979';
+         $status = "<b class=red>".$ls->blocked[$lang]."</b>";
+      } else {
+         $color = '#bcd979';
+         $status = $ls->waiting1[$lang].$days.$ls->waiting2[$lang];
+      }
+
+      $source1 = $ls->src_wallet[$lang].":<br>";
+      if ($row->note == 'deposit') {
+        $source2 = $ls->src_deposit[$lang]."<br>";
+      } else if ($row->note == 'referral') {
+        $source2 = $ls->src_sponsor[$lang]."<br>";
+      } else if ($row->note == 'manager') {
+        $source2 = $ls->src_manager[$lang]."<br>";
+      } else {
+        $source2 = $ls->src_special[$lang]."<br>";
+      }
+
+      $cancel = "";
+      if ($row->status=="O" and $days < 7) {
+          $cancel = "<br><a ref='#' class='btn btn-danger' onclick='doCancel($row->id)'>".$ls->cancel[$lang]."</a>";
+      }
+      // GG PHBox2
+      $ret .= "<table width='100%' class=$class>";
+      $uname = ggFetchValue("select username from tblmember where id = $row->mem_id");
+      $ret .= "<tr bgcolor=green><td colspan=2 style='color: white; font-size:100%;'>".$ls->agh[$lang].": <br>".ggHID($row->id)."</td></tr>";
+      $ret .= "<tr><td style='text-align:left; vertical-align:top;'>".$ls->participants[$lang].":<br>".$ls->gh_amount[$lang].":<br>$pending1 $source1 ".$ls->date[$lang].":<br>".$ls->status[$lang].":</td><td style='text-align:left; vertical-align:top;'>$uname<br>".number_format($row->g_amount)." $setup->currency<br>$pending2 $source2".substr($row->g_date,0,16)."<br>$status $cancel</td></tr>";
+      $ret .= "</table><br>";
+    }
+  }
+  return $ret;
+}
+
 include("inc/ggFooter.php");
 ?>

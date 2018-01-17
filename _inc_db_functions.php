@@ -48,7 +48,7 @@ function ggPhDBox() {
         }
 
         if ($row->g_type=='P') {
-          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname</td></tr>";
+          echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$mem->username<br>$mem->fullname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#myForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$oth->username<br>$oth->fullname</td></tr>";
         } else {
           echo "<tr><td><img src='images/$img' width=40 height=40></td><td>".ggAID($row->id)."<br>".substr($row->g_date,0,16)."<br><b class='red'>$time_remain</b></td><td width=100>$oth->username<br>$oth->fullname</td><td>-></td><td>$row->g_amount $setup->currency<br>$preview <button onclick='doDetail($row->id)' type='button' class='btn btn-success' data-toggle='modal' data-target='#detailForm'>".$ls->detail[$lang]."</button></td><td>-></td><td width=100>$mem->username<br>$mem->fullname</td></tr>";
         }
