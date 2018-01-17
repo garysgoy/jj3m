@@ -8,6 +8,7 @@ $ls->confirm_receive = array("Confirm Receive","确认收到款","確認收到�
 $ls->complain = array("Complain","举报","據報");
 $ls->upload = array("Upload","上传打款单据","上傳打款單據");
 $ls->reupload = array("Upload again","重新上传打款单据","重新上傳打款單據");
+$ls->confirm_payment = array("Confirm Payment","确认付款","確認付款");
 
 $debug = false;
 $req = ($debug)? $_GET:$_POST;
@@ -37,32 +38,30 @@ if ($row->g_type=="G") {
          $action = "<button class='btn btn-success' onclick='doStarph($row->id)'>".$ls->reupload[$lang]."</button>";
          $action .= $btn_close;
       } else {
-         $action = "<button class='btn btn-success' data-toggle='modal' data-target='#upp_modal' onclick='doUpload($row->id)'>".$ls->upload[$lang]."</button>";
+         $action = "<button class='btn btn-success' data-toggle='modal' onclick='doPayment($row->id)'>".$ls->confirm_payment[$lang]."</button>";
          $action .= $btn_close;
       }
 }
 
 if ($row->g_type=="P") {
    $ret = "<div class='row'>
-      <div class='col-sm-12 col-lg-4' align=right>Time Left</div><div class='col-sm-12 col-lg-8'>Time</div>
-      <div class='col-sm-12 col-lg-4' align=right>Sender ID</div><div class='col-sm-12 col-lg-8'>$mem->username</div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient ID</div><div class='col-sm-12 col-lg-8'>$oth->username<br></div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient BTC Address</div><div class='col-sm-12 col-lg-8'>$oth->btc<br></div>
-      <div class='col-sm-12 col-lg-4' align=right>Recipient ETH Address</div><div class='col-sm-12 col-lg-8'>$oth->eth<br></div>
-      <div class='col-sm-12 col-lg-4' align=right>Amount $</div><div class='col-sm-12 col-lg-8'>$row->g_amount</div>
-      <div class='col-sm-12 col-lg-4' align=right>Hash Key</div><div class='col-sm-12 col-lg-8'>Hash</div>
-      <div class='col-sm-12 col-lg-4' align=right>Message for Recipient</div><div class='col-sm-12 col-lg-8'>Message</div>
+      <div class='col-sm-12 col-lg-4' align=right>Sender ID</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$mem->username'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Recipient ID</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->username'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Recipient BTC Address</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->btc'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Recipient ETH Address</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$oth->eth'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Amount $</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' disabled value='$row->g_amount'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Hash Key</div><div class='col-sm-12 col-lg-8'><input type='text' class='form-control input-sm' id='hash' name='hash'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Message for Recipient</div><div class='col-sm-12 col-lg-8'><textarea rows=5 class='form-control input-sm' id='message' name='message'></textarea></div>
       </div>";
 } else {
    $ret = "<div class='row'>
-      <div class='col-sm-12 col-lg-4' align=right>Time Left</div><div class='col-sm-12 col-lg-8'>Time</div>
       <div class='col-sm-12 col-lg-4' align=right>Sender ID</div><div class='col-sm-12 col-lg-8'>$oth->username</div>
       <div class='col-sm-12 col-lg-4' align=right>Recipient ID</div><div class='col-sm-12 col-lg-8'>$mem->username<br></div>
       <div class='col-sm-12 col-lg-4' align=right>Recipient BTC Address</div><div class='col-sm-12 col-lg-8'>$mem->btc<br></div>
       <div class='col-sm-12 col-lg-4' align=right>Recipient ETH Address</div><div class='col-sm-12 col-lg-8'>$mem->eth<br></div>
       <div class='col-sm-12 col-lg-4' align=right>Amount $</div><div class='col-sm-12 col-lg-8'>$row->g_amount</div>
-      <div class='col-sm-12 col-lg-4' align=right>Hash Key</div><div class='col-sm-12 col-lg-8'>Hash</div>
-      <div class='col-sm-12 col-lg-4' align=right>Message for Recipient</div><div class='col-sm-12 col-lg-8'>Message</div>
+      <div class='col-sm-12 col-lg-4' align=right>Hash Key</div><div class='col-sm-12 col-lg-8'><input class='form-control input-sm' type='text' id='hash' name='hash'></div>
+      <div class='col-sm-12 col-lg-4' align=right>Message for Recipient</div><div class='col-sm-12 col-lg-8'><textarea class='form-control input-sm'  rows=5 id='message' name='message'></textarea>/div>
       </div>";
 }
 
