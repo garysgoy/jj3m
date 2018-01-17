@@ -9,6 +9,11 @@ $req = ($debug)? $_GET:$_POST;
 $act = isset($req['act']) ? $req['act'] : "";
 $mavro = isset($req['mavro']) ? $req['mavro'] : "";
 $amount = isset($req['amount']) ? $req['amount'] : 0;
+$type = isset($req['type']) ? $req['type'] : "";
+
+if ($type=="m") $mavro="manager";
+else if ($type=="r") $mavro="refer";
+else if ($type=="l") $mavro="level";
 
 $ghtype = ggGhType($mavro);
 

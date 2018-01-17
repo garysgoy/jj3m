@@ -1,6 +1,8 @@
 <?
 include_once("inc/ggInit.php");
 include_once("inc/ggFunctions.php");
+include_once("inc/ggValidate.php");
+
 if ($user->logged==0 || $user->rank<1) {
   header("location: login.php");
 }
@@ -8,7 +10,6 @@ if ($user->logged==0 || $user->rank<1) {
 if ($user->rank==1 && $user->fullname=="") {
   header("location: profile.php");
 }
-
 
 //$page_css[] = "";
 
@@ -50,6 +51,17 @@ $ls->username = array("Username","用户名","用户名");
 $ls->w_available = array("Available","流动","流動");
 $ls->w_onhold = array("Onhold","待定","待定");
 $ls->title = array("Mavro","馬夫洛","馬夫洛");
+$ls->titleph = array("Provide Help","提供帮助","提供帮助");
+$ls->titlegh = array("Get Help","接受帮助","接受帮助");
+$ls->gh_balance = array("Balance &nbsp;","现有人民币","現有人民幣");
+$ls->gh_available = array("Available","可提人民币","可提人民幣");
+$ls->gh_amount = array("Help Amount","提领金额","提領金額");
+$ls->gh_amountp = array("RMB","人民币","人民幣");
+$ls->gh_comment = array("Message","备注","備註");
+$ls->my_directs = array("My Directs","我的直推","我的直推");
+$ls->successfulph = array("PH Success","提供帮助顺利完成","提供帮助顺利完成");
+$ls->ph_warning = array("I understand and accept the risk, and I decide to join this program","我已完全了解所有风险。我决定参与, 尊重3M的文化与传统","我已完全了解所有風險。我決定參與，尊重3M的文化與傳統");
+$ls->close = array("Close","关闭","關閉");
 
 include("inc/ggHeader.php");
 
@@ -108,7 +120,7 @@ $register    = ggFetchObject("select sum(future_amount) as amt from tblmavro whe
 			<p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
 <?
 if ($user->rank < 6) {
-    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>等待提取</a></p>";
+    echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>Withdraw</a></p>";
 } else if ($user->rank >= 6) {
     echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpM'>".$ls->withdraw[$lang]."</a></p>";
 }
@@ -210,29 +222,25 @@ include("_inc_gethelp_m.php");
 </div>
 <script>
 function GHAction(type) {
+    var act = "GH";
     var mavro = "deposit";
     var amount = document.getElementById('sell_amount'+type).value;
-    if (type == 'r') {
-      mavro = "referral";
-    }
-    if (type == 'm') {
-      mavro = "manager";
-    }
-    jQuery.ajax({
-        type: "POST",
-        url: 'dashboard_gh.php',
-        data: {mavro: mavro, amount: amount},
-        success: function(res) {
-            var res = JSON.parse(res);
-            if (res.success) {
-                $.messager.alert("接受帮助","<b class=blue>已经收到你的接受帮助申请</b>","info",function(r) {
-                    location.reload();
-                });
-            } else {
-                $.messager.alert("接受帮助","你的申请失败:<br><br><br> " + res.msg,"error");
-            }
-        }
-    });
+
+      jQuery.ajax({
+          type: "POST",
+          url: '_action_gh.php',
+          data: {act:act, mavro:mavro,type:type,amount:amount},
+          success: function(res) {
+              var res = JSON.parse(res);
+              if (res.status == 'success') {
+                  $.messager.alert("<? echo $ls->titlegh[$lang];?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
+                      location.reload();
+                  });
+              } else {
+                  $.messager.alert("<?php echo $ls->titlegh[$lang]; ?>",res.msg,"error");
+              }
+          }
+      });
 }
 </script>
 <?
