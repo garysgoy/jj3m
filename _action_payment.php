@@ -49,7 +49,7 @@ if (!isset($req['act']) || $req['act'] != "payment") {
   $timer = ggAddHours($now,24);
   $s_timer = ggDateToString($timer);
 
-  $rs = $db->query("update tblhelpdetail set stage = 1, images ='$save_file',g_timer = '$s_timer', g_payment=Now() where tran_id = $tran->tran_id") or die ("update tran id ".$db->error);
+  $rs = $db->query("update tblhelpdetail set stage = 1, images ='$save_file',g_timer = '$s_timer', g_payment=Now(), hash='$hash',message='$message' where tran_id = $tran->tran_id") or die ("update tran id ".$db->error);
   $rs1 = $db->query("update tblmavro set incentive = $incentive where help_id = $tran->help_id and op_type='B'") or die ("update tran id ".$db->error);
 
   // Save file name
