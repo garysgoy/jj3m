@@ -1,10 +1,11 @@
 <?
 /*----------
 1. Detect Local or server and connect DB
-2. Set timezone
-3. Load setup from database (Change to setup.php?)
-4. Lode user
-5. Set language
+2. Define app_code
+3. Set encoding & timezone
+4. Load setup from database (Change to setup.php?)
+5. Load user
+6. Set language
 -----------*/
 
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
@@ -15,7 +16,7 @@ if ($server==0) {
   error_reporting(E_ALL);
 } else {
   $db = new mysqli("localhost", "mlmsolution_net", "AEhr3yJ56y","mlmsolution_net");
-  error_reporting(E_ALL & ~E_NOTICE);
+  error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 }
 
 if ($db->connect_errno) {

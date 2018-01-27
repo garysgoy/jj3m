@@ -110,10 +110,10 @@ define("E_VAL_IN_LIST_CHECK_FAILED","Value of %s should not be same as that of %
 class FormValidator
 {
 	var $validator_array;
-    var $error_hash;
+  var $error_hash;
 	var $custom_validators;
 
-	function FormValidator()
+  function __construct()
 	{
 		$this->validator_array = array();
         $this->error_hash = array();

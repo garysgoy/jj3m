@@ -1,7 +1,6 @@
 <?
 include("inc/ggDbconfig.php");
 
-$lang=0;
 $ls = new stdClass();
 $ls->title = array("3M System","3M 互助系统","3M 互助系統");
 $ls->login = array("Login to System","MMM 会员登入","MMM 會員登入!");

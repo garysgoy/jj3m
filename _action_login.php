@@ -69,8 +69,8 @@ if (!$v->ValidateForm()) {
         $ct = time() + (60*30); // 30 min
         $url = "dashboard.php";
     }
-    setcookie("pid", $pid,$ct,"/");
-    setcookie("lang", $setup->lang,$ct,"/");
+    setcookie("pid", $pid,$ct);
+//    setcookie("lang", $setup->lang,$ct);
 
     $ret = array("status"=>"success","msg"=>$ls->success[$lang]);
 }
