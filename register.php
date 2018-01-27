@@ -116,7 +116,7 @@ include("inc/ggHeader.php");
 				</label>
 		  </div>
 		  <p style="text-align:center;">
-			  <a href="#" class="btn btn-default btn-success" onclick="doSave()"><? echo $ls->bconfirm[$lang]; ?></a>
+			  <button class="btn btn-default btn-success" onclick="doSubmit(this)" value="reg"><? echo $ls->bconfirm[$lang]; ?></button>
 			  <a href="dashboard.php" class="btn btn-default btn-danger"><? echo $ls->bcancel[$lang]; ?></a>
 		  </p>
 		</form>
@@ -125,7 +125,37 @@ include("inc/ggHeader.php");
 </div>
 
 <script>
-function doSave() {
+function doSubmit(n) {
+  //$("#"+n.id).prop('disabled', true);
+  n.disabled = true;
+  $.ajax({
+    url:"_action_" + n.value + ".php",
+    type: "POST",
+    data: $("#"+n.value+"Form").serialize(),
+    dataType: "json",
+    success:function(result){
+      if (result.status=="success") {
+				$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
+	        if (result.url) {
+	          location.href = result.url;
+	        } else {
+	          location.reload();
+	        }
+				});
+      } else {
+				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
+      }
+      n.disabled = false;
+    },
+    error:function(XMLHttpRequest, textStatus, errorThrown){
+      alert(txtStatus);
+      n.disabled = false;
+    }
+  });
+}
+
+function doSave(btn) {
+	btn.disabled = true;
 	$('#regForm').form('submit',{
 		url: "register_add.php",
 		success: function(res){

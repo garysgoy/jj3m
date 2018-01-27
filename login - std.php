@@ -120,10 +120,10 @@ $ls->password = array("password","登入密码","登入密碼");
                 <div class="panel-body">
 
                         <form action="" id="loginForm" method="post">
-							
+
 						<!--<strong style="color:red">抱歉，现在系统暂停维护中，稍后开放，谢谢您的等待</strong>-->
-							
-							
+
+
                             <div class="form-group">
 
                                 <label class="control-label" for="username">用户名</label>
@@ -189,7 +189,7 @@ if ($ErrMsg<>"") {
 
 <!-- Vendor scripts -->
 
-<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/js/dist/jquery.min.js"></script>
 
 <script src="/assets/vendor/jquery-ui/jquery-ui.min.js"></script>
 

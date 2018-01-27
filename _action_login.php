@@ -15,11 +15,6 @@ $ls->invalid_login = array("Invalid username or password","账号或密码错误
 $ls->invalid_code  = array("Invalid security code","验证码错误","驗證碼錯誤");
 $ls->sec_code_req  = array("Security code can not be blank","验证码不能为空","驗證碼不能為空");
 
-if (!isset($req['act']) || $req['act']!='login') {
-  echo json_encode(array("status"=>"fail","msg"=>"Invalid Action"));
-  exit;
-}
-
 $act=$req['act'];
 $username=$req['username'];
 $password=$req['password'];
@@ -72,7 +67,7 @@ if (!$v->ValidateForm()) {
     setcookie("pid", $pid,$ct);
 //    setcookie("lang", $setup->lang,$ct);
 
-    $ret = array("status"=>"success","msg"=>$ls->success[$lang]);
+    $ret = array("status"=>"success","msg"=>$ls->success[$lang],"url"=>$url);
 }
 echo json_encode($ret);
 ?>

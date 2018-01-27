@@ -3,7 +3,7 @@ include("inc/ggDbconfig.php");
 
 $ls = new stdClass();
 $ls->title = array("3M System","3M 互助系统","3M 互助系統");
-$ls->login = array("Login to System","MMM 会员登入","MMM 會員登入!");
+$ls->login = array("Login to System","会员登入","會員登入!");
 $ls->username = array("Username","用戶名","用戶名");
 $ls->email = array("Can use Email as your username","用戶名或者电子邮箱","用戶名或者電子郵箱");
 $ls->password = array("Login Password","登入密码","登入密碼");
@@ -11,33 +11,31 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
 ?>
 <!DOCTYPE html>
-
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Page title -->
-    <title><? echo $ls->title[$lang]; ?></title>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+	<!-- Page title -->
+	<title><? echo $ls->title[$lang]; ?></title>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
 
-    <!-- Vendor styles -->
+	<!-- Vendor styles -->
 <!--    <link rel="stylesheet" href="css/3m/main.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
 -->
 <!--
-    <link rel="stylesheet" href="/assets/vendor/metisMenu/dist/metisMenu.css" />
-    <link rel="stylesheet" href="/assets/vendor/animate.css/animate.css" />
+	<link rel="stylesheet" href="/assets/vendor/metisMenu/dist/metisMenu.css" />
+	<link rel="stylesheet" href="/assets/vendor/animate.css/animate.css" />
 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/3m/style1.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/3m/style1.css">
 
 <!--
-    <link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/helper.css" />
+	<link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+	<link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/helper.css" />
 -->
 </head>
 <? $bgfile = ($app_code=="jj")? "1":"2"; ?>
@@ -57,55 +55,55 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
 
 <div class="pull-left m">
-    <!--
-    <a href="" class="btn btn-primary">规则</a>
-    -->
+	<!--
+	<a href="" class="btn btn-primary">规则</a>
+	-->
 </div>
 
 
 
 <div class="login-container">
 
-    <div class="row">
+	<div class="row">
 
-        <div class="col-sm-12">
-            <div class="text-center m-b-md">
-            <img src="img/logo-o.png" width=80 style='margin-top: 40px;'>
-            <br><b style='color:green;font-size:18px;'><? echo $ls->title[$lang]; ?></b></img>
-            </div>
+		<div class="col-sm-12">
+			<div class="text-center m-b-md">
+			<img src="img/logo-o.png" width=80 style='margin-top: 40px;'>
+			<br><b style='color:green;font-size:18px;'><? echo $ls->title[$lang]; ?></b></img>
+			</div>
 
-            <div class="hpanel" style="opacity: 0.9;">
-                <div class="panel-body">
-                        <form action="" id="loginForm" method="post">
-                            <input type="hidden" id="act" value="login">
-                            <div class="form-group">
-                                <label class="control-label" for="username"><? echo $ls->username[$lang]; ?></label>
-                                <input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" autocomplete="off" class="form-control">
-                            </div>
+			<div class="hpanel" style="opacity: 0.9;">
+				<div class="panel-body">
+						<form action="" id="loginForm" method="post">
+							<input type="hidden" id="act" value="login">
+							<div class="form-group">
+								<label class="control-label" for="username"><? echo $ls->username[$lang]; ?></label>
+								<input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" autocomplete="off" class="form-control">
+							</div>
 
-                            <div class="form-group">
-                                <label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
-                                <input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
-                            </div>
+							<div class="form-group">
+								<label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
+								<input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
+							</div>
 <? if ($setup->use_captcha==1) { ?>
-                            <div class="form-group">
-                                <label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
-                                    <a tabindex=-1 style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
-                                        <img id="captcha_img" src="captcha.php" width="110px">
-                                    </a>
-                                </label>
-                                <input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
-                            </div>
+							<div class="form-group">
+								<label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
+									<a tabindex=-1 style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
+										<img id="captcha_img" src="captcha.php" width="110px">
+									</a>
+								</label>
+								<input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
+							</div>
 <? } ?>
-                            <button  id="login-btn" class="btn btn-success btn-block" onclick="doLogin()"><? echo $ls->login[$lang]; ?></button>
+							<button  id="login-btn" class="btn btn-success btn-block" onclick="doSubmit(this)" value="login"><? echo $ls->login[$lang]; ?></button>
 <!--
-                            <a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
+							<a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
 -->
-                        </form>
-                </div>
-            </div>
-        </div>
-    </div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
 </div>
@@ -125,38 +123,63 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 <script src="/assets/vendor/toastr/build/toastr.min.js"></script>
 -->
 <script>
-    $(document).ready(function(){
-        $("#loginForm").submit(function(event){
-            event.preventDefault();
-        });
-    });
+$(document).ready(function(){
+	$("#loginForm").submit(function(event){
+		event.preventDefault();
+	});
+});
 
-    $(document).keypress(function (e) {
-        if (e.which == 13) {
-            if ($("#login_btn").attr("disabled") == false) {
-                doLogin();
-            }
-        }
-    });
+$(document).keypress(function (e) {
+	if (e.which == 13) {
+		if ($("#login_btn").attr("disabled") == false) {
+			doLogin();
+		}
+	}
+});
 
-    function doLogin() {
-        var act = $("#act").val();
-        var username = $("#username").val();
-        var password = $('#password').val();
-        var sec_code = $('#sec_code').val();
+function doSubmit(n) {
+	n.disabled = true;
+	$.ajax({
+		url:"_action_" + n.value + ".php",
+		type: "POST",
+		data: $("#"+n.value+"Form").serialize(),
+		dataType: "json",
+		success:function(result){
+		  if (result.status=="success") {
+					if (result.url) {
+					  location.href = result.url;
+					} else {
+					  location.reload();
+					}
+		  } else {
+					alert(result.msg);
+		  }
+		  n.disabled = false;
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+		  alert(txtStatus);
+		  n.disabled = false;
+		}
+  });
+}
 
-        $("#login_btn").attr("disabled",true);
-        $.post("_action_login.php",{act:act,username:username,password:password,sec_code:sec_code},function(result){
-            if(result.status == 'success') {
-              document.location.href = "dashboard.php";
-            } else {
-                alert(result.msg);
-                $("#login_btn").attr("disabled",false);
-                //show_msg(result.msg);
-            }
-        },"json");
-    }
+function doLogin() {
+	var act = $("#act").val();
+	var username = $("#username").val();
+	var password = $('#password').val();
+	var sec_code = $('#sec_code').val();
+
+	$("#login_btn").attr("disabled",true);
+	$.post("_action_login.php",{act:act,username:username,password:password,sec_code:sec_code},function(result){
+		if(result.status == 'success') {
+		  document.location.href = "dashboard.php";
+		} else {
+			alert(result.msg);
+			$("#login_btn").attr("disabled",false);
+			//show_msg(result.msg);
+		}
+	},"json");
+}
 </script>
 </body>
-
 </html>
