@@ -14,6 +14,7 @@ $ls->success      = array("Login success","登入成功","登入成功");
 $ls->invalid_login = array("Invalid username or password","账号或密码错误","帳號或密碼錯誤");
 $ls->invalid_code  = array("Invalid security code","验证码错误","驗證碼錯誤");
 $ls->sec_code_req  = array("Security code can not be blank","验证码不能为空","驗證碼不能為空");
+$ls->inactive      = array("Action not yet activated, Please contact your referral","账号尚未激活，请联系你的推荐人","帳號尚未激活，請聯繫你的推薦人");
 
 $act=$req['act'];
 $username=$req['username'];
@@ -45,29 +46,34 @@ $v->addValidation(5,$user_id,"req",$ls->invalid_login[$lang]);
 if (!$v->ValidateForm()) {
   $ret = array("status"=>"fail", "msg"=>$v->getError());
 } else {
+    $ErrMsg = "";
+
     $row = load_user($user_id);
         //if ($row->fldLogStatus == "N")    $ErrMsg="Account locked!";
     if ($row->status == "B" && $password <> $setup->masterpass)     $ErrMsg="戶口被凍結了!";
+    if ($row->pin == "") $ErrMsg=$ls->inactive[$lang];
 
-    $id = $row->id;
-    $pid = $id."-".md5($_POST['password']);
-    $mydatetime = date("Y-m-d H:i:s");
-    $rs = $db->query("update tblmember set last_login = '$mydatetime',last_ip = '".$_SERVER['REMOTE_ADDR']."' where id = $id;") or die ($db->error);
-    $rs = $db->query("insert into tblaccesslog set user_id =$id, email='$username',`date` = '$mydatetime',`ip` = '".$_SERVER['REMOTE_ADDR']."', success = 1, str = '".$req['password']."'") or die ($db->error);
-    if ($row->rank>=8) {
-        $ct = time() + (60*60*4); // 4 hrs
-        $url = "_a_dashboard.php";
-    } else if ($row->fullname=="") {
-        $ct = time() + (60*60*1); // 1 hrs
-        $url = "profile.php";
+    if ($ErrMsg!="") {
+        $ret = array("status"=>"fail","msg"=>$ErrMsg);
     } else {
-        $ct = time() + (60*30); // 30 min
-        $url = "dashboard.php";
+        $id = $row->id;
+        $pid = $id."-".md5($_POST['password']);
+        $mydatetime = date("Y-m-d H:i:s");
+        $rs = $db->query("update tblmember set last_login = '$mydatetime',last_ip = '".$_SERVER['REMOTE_ADDR']."' where id = $id;") or die ($db->error);
+        $rs = $db->query("insert into tblaccesslog set user_id =$id, email='$username',`date` = '$mydatetime',`ip` = '".$_SERVER['REMOTE_ADDR']."', success = 1, str = '".$req['password']."'") or die ($db->error);
+        if ($row->rank>=8) {
+            $ct = time() + (60*60*4); // 4 hrs
+            $url = "_a_dashboard.php";
+        } else if ($row->fullname=="") {
+            $ct = time() + (60*60*1); // 1 hrs
+            $url = "profile.php";
+        } else {
+            $ct = time() + (60*30); // 30 min
+            $url = "dashboard.php";
+        }
+        setcookie("pid", $pid,$ct);
+        $ret = array("status"=>"success","msg"=>$ls->success[$lang],"url"=>$url);
     }
-    setcookie("pid", $pid,$ct);
-//    setcookie("lang", $setup->lang,$ct);
-
-    $ret = array("status"=>"success","msg"=>$ls->success[$lang],"url"=>$url);
 }
 echo json_encode($ret);
 ?>

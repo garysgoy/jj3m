@@ -7,7 +7,10 @@ $mls = new stdClass();
 $mls->home = array("Dashboard","首页","首頁");
 $mls->dashboard = array("Dashboard","首页","首頁");
 $mls->pin = array("PIN Management","激活码"," 激活碼");
-$mls->register= array("Register Member","注册新用户","註冊新用戶");
+$mls->mem_mgt= array("Member Management","会员管理","會員管理");
+$mls->reflink= array("Refer Link","推荐链接","推薦連結");
+$mls->register= array("Member Registration","注册新会员","註冊新會員");
+$mls->activate= array("Activate Member","激活新会员","激活新會員");
 $mls->announcement = array("Announcement","新闻公告","新聞公告");
 $mls->network = array("Network","团队管理","團隊管理");
 $mls->referrals = array("Direct Referrals","直属推荐人","直屬推薦人");
@@ -53,11 +56,25 @@ if ($user->rank>=1) {
 		"url" => APP_URL . '/pin.php'
 	);
 
-	$page_nav["register"] = array(
-		"title" => $mls->register[$lang],
+	$page_nav["mem_mgt"] = array(
+		"title" => $mls->mem_mgt[$lang],
 		"icon" => "fa-user",
-		"url" => APP_URL . '/register.php'
+		"sub" => array(
+			"reflink" => array(
+				"title" => $mls->reflink[$lang],
+				"url" => APP_URL."/reflink.php"
+			),
+			"register" => array(
+				"title" => $mls->register[$lang],
+				"url" => APP_URL."/register.php"
+			),
+			"activate" => array(
+				"title" => $mls->activate[$lang],
+				"url" => APP_URL."/activate.php"
+			)
+		)
 	);
+
 }
 
 $page_nav["network"] = array(
@@ -81,7 +98,7 @@ $page_nav["network"] = array(
 
 $page_nav["account"] = array(
 	"title" => $mls->account[$lang],
-	"icon" => "fa-user",
+	"icon" => "fa-folder",
 	"sub" => array(
 		"profile" => array(
 			"title" => $mls->profile[$lang],

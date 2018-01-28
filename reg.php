@@ -1,14 +1,19 @@
 <?
+require_once("inc/ggDbconfig.php");
+require_once("inc/init.php");
+require_once("inc/config.ui.php");
 
-include_once("inc/ggInit.php");
 //$page_css[] = "";
 $page_title = $mls->register[$lang];
 $page_nav["mem_mgt"]["sub"]["register"]["active"] = true;
+$ref= (isset($_GET['ref']))? $_GET['ref']:"mem002";
+$lang= (isset($_GET['l']))? $_GET['l']:"0";
+setcookie("lang", $lang);
 
 $setup = load_setup();
 
 $ls = new stdClass();
-$ls->title = array("Register New User","注册新用户","註冊新用戶");
+$ls->title = array("Member Registration","注册新会员","註冊新会员");
 $ls->username = array("Username","登入账号","登入帳號");
 $ls->fullname = array("Fullname","姓名","姓名");
 $ls->country = array("Country","国家","國家");
@@ -16,7 +21,7 @@ $ls->phoneno = array("Phone No","手机号码","手機號碼");
 $ls->email = array("E-mail","邮箱","郵箱");
 $ls->password = array("Password","登入密码","登入密碼");
 $ls->cpassword = array("Confirm Password","确认登入密码","確認登入密碼");
-$ls->sponsorusername = array("Sponsor's Userame","推荐人账号","推薦人帳號");
+$ls->sponsorusername = array("Refer By","推荐人账号","推薦人帳號");
 $ls->confirmsponsor = array("Confirm Sponsor Name","确认推荐人名字 ","確認推薦人姓名");
 $ls->pinno = array("PIN No","激活码","激活碼");
 $ls->secondpass = array("Please enter your second password","请输入您的二级密码","請輸入你的二級密碼");
@@ -31,17 +36,15 @@ $ls->pphoneno = array("Phone no." ,"手机号码","手機號碼");
 $ls->pemail   = array("E-mail","邮箱","郵箱");
 $ls->ppassword = array("Password - must be $setup->password_len characters and above, must contain a least one digit","登入密码 - 最少 $setup->password_len 个字以上，最少要有一个数字","登入密碼 - 最少 $setup->password_len 個字以上，最少要有一個數字");
 $ls->pconfirmpassword = array("Confirm Password ","确认登入密码","確認登入密碼");
-$ls->psponsorusername = array("Sponsored By","介绍人账号","介紹人賬號");
+$ls->psponsorusername = array("Referred By","介绍人账号","介紹人賬號");
 $ls->psecondpassword = array("Second Password ","二级密码","二級密碼");
 $ls->successful = array("Added Successfully","注册顺利完成","註冊順利完成");
 $ls->load_pincode = array("Load PIN","提取激活码","提取激活碼");
 
 $rank = 5;
-include("inc/ggHeader.php");
+include("inc/header0.php");
 ?>
 <!-- Page content -->
-<div id="main" role="main">
-  <? include("inc/ribbon.php"); ?>
   <!-- MAIN CONTENT -->
   <div id="content">
     <div class="row" style="padding: 15px 15px;">
@@ -70,24 +73,6 @@ include("inc/ggHeader.php");
 			<label for="phone"><? echo $ls->phoneno[$lang]; ?>. <span class="require-field">*</span></label>
 			<input type="text" class="form-control" name="phone" id="phone" value="<? echo $phone; ?>" placeholder="<? echo $ls->pphoneno[$lang]; ?>" required />
 		  </div>
-<?
-$use_country=false;
-if ($use_country) {
-?>
-		  <div class="form-group register-form col-md-6">
-			<label for="country"><? echo $ls->country[$lang]; ?> <span class="require-field">*</span></label>
-			<select name="country" class="form-control" style="width:98%;">
-				<option value="NA"><? echo $ls->pcountry[$lang]; ?></option>
-				<option value="CN">&#20013;&#22269; China</option>
-				<option value="HK">&#39321;&#28207; Hong Kong</option>]
-				<option value="ID">&#21360;&#24230;&#23612;&#35199;&#20122; Indonesia</option>
-				<option value="MY">&#39532;&#26469;&#35199;&#20122; Malaysia</option>
-				<option value="SG">&#26032;&#21152;&#22369; Singapore</option>
-				<option value="TW">&#21488;&#28286; Taiwan</option>
-				<option value="TL">&#27888;&#22269; Thailand</option>
-			</select>
-		  </div>
-<? } ?>
 		  <div class="form-group register-form col-md-6">
 			<label for="password"><? echo $ls->password[$lang]; ?> <span class="require-field">*</span></label>
 			<input type="password" class="form-control" name="password" id="password" value="<? echo $password; ?>" placeholder="<? echo $ls->ppassword[$lang]; ?>" required />
@@ -96,31 +81,38 @@ if ($use_country) {
 			<label for="password2"><? echo $ls->cpassword[$lang]; ?> <span class="require-field">*</span></label>
 			<input type="password" class="form-control" name="repassword" id="repassword" value="<? echo $password2; ?>" placeholder="<? echo $ls->pconfirmpassword[$lang]; ?>" required />
 		  </div>
+      <div class="form-group register-form col-md-6">
+      <label for="sponsor"><? echo $ls->sponsorusername[$lang]; ?> <span class="require-field">*</span></label>
+      <input type="text" tabindex=-1 class="form-control" name="sponsor" id="sponsor" value="<? echo $ref; ?>" placeholder="<? echo $ls->psponsorusername[$lang]; ?>" readonly />
+      </div>
+
+<!--
 		  <div class="form-group register-form col-md-6">
 			<label for="sponsor"><? echo $ls->sponsorusername[$lang]; ?> <span class="require-field">*</span></label>
-			<input type="text" class="form-control" name="sponsor" id="sponsor" onblur="checkSponsor()" value="<? echo $user->username; ?>" placeholder="<? echo $ls->psponsorusername[$lang]; ?>" required />
+			<input type="text" class="form-control" name="sponsor" id="sponsor" onblur="checkSponsor()" value="<? echo $user->username; ?>" placeholder="<? echo $ls->psponsorusername[$lang]; ?>" readonly />
 		  </div>
 		  <div class="form-group register-form col-md-6">
 			<label for="sponsor2"><? echo $ls->confirmsponsor[$lang]; ?> <span class="require-field">&nbsp;</span></label>
 			<input type="text" class="form-control" name="sponsor2" id="sponsor2" value="" readonly />
 		  </div>
+-->
+<?
+$use_pin=false;
+if ($use_pin) {
+?>
 		  <div class="row">
-		  <div class="form-group register-form col-md-6">
-				<label for="pin"><? echo $ls->pinno[$lang]; ?>.&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="#" class="btn btn-default btn-success btn-xs" onclick="getpin()"><? echo $ls->load_pincode[$lang]; ?></a>
-				</label>
-				<input type="text" class="form-control" name="pin" id="pin" value=""/>
-		  </div>
-		  <div class="form-group register-form col-md-6">
-				<label for=""><? echo $ls->secondpass[$lang]; ?></label>
-				<input type="password" class="form-control" name="password2" id="password2" value="<? echo $password2; ?>" placeholder="<? echo $ls->psecondpassword[$lang]; ?>" required style="width:99%;" required />
-		  </div>
+			  <div class="form-group register-form col-md-6">
+					<label for="pin"><? echo $ls->pinno[$lang]; ?>.&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" class="btn btn-default btn-success btn-xs" onclick="getpin()"><? echo $ls->load_pincode[$lang]; ?></a>
+					</label>
+					<input type="text" class="form-control" name="pin" id="pin" value=""/>
+			  </div>
+			  <div class="form-group register-form col-md-6">
+					<label for=""><? echo $ls->secondpass[$lang]; ?></label>
+					<input type="password" class="form-control" name="password2" id="password2" value="<? echo $password2; ?>" placeholder="<? echo $ls->psecondpassword[$lang]; ?>" required style="width:99%;" required />
+			  </div>
 			</div>
-		  <!--div class="form-group">
-			<label for="exampleInputFile">File input</label>
-			<input type="file" id="exampleInputFile">
-			<p class="help-block">Example block-level help text here.</p>
-		  </div-->
+<? } ?>
 		  <div class="form-group col-md-6">
 				<label for="agree">
 				  &nbsp;&nbsp;<input type="checkbox" name="agree" id="agree" value="1" required /> <? echo $ls->terms[$lang]; ?>
@@ -128,7 +120,6 @@ if ($use_country) {
 		  </div>
 		  <p style="text-align:center;">
 			  <button class="btn btn-default btn-success" onclick="doSubmit(this)" value="reg"><? echo $ls->bconfirm[$lang]; ?></button>
-			  <a href="dashboard.php" class="btn btn-default btn-danger"><? echo $ls->bcancel[$lang]; ?></a>
 		  </p>
 		</form>
 	  </div>
@@ -146,11 +137,7 @@ function doSubmit(n) {
     success:function(res){
       if (res.status=="success") {
 				$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
-	        if (res.url) {
-	          location.href = res.url;
-	        } else {
-	          location.reload();
-	        }
+	          location.href = "login.php";
 				});
       } else {
 				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
@@ -172,7 +159,7 @@ function doSave(btn) {
 			var res = JSON.parse(res);
 			if (res.status == "success") {
 				$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
-				location.reload();
+				location.href="login.php";
 				});
 			} else {
 				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
@@ -193,6 +180,7 @@ function getpin() {
 }
 </script>
 <?
-include("_script.php");
-include("_footer.php");
+//include("_script.php");
+  include("inc/scripts.php");
+  //include("_footer.php");
 ?>

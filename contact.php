@@ -12,7 +12,7 @@ $user = load_user(0);
 
 $ls->title = array("Support Ticket","联系客服","聯繫客服");
 $ls->successful = array("Message Sent","信息顺利提交","信息顺利提交");
-$ls->th = array('<th>Ser</th><th>Time</th><th>Send By</th><th>Subject</th><th>Message</th><th>Status</th><th>Action</th>',
+$ls->th = array('<th>S/No</th><th>Time</th><th>Send By</th><th>Subject</th><th>Message</th><th>Status</th><th>Action</th>',
 		'<th style="width:5%;">编号</th><th style="width:19%;">时间</th><th style="width:22%;">发件人</th><th style="width:15%;">标题</th><th style="width:11%;">信息</th><th style="width:11%;">状态</th><th style="width:10%;">操作</th>',
 		'<th style="width:5%;">編號</th><th style="width:19%;">時間</th><th style="width:22%;">發件人</th><th style="width:15%;">標題</th><th style="width:11%;">信息</th><th style="width:11%;">狀態</th><th style="width:10%;">操作</th>');
 $ls->successful = array("Message Sent","信息顺利提交","信息顺利提交");

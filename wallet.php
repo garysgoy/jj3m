@@ -20,7 +20,7 @@ $ls = new stdClass();
 
 $ls->wallet_ph = array("Help Reward","互助钱包","互助錢包");
 $ls->wallet_reg = array("Register Reward","注册钱包","註冊錢包");
-$ls->wallet_ref = array("Refer Reqard","推荐钱包","推薦錢包");
+$ls->wallet_ref = array("Refer Reward","推荐钱包","推薦錢包");
 $ls->wallet_mgr = array("Manager Reward","经理奖钱包","經理獎錢包");
 $ls->rmb = array("RMB","人民币","人民幣");
 $ls->wallet = array("Wallet","钱包","錢包");

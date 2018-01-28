@@ -401,7 +401,7 @@ if ($ctr == 0) {
 
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#groupA" data-toggle="tab"><? echo $ls->titleph[$lang]; ?> (<? echo ggHelpCount('P'); ?>)</a></li>
-    <li role="presentation"><a href="#groupC" data-toggle="tab"><? echo $ls->titleph[$lang]; ?> (<? echo ggHelpCount('G'); ?>)</a></li>
+    <li role="presentation"><a href="#groupC" data-toggle="tab"><? echo $ls->titlegh[$lang]; ?> (<? echo ggHelpCount('G'); ?>)</a></li>
 </ul>
 <div class="container" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; background-color:#fff; padding: 10px 0; margin-bottom: 20px;">
   <div class="tab-content">

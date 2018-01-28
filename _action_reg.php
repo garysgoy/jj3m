@@ -14,12 +14,11 @@ $setup->phone_len 	= 11;
 
 $username 		= htmlentities($req['username']);
 $email 				= $req['email'];
+$fullname 		= $req['fullname'];
 $password 		= $req['password'];
 $repassword 	= $req['repassword'];
 
 $password2 		= $req['password2'];
-
-$fullname 		= $req['fullname'];
 $phone 				= $req['phone'];
 $referral 		= $req['sponsor'];
 
@@ -100,9 +99,12 @@ $v->addValidation(13,$referral_c,"eq=1",$ls->referral_eq[$lang]);
 //$v->addValidation(9,$phone,"minlen=8",$ls->phone_min[$lang]);
 //$v->addValidation(15,$fullname,"req",$ls->fullname_req[$lang]);
 //$v->addValidation(16,$phonecode,"eq=123456",$ls->phonecode_err[$lang]);
-$v->addValidation(14,$pin,"req",$ls->pin_req[$lang]);
-$v->addValidation(15,$pin,"eq=".$pin_c,$ls->pin_eq[$lang]);
-$v->addValidation(16,$password2_5,"eq=".$user->password2,$ls->password2_match[$lang]);
+if (isset($req['pin'])) {
+	// If require pin thwn need 2nd password check
+	$v->addValidation(14,$pin,"req",$ls->pin_req[$lang]);
+	$v->addValidation(15,$pin,"eq=".$pin_c,$ls->pin_eq[$lang]);
+	$v->addValidation(16,$password2_5,"eq=".$user->password2,$ls->password2_match[$lang]);
+}
 $v->addValidation(17,$agree,"shouldselchk=1",$ls->agree_chk[$lang]);
 
 //$v->addValidation($pin,"req",$ls->pin_req[$lang]);
@@ -111,25 +113,29 @@ $v->addValidation(17,$agree,"shouldselchk=1",$ls->agree_chk[$lang]);
 if (!$v->ValidateForm()) {
   $ret = array("status"=>"fail", "msg"=>$v->getError());
 } else {
-	$dummy = ggAddMember($email,$username,$phone,$referral,$password,$pin,$country,$password2_5);
-	$ret = array('status'=>"success", 'msg'=>'操作成功','username'=>$username);
+	$msg = ggAddMember($email,$username,$fullname,$phone,$referral,$password,$pin,$country,$password2_5);
+	if ($msg=="") {
+		$ret = array('status'=>"success", 'msg'=>'操作成功','username'=>$username);
+	} else {
+  	$ret = array("status"=>"fail", "msg"=>$msg);
+	}
 }
 echo json_encode($ret);
 
-function ggAddMember($email,$username,$phone,$referral,$password,$pin,$country,$password2_5) {
-	global $db,$user,$ls,$msg, $lang;
-	$ret = 0;
+function ggAddMember($email,$username,$fullname,$phone,$referral,$password,$pin,$country,$password2_5) {
+	global $db,$user,$ls,$lang;
+	$msg = "";
 
 	if (mysqli_num_rows($db->query("select id from tblmember where username='$username'"))>0) {
-		$msg .= "<br>".$ls->username_e4[$lang];
-	} else if (mysqli_num_rows($db->query("select id from tblmember where id=$user->id and password2<>'' and password2='$password2_5'"))==0) {
-		$msg .= "<br>".$ls->password_e4[$lang];
-	} else if (mysqli_num_rows($db->query("select id from tblpin where managerid=$user->id and status='N' and pin='$pin'"))==0) {
-		$msg .= "<br>".$ls->pin_e1[$lang];
+		$msg .= "<br>".$ls->username_dupe[$lang];
+	} else if ($pin<>"" and mysqli_num_rows($db->query("select id from tblmember where id=$user->id and password2<>'' and password2='$password2_5'"))==0) {
+		$msg .= "<br>".$ls->password2_match[$lang];
+	} else if ($pin<>"" and mysqli_num_rows($db->query("select id from tblpin where managerid=$user->id and status='N' and pin='$pin'"))==0) {
+		$msg .= "<br>".$ls->pin_eq[$lang];
 	} else {
 		$ref = ggFetchObject("select id,rank,username from tblmember where username='$referral'");
 		if ($ref=="") {
-			$msg .= "<br>".$ls->referral_e2[$lang];
+			$msg .= "<br>".$ls->referral_eq[$lang];
 		} else {
 			$ref_id = $ref->id;
 			$ref_name = $ref->username;
@@ -139,21 +145,22 @@ function ggAddMember($email,$username,$phone,$referral,$password,$pin,$country,$
 			$password5 = md5($password);
 
 			// Default to Manager if register by Senior Manager and above
-  		    $mgr_id = $user->id;
-  		    $mgr_name = $user->username;
-			$rs = $db->query("INSERT INTO tblmember (id,email,username, password,phone,referral,manager,ref_name, mgr_name,date_add,rank,country,status,pin)
-				VALUES (NULL ,'$email','$username','$password5','$phone',$ref_id,$mgr_id,'$ref_name','$mgr_name',NOW(),1,'$country', 'A','$pin')") or die("err ".$db->error);
+	    $mgr_id = $user->id;
+	    $mgr_name = $user->username;
+			$rs = $db->query("INSERT INTO tblmember (id,email,username, fullname, password,phone,referral,manager,ref_name, mgr_name,date_add,rank,country,status,pin)
+				VALUES (NULL ,'$email','$username','$fullname','$password5','$phone',$ref_id,$mgr_id,'$ref_name','$mgr_name',NOW(),1,'$country', 'A','$pin')") or die("err ".$db->error);
 			$nid = $db->insert_id;
 			$nuser = load_user($nid);
-			$rs1 = $db->query("update tblpin set useby = '$nuser->username',usedate=NOW(), status='U' where managerid=$mgr_id and status='N' and pin = '$pin'");
-
+			if ($pin<>"") {
+				$rs1 = $db->query("update tblpin set useby = '$nuser->username',usedate=NOW(), status='U' where managerid=$mgr_id and status='N' and pin = '$pin'");
+			}
 			ggRegister1($nid,$username);
 			ggAccessLog1($user->username,"NEW","$nid $username $email $country $ref_id $mgr_id");
 
 			//send_welcome($email,$fullname,$password,'en');
 		}
 	}
-	return;
+	return $msg;
 }
 
 ?>

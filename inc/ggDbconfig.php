@@ -33,7 +33,7 @@ $setup = load_setup();
 
 $user = load_user(0);
 
-if ($setup->lang >= 90 && $server==1) {
+if ($setup->lang >= 90 && $server==1 && $app_code<>"jj") {
   $lang = $setup->lang - 90;
 } else {
   $lang = (isset($_COOKIE['lang']) && $_COOKIE['lang']>=0)? $_COOKIE['lang']:0;
