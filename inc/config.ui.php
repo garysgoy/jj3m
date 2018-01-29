@@ -8,7 +8,7 @@ $mls->home = array("Dashboard","首页","首頁");
 $mls->dashboard = array("Dashboard","首页","首頁");
 $mls->pin = array("PIN Management","激活码"," 激活碼");
 $mls->mem_mgt= array("Member Management","会员管理","會員管理");
-$mls->reflink= array("Refer Link","推荐链接","推薦連結");
+$mls->reflink= array("Referral Link","推荐链接","推薦連結");
 $mls->register= array("Member Registration","注册新会员","註冊新會員");
 $mls->activate= array("Activate Member","激活新会员","激活新會員");
 $mls->announcement = array("Announcement","新闻公告","新聞公告");
@@ -98,7 +98,7 @@ $page_nav["network"] = array(
 
 $page_nav["account"] = array(
 	"title" => $mls->account[$lang],
-	"icon" => "fa-folder",
+	"icon" => "fa-user-secret",
 	"sub" => array(
 		"profile" => array(
 			"title" => $mls->profile[$lang],

@@ -50,9 +50,9 @@ include("inc/ggHeader.php");
 		<!--<div class="container content-body">-->
 			<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，欢迎回来！</div-->
   <!--div class="container content-body"-->
-	<div class="panel panel-default">
+	<div class="panel panel-bar">
 	  <div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-user-secret"></i> <? echo $ls->title[$lang]; ?></h3>
+		<h4><i class="fa fa-user-secret"></i> <? echo $ls->title[$lang]; ?></h4>
 <!--		<span class="small-tag">请填写以下所需要 [<span class="required-tag">*</span>] 的资料，才可以继续浏览网页</span>
 -->	  </div>
 	  <div class="panel-body">

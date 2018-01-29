@@ -36,40 +36,21 @@ include("inc/ggHeader.php");
   <? include("inc/ribbon.php"); ?>
   <!-- MAIN CONTENT -->
   <div id="content">
-    <div class="row" style="padding: 15px 15px;">
-                <div class="table-responsive" style="border: none">
-                    <table class="table table-striped b-t b-light">
+    <div class="row" style="padding:15px;">
+      <div class="panel panel-bar">
+        <div class="panel-heading">
+          <h4><i class="fa fa-user"></i> <? echo $ls->reflink[$lang]; ?></h4>
+        </div>
+        <div class="panel-body" style="padding:20px;">
+          <a target="_blank" style="color:#d84646; text-transform:lowercase;" href="<? echo $refurl; ?>" id="to_copy_text"><b><? echo "&nbsp;&nbsp;&nbsp;".$refurl; ?></b></a><br>
+          <img width="250px;" height="250px;" src="<? echo $file; ?>"/><br>
+          <? echo "&nbsp;&nbsp;&nbsp;".$ls->scan[$lang]; ?>
+        </div>
+      </div>
+    </div>
 
-                        <tbody>
-                                                  <tr>
-                            <td>
-                              <? echo $ls->reflink[$lang]; ?>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <a target="_blank" style="color:#d84646;text-transform:lowercase;" href="<? echo $refurl; ?>" id="to_copy_text"><? echo $refurl; ?></a>
-
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img width="250px;" height="250px;" src="<? echo $file; ?>"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <? echo $ls->scan[$lang]; ?>
-                            </td>
-                          </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-	  </div>
-	</div> <!-- end Page Content -->
-</div>
+  </div>
+</div> <!-- end Page Content -->
 
 <?
 include("_script.php");

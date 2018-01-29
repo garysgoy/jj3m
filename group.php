@@ -53,9 +53,9 @@ $ls->gh  = array("Get Help","接受帮助","接受幫助");
   <div id="p" class="easyui-panel" title="&nbsp;<i class='fa fa-home'></i>  <? echo $ls->title[$lang]; ?>" style="width:98%;">
     <div class="easyui-tabs" style="width:auto;height:auto">
         <div title="<? echo $ls->ph[$lang] ?>" style="padding:10px">
-      <table id="dg" class="easyui-datagrid" style="width:98%;"
+      <table id="dg" class="easyui-datagrid" style="width:100%;"
           data-options="url:'group_ph.php',
-          pagination:true, pageSize:20,
+          pagination:true, pageSize:10,
           fitColumns:true, singleSelect:true">
         <thead>
           <tr>
@@ -72,9 +72,9 @@ $ls->gh  = array("Get Help","接受帮助","接受幫助");
       </table>
         </div>
        <div title="<? echo $ls->gh[$lang] ?>" style="padding:10px">
-      <table id="dg1" class="easyui-datagrid" style="width:98%;"
+      <table id="dg1" class="easyui-datagrid" style="width:100%;"
           data-options="url:'group_gh.php',
-          pagination:true, pageSize:20,
+          pagination:true, pageSize:10,
           fitColumns:true, singleSelect:true">
         <thead>
           <tr>

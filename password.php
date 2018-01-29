@@ -1,11 +1,11 @@
 <?php
 include_once("inc/ggInit.php");
 if ($user->logged==0 || $user->rank<1) {
-  header("location: login.php");
+	header("location: login.php");
 }
 
 if ($user->rank==1 && $user->fullname=="") {
-  header("location: profile.php");
+	header("location: profile.php");
 }
 
 
@@ -28,119 +28,110 @@ include("inc/ggHeader.php");
 
 ?>
 <div id="main" role="main">
-  <? include("inc/ribbon.php"); ?>
-  <!-- MAIN CONTENT -->
-  <div id="content">
-    <div class="row" style="padding: 15px 15px;">
-  	<div class="col-md-6">
-			<form action="" method="POST" id="passwordForm" data-toggle="validator">
-			  <div class="form-group">
-				<label for="currentpassword"><? echo $ls->old_pass[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="currentpassword" id="currentpassword" placeholder="<? echo $ls->old_pass[$lang]; ?>" value="" required />
-			  </div>
-			  <div class="form-group">
-				<label for="newpassword"><? echo $ls->new_pass[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="newpassword" id="newpassword" value="" placeholder="<? echo $ls->new_pass[$lang]; ?>" required />
-			  </div>
-			  <div class="form-group">
-				<label for="newpassword2"><? echo $ls->cnew_pass[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="newpassword2" id="newpassword2" value="" placeholder="<? echo $ls->cnew_pass[$lang]; ?>" required />
-			  </div>
-			  <!--
-			  <p style="text-align:center;">
-				  <input type="submit" class="btn btn-default btn-primary" value="获取验证码" />
-			  </p>
-			  <input type="hidden" name="mode" id="mode" value="1" />
-			</form>
-			<form action="" method="POST" id="passwordForm2" data-toggle="validator">
-			  <div class="form-group">
-				<label for="code">验证码<span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="code" id="code" value="" placeholder="验证码" required />
-			  </div> -->
-			  <p style="text-align:center;">
-<!--				  <input type="submit" class="btn btn-default btn-success" value="提交" /> -->
-				  <a href="#" onclick="savePass1()" class="btn btn-default btn-success"><? echo $ls->submit[$lang]; ?></a>
-			  </p>
-			  <input type="hidden" name="mode" id="mode" value="2" />
-			</form>
-		</div>
-	  	<div class="col-md-6">
-			<form action="" method="POST" id="securepinForm" data-toggle="validator">
-			  <div class="form-group">
-				<label for="currentpassword"><? echo $ls->old_pass2[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="currentpassword" id="currentpassword" placeholder="<? echo $ls->old_pass2[$lang]; ?>" value="" required />
-			  </div>
-			  <div class="form-group">
-				<label for="newpassword"><? echo $ls->new_pass2[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="newpassword" id="newpassword" value="" placeholder="<? echo $ls->new_pass2[$lang]; ?>" required />
-			  </div>
-			  <div class="form-group">
-				<label for="newpassword2"><? echo $ls->cnew_pass2[$lang]; ?><span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="newpassword2" id="newpassword2" value="" placeholder="<? echo $ls->cnew_pass2[$lang]; ?>" required />
-			  </div>
-			  <!--
-			  <p style="text-align:center;">
-				  <input type="submit" class="btn btn-default btn-primary" value="获取验证码" />
-			  </p>
-			  <input type="hidden" name="mode" id="mode" value="3" />
-			</form>
-			<form action="" method="POST" id="securepinForm2" data-toggle="validator">
-			  <div class="form-group">
-				<label for="code">验证码<span class="required-tag">*</span></label>
-				<input type="password" class="form-control" name="code" id="code" value="" placeholder="验证码" required />
-			  </div> -->
-			  <p style="text-align:center;">
-<!--				  <input type="submit" class="btn btn-default btn-success" value="提交" /> -->
-				  <a href="#" onclick="savePass2()" class="btn btn-default btn-success"><? echo $ls->submit[$lang]; ?></a>
-			  </p>
-			  <input type="hidden" name="mode" id="mode" value="4" />
-			</form>
-		</div>
-	  </div>
-	</div>
-<!--/div-->
-			</div> <!-- end Page Content -->
-<script>
-function savePass1() {
-	$('#passwordForm').form('submit',{
-		type: 'post',
-		url: "password_save1.php",
-		onSubmit: function(){
-			return $(this).form('validate');
-		},
-		success: function(res){
-			var res = JSON.parse(res);
-			if (res.success) {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>","<? echo $ls->successful[$lang]; ?>","info",function(r){
-					location.reload();
-				});
-			} else {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
-			}
-		}
-	});
-}
-function savePass2() {
-	$('#securepinForm').form('submit',{
-		type: 'post',
-		url: "password_save2.php",
-		onSubmit: function(){
-			return $(this).form('validate');
-		},
-		success: function(res){
-			var res = JSON.parse(res);
-			if (res.success) {
-				$.messager.alert("<? echo $ls->title2[$lang]; ?>","<? echo $ls->successful[$lang]; ?>","info",function(r){
-					location.reload();
-				});
-			} else {
-				$.messager.alert("<? echo $ls->title2[$lang]; ?>",res.msg,"error");
-			}
-		}
-	});
-}
-</script>
-<?
-include("_script.php");
-include("_footer.php");
-?>
+	<? include("inc/ribbon.php"); ?>
+	<!-- MAIN CONTENT -->
+	<div id="content">
+		<div class="row" style="padding: 15px 15px;">
+			<div class="col-md-6">
+				<div class="panel panel-bar">
+					<div class="panel-heading">
+						<h4><i class='fa fa-user-secret'></i>  <? echo $ls->title[$lang]; ?></h4>
+					</div>
+					<div class="panel-body" style="padding:10px;">
+
+						<form action="" method="POST" id="passwordForm" data-toggle="validator">
+							<div class="form-group">
+								<label for="currentpassword"><? echo $ls->old_pass[$lang]; ?><span class="required-tag">*</span></label>
+								<input type="password" class="form-control" name="currentpassword" id="currentpassword" placeholder="<? echo $ls->old_pass[$lang]; ?>" value="" required />
+							</div>
+							<div class="form-group">
+								<label for="newpassword"><? echo $ls->new_pass[$lang]; ?><span class="required-tag">*</span></label>
+								<input type="password" class="form-control" name="newpassword" id="newpassword" value="" placeholder="<? echo $ls->new_pass[$lang]; ?>" required />
+							</div>
+							<div class="form-group">
+								<label for="newpassword2"><? echo $ls->cnew_pass[$lang]; ?><span class="required-tag">*</span></label>
+								<input type="password" class="form-control" name="newpassword2" id="newpassword2" value="" placeholder="<? echo $ls->cnew_pass[$lang]; ?>" required />
+							</div>
+							<p style="text-align:center;">
+								<!--				  <input type="submit" class="btn btn-default btn-success" value="提交" /> -->
+								<a href="#" onclick="savePass1()" class="btn btn-default btn-success"><? echo $ls->submit[$lang]; ?></a>
+							</p>
+							<input type="hidden" name="mode" id="mode" value="2" />
+						</form>
+					</div>
+				</div>
+			</div>
+				<div class="col-md-6">
+					<div class="panel panel-bar">
+						<div class="panel-heading">
+							<h4><i class='fa fa-user-secret'></i>  <? echo $ls->title2[$lang]; ?></h4>
+						</div>
+						<div class="panel-body" style="padding:10px;">
+							<form action="" method="POST" id="securepinForm" data-toggle="validator">
+								<div class="form-group">
+									<label for="currentpassword"><? echo $ls->old_pass2[$lang]; ?><span class="required-tag">*</span></label>
+									<input type="password" class="form-control" name="currentpassword" id="currentpassword" placeholder="<? echo $ls->old_pass2[$lang]; ?>" value="" required />
+								</div>
+								<div class="form-group">
+									<label for="newpassword"><? echo $ls->new_pass2[$lang]; ?><span class="required-tag">*</span></label>
+									<input type="password" class="form-control" name="newpassword" id="newpassword" value="" placeholder="<? echo $ls->new_pass2[$lang]; ?>" required />
+								</div>
+								<div class="form-group">
+									<label for="newpassword2"><? echo $ls->cnew_pass2[$lang]; ?><span class="required-tag">*</span></label>
+									<input type="password" class="form-control" name="newpassword2" id="newpassword2" value="" placeholder="<? echo $ls->cnew_pass2[$lang]; ?>" required />
+								</div>
+								<p style="text-align:center;">
+									<!--				  <input type="submit" class="btn btn-default btn-success" value="提交" /> -->
+									<a href="#" onclick="savePass2()" class="btn btn-default btn-success"><? echo $ls->submit[$lang]; ?></a>
+								</p>
+								<input type="hidden" name="mode" id="mode" value="4" />
+							</form>
+						</div>
+					</div>
+				</div>
+				<div>
+				</div> <!-- end Page Content -->
+				<script>
+					function savePass1() {
+						$('#passwordForm').form('submit',{
+							type: 'post',
+							url: "password_save1.php",
+							onSubmit: function(){
+								return $(this).form('validate');
+							},
+							success: function(res){
+								var res = JSON.parse(res);
+								if (res.success) {
+									$.messager.alert("<? echo $ls->title[$lang]; ?>","<? echo $ls->successful[$lang]; ?>","info",function(r){
+										location.reload();
+									});
+								} else {
+									$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
+								}
+							}
+						});
+					}
+					function savePass2() {
+						$('#securepinForm').form('submit',{
+							type: 'post',
+							url: "password_save2.php",
+							onSubmit: function(){
+								return $(this).form('validate');
+							},
+							success: function(res){
+								var res = JSON.parse(res);
+								if (res.success) {
+									$.messager.alert("<? echo $ls->title2[$lang]; ?>","<? echo $ls->successful[$lang]; ?>","info",function(r){
+										location.reload();
+									});
+								} else {
+									$.messager.alert("<? echo $ls->title2[$lang]; ?>",res.msg,"error");
+								}
+							}
+						});
+					}
+				</script>
+				<?
+				include("_script.php");
+				include("_footer.php");
+				?>

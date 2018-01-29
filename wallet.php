@@ -166,7 +166,7 @@ include("_inc_gethelp_m.php");
         </div>
 
     <!-- GG REF -->
-  <div title="<? echo $ls->wallet_ref[$lang]; ?>" style="padding:10px">
+  <div title="<? echo $ls->wallet_ref[$lang]; ?>" style="padding:5px">
   <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_ref.php"
       pagination="true" pageSize="10" nowrap="false"
@@ -189,7 +189,7 @@ include("_inc_gethelp_m.php");
   </table>
     </div>
     <!-- GG MGR -->
-    <div title="<? echo $ls->wallet_mgr[$lang]; ?>" style="padding:10px">
+    <div title="<? echo $ls->wallet_mgr[$lang]; ?>" style="padding:5px">
 
   <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_mgr.php"

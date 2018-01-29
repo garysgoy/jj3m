@@ -39,25 +39,20 @@ include("inc/ggHeader.php");
     <div class="row" style="padding: 15px 15px;">
     	<!-- GG Start -->
       <div id="p" class="easyui-panel" title="&nbsp;<i class='fa fa-home'></i>  <? echo $ls->title[$lang]; ?>" style="width:98%;">
-      <table id="dg" class="easyui-datagrid" style="width:100%;"
-          url="referral_l.php"
-          pagination="true" pageSize="10"
-          fitColumns="true" singleSelect="true">
-        <thead>
-          <tr>
-            <th field="username" width="20" sortable="true"><? echo $ls->username[$lang] ?></th>
-            <th field="fullname" width="40" sortable="true"><? echo $ls->fullname[$lang] ?></th>
-            <th field="rank" width="20" sortable="true"><? echo $ls->rank[$lang] ?></th>
-            <th field="phone" width="25" sortable="true"><? echo $ls->phone[$lang] ?></th>
-            <th field="mgr_name" width="50" sortable="true"><? echo $ls->manager[$lang] ?></th>
-            <th field="directs" width="10" sortable="false" align="center"><? echo $ls->directs[$lang] ?></th>
-            <th field="date_add" width="25" sortable="true"><? echo $ls->date_add[$lang] ?></th>
-    <!--        <th field="ph" width="60" sortable="false"><? echo $ls->ph[$lang] ?></th>
-    -->
-            <th field="status" width="15" sortable="false"><? echo $ls->status[$lang] ?></th>
-          </tr>
-        </thead>
-      </table>
+        <table id="dg" class="easyui-datagrid" style="width:100%;" url="referral_l.php" pagination="true" pageSize="20" fitColumns="true" singleSelect="true">
+          <thead>
+            <tr>
+              <th field="username" width="20" sortable="true"><? echo $ls->username[$lang] ?></th>
+              <th field="fullname" width="40" sortable="true"><? echo $ls->fullname[$lang] ?></th>
+              <th field="rank" width="20" sortable="true"><? echo $ls->rank[$lang] ?></th>
+              <th field="phone" width="25" sortable="true"><? echo $ls->phone[$lang] ?></th>
+              <th field="mgr_name" width="50" sortable="true"><? echo $ls->manager[$lang] ?></th>
+              <th field="directs" width="10" sortable="false" align="center"><? echo $ls->directs[$lang] ?></th>
+              <th field="date_add" width="25" sortable="true"><? echo $ls->date_add[$lang] ?></th>
+              <th field="status" width="15" sortable="false"><? echo $ls->status[$lang] ?></th>
+            </tr>
+          </thead>
+        </table>
       </div>
       <!-- GG End -->
     </div> <!-- END ROW -->
@@ -68,6 +63,6 @@ include("inc/ggHeader.php");
 
 <!-- PAGE FOOTER -->
 <?php
-  include("inc/footer.php");
-  include("inc/scripts.php");
+include("inc/footer.php");
+include("inc/scripts.php");
 ?>

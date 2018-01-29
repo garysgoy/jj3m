@@ -41,156 +41,156 @@ include("inc/ggHeader.php");
 ?>
 <!-- Page content -->
 <div id="main" role="main">
-  <? include("inc/ribbon.php"); ?>
-  <!-- MAIN CONTENT -->
-  <div id="content">
-    <div class="row" style="padding: 15px 15px;">
+	<? include("inc/ribbon.php"); ?>
+	<!-- MAIN CONTENT -->
+	<div id="content">
+		<div class="row" style="padding: 15px 15px;">
 
-	<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，歡迎回來！</div-->
-  <!--div class="container content-body"-->
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-user"></i> <? echo $ls->title[$lang]; ?></h3>
-	  </div>
-	  <div class="panel-body">
-		<form method="POST" id="regForm" name="regForm">
-		  <div class="form-group register-form col-md-6">
-			<label for="username"><? echo $ls->username[$lang]; ?> <span class="require-field">*</span></label> <span id="errmsg1" style="font-size:10px; color:#ff0000;"></span>
-			<input type="text" class="form-control" name="username" id="username" value="<? echo $username; ?>" placeholder="<? echo $ls->pusername[$lang]; ?>" />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="email"><? echo $ls->email[$lang]; ?> <span class="require-field">*</span></label> <!--span id="errmsg3" style="font-size:10px; color:#ff0000;"></span-->
-			<input type="email" class="form-control" name="email" id="email" value="<? echo $email; ?>" placeholder="<? echo $ls->email[$lang]; ?>" required />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="phone"><? echo $ls->fullname[$lang]; ?>. <span class="require-field">*</span></label>
-			<input type="text" class="form-control" name="fullname" id="fullname" value="<? echo $fullname; ?>" placeholder="<? echo $ls->pfullname[$lang]; ?>" required />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="phone"><? echo $ls->phoneno[$lang]; ?>. <span class="require-field">*</span></label>
-			<input type="text" class="form-control" name="phone" id="phone" value="<? echo $phone; ?>" placeholder="<? echo $ls->pphoneno[$lang]; ?>" required />
-		  </div>
-<?
-$use_country=false;
-if ($use_country) {
-?>
-		  <div class="form-group register-form col-md-6">
-			<label for="country"><? echo $ls->country[$lang]; ?> <span class="require-field">*</span></label>
-			<select name="country" class="form-control" style="width:98%;">
-				<option value="NA"><? echo $ls->pcountry[$lang]; ?></option>
-				<option value="CN">&#20013;&#22269; China</option>
-				<option value="HK">&#39321;&#28207; Hong Kong</option>]
-				<option value="ID">&#21360;&#24230;&#23612;&#35199;&#20122; Indonesia</option>
-				<option value="MY">&#39532;&#26469;&#35199;&#20122; Malaysia</option>
-				<option value="SG">&#26032;&#21152;&#22369; Singapore</option>
-				<option value="TW">&#21488;&#28286; Taiwan</option>
-				<option value="TL">&#27888;&#22269; Thailand</option>
-			</select>
-		  </div>
-<? } ?>
-		  <div class="form-group register-form col-md-6">
-			<label for="password"><? echo $ls->password[$lang]; ?> <span class="require-field">*</span></label>
-			<input type="password" class="form-control" name="password" id="password" value="<? echo $password; ?>" placeholder="<? echo $ls->ppassword[$lang]; ?>" required />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="password2"><? echo $ls->cpassword[$lang]; ?> <span class="require-field">*</span></label>
-			<input type="password" class="form-control" name="repassword" id="repassword" value="<? echo $password2; ?>" placeholder="<? echo $ls->pconfirmpassword[$lang]; ?>" required />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="sponsor"><? echo $ls->sponsorusername[$lang]; ?> <span class="require-field">*</span></label>
-			<input type="text" class="form-control" name="sponsor" id="sponsor" onblur="checkSponsor()" value="<? echo $user->username; ?>" placeholder="<? echo $ls->psponsorusername[$lang]; ?>" required />
-		  </div>
-		  <div class="form-group register-form col-md-6">
-			<label for="sponsor2"><? echo $ls->confirmsponsor[$lang]; ?> <span class="require-field">&nbsp;</span></label>
-			<input type="text" class="form-control" name="sponsor2" id="sponsor2" value="" readonly />
-		  </div>
-		  <div class="row">
-		  <div class="form-group register-form col-md-6">
-				<label for="pin"><? echo $ls->pinno[$lang]; ?>.&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="#" class="btn btn-default btn-success btn-xs" onclick="getpin()"><? echo $ls->load_pincode[$lang]; ?></a>
-				</label>
-				<input type="text" class="form-control" name="pin" id="pin" value=""/>
-		  </div>
-		  <div class="form-group register-form col-md-6">
-				<label for=""><? echo $ls->secondpass[$lang]; ?></label>
-				<input type="password" class="form-control" name="password2" id="password2" value="<? echo $password2; ?>" placeholder="<? echo $ls->psecondpassword[$lang]; ?>" required style="width:99%;" required />
-		  </div>
-			</div>
+			<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，歡迎回來！</div-->
+			<!--div class="container content-body"-->
+			<div class="panel panel-bar">
+				<div class="panel-heading">
+					<h4><i class="fa fa-user"></i> <? echo $page_title; ?></h4>
+				</div>
+				<div class="panel-body" style="padding: 20px 10px 10px 10px;">
+					<form method="POST" id="regForm" name="regForm">
+						<div class="form-group register-form col-md-6">
+							<label for="username"><? echo $ls->username[$lang]; ?> <span class="require-field">*</span></label> <span id="errmsg1" style="font-size:10px; color:#ff0000;"></span>
+							<input type="text" class="form-control" name="username" id="username" value="<? echo $username; ?>" placeholder="<? echo $ls->pusername[$lang]; ?>" />
+						</div>
+						<div class="form-group register-form col-md-6">
+							<label for="email"><? echo $ls->email[$lang]; ?> <span class="require-field">*</span></label> <!--span id="errmsg3" style="font-size:10px; color:#ff0000;"></span-->
+							<input type="email" class="form-control" name="email" id="email" value="<? echo $email; ?>" placeholder="<? echo $ls->email[$lang]; ?>" required />
+						</div>
+						<div class="form-group register-form col-md-6">
+							<label for="phone"><? echo $ls->fullname[$lang]; ?>. <span class="require-field">*</span></label>
+							<input type="text" class="form-control" name="fullname" id="fullname" value="<? echo $fullname; ?>" placeholder="<? echo $ls->pfullname[$lang]; ?>" required />
+						</div>
+						<div class="form-group register-form col-md-6">
+							<label for="phone"><? echo $ls->phoneno[$lang]; ?>. <span class="require-field">*</span></label>
+							<input type="text" class="form-control" name="phone" id="phone" value="<? echo $phone; ?>" placeholder="<? echo $ls->pphoneno[$lang]; ?>" required />
+						</div>
+						<?
+						$use_country=false;
+						if ($use_country) {
+							?>
+							<div class="form-group register-form col-md-6">
+								<label for="country"><? echo $ls->country[$lang]; ?> <span class="require-field">*</span></label>
+								<select name="country" class="form-control" style="width:98%;">
+									<option value="NA"><? echo $ls->pcountry[$lang]; ?></option>
+									<option value="CN">&#20013;&#22269; China</option>
+									<option value="HK">&#39321;&#28207; Hong Kong</option>]
+									<option value="ID">&#21360;&#24230;&#23612;&#35199;&#20122; Indonesia</option>
+									<option value="MY">&#39532;&#26469;&#35199;&#20122; Malaysia</option>
+									<option value="SG">&#26032;&#21152;&#22369; Singapore</option>
+									<option value="TW">&#21488;&#28286; Taiwan</option>
+									<option value="TL">&#27888;&#22269; Thailand</option>
+								</select>
+							</div>
+							<? } ?>
+							<div class="form-group register-form col-md-6">
+								<label for="password"><? echo $ls->password[$lang]; ?> <span class="require-field">*</span></label>
+								<input type="password" class="form-control" name="password" id="password" value="<? echo $password; ?>" placeholder="<? echo $ls->ppassword[$lang]; ?>" required />
+							</div>
+							<div class="form-group register-form col-md-6">
+								<label for="password2"><? echo $ls->cpassword[$lang]; ?> <span class="require-field">*</span></label>
+								<input type="password" class="form-control" name="repassword" id="repassword" value="<? echo $password2; ?>" placeholder="<? echo $ls->pconfirmpassword[$lang]; ?>" required />
+							</div>
+							<div class="form-group register-form col-md-6">
+								<label for="sponsor"><? echo $ls->sponsorusername[$lang]; ?> <span class="require-field">*</span></label>
+								<input type="text" class="form-control" name="sponsor" id="sponsor" onblur="checkSponsor()" value="<? echo $user->username; ?>" placeholder="<? echo $ls->psponsorusername[$lang]; ?>" required />
+							</div>
+							<div class="form-group register-form col-md-6">
+								<label for="sponsor2"><? echo $ls->confirmsponsor[$lang]; ?> <span class="require-field">&nbsp;</span></label>
+								<input type="text" class="form-control" name="sponsor2" id="sponsor2" value="" readonly />
+							</div>
+							<div class="row">
+								<div class="form-group register-form col-md-6">
+									<label for="pin"><? echo $ls->pinno[$lang]; ?>.&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="#" class="btn btn-default btn-success btn-xs" onclick="getpin()"><? echo $ls->load_pincode[$lang]; ?></a>
+									</label>
+									<input type="text" class="form-control" name="pin" id="pin" value=""/>
+								</div>
+								<div class="form-group register-form col-md-6">
+									<label for=""><? echo $ls->secondpass[$lang]; ?></label>
+									<input type="password" class="form-control" name="password2" id="password2" value="<? echo $password2; ?>" placeholder="<? echo $ls->psecondpassword[$lang]; ?>" required style="width:99%;" required />
+								</div>
+							</div>
 		  <!--div class="form-group">
 			<label for="exampleInputFile">File input</label>
 			<input type="file" id="exampleInputFile">
 			<p class="help-block">Example block-level help text here.</p>
-		  </div-->
-		  <div class="form-group col-md-6">
-				<label for="agree">
-				  &nbsp;&nbsp;<input type="checkbox" name="agree" id="agree" value="1" required /> <? echo $ls->terms[$lang]; ?>
-				</label>
-		  </div>
-		  <p style="text-align:center;">
-			  <button class="btn btn-default btn-success" onclick="doSubmit(this)" value="reg"><? echo $ls->bconfirm[$lang]; ?></button>
-			  <a href="dashboard.php" class="btn btn-default btn-danger"><? echo $ls->bcancel[$lang]; ?></a>
-		  </p>
-		</form>
-	  </div>
-	</div>
+		</div-->
+		<div class="form-group col-md-6">
+			<label for="agree">
+				&nbsp;&nbsp;<input type="checkbox" name="agree" id="agree" value="1" required /> <? echo $ls->terms[$lang]; ?>
+			</label>
+		</div>
+		<p style="text-align:center;">
+			<button class="btn btn-default btn-success" onclick="doSubmit(this)" value="reg"><? echo $ls->bconfirm[$lang]; ?></button>
+			<a href="dashboard.php" class="btn btn-default btn-danger"><? echo $ls->bcancel[$lang]; ?></a>
+		</p>
+	</form>
+</div>
+</div>
 </div>
 
 <script>
-function doSubmit(n) {
-  n.disabled = true;
-  $.ajax({
-    url:"_action_" + n.value + ".php",
-    type: "POST",
-    data: $("#"+n.value+"Form").serialize(),
-    dataType: "json",
-    success:function(res){
-      if (res.status=="success") {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
-	        if (res.url) {
-	          location.href = res.url;
-	        } else {
-	          location.reload();
-	        }
-				});
-      } else {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
-      }
-      n.disabled = false;
-    },
-    error:function(XMLHttpRequest, textStatus, errorThrown){
-      alert(txtStatus);
-      n.disabled = false;
-    }
-  });
-}
-
-function doSave(btn) {
-	btn.disabled = true;
-	$('#regForm').form('submit',{
-		url: "register_add.php",
-		success: function(res){
-			var res = JSON.parse(res);
-			if (res.status == "success") {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
-				location.reload();
-				});
-			} else {
-				$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
+	function doSubmit(n) {
+		n.disabled = true;
+		$.ajax({
+			url:"_action_" + n.value + ".php",
+			type: "POST",
+			data: $("#"+n.value+"Form").serialize(),
+			dataType: "json",
+			success:function(res){
+				if (res.status=="success") {
+					$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
+						if (res.url) {
+							location.href = res.url;
+						} else {
+							location.reload();
+						}
+					});
+				} else {
+					$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
+				}
+				n.disabled = false;
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown){
+				alert(txtStatus);
+				n.disabled = false;
 			}
-		}
-	});
-}
-function checkSponsor() {
-	var sponsor = document.getElementById("sponsor").value;
-	$.post('register_chk.php', {sponsor: sponsor}, function(data) {
-  		document.getElementById("sponsor2").value = data;
-	});
-}
-function getpin() {
-	$.get('register_pin.php', {data: 1}, function(data){
-    	document.getElementById("pin").value = data;
-	});
-}
+		});
+	}
+
+	function doSave(btn) {
+		btn.disabled = true;
+		$('#regForm').form('submit',{
+			url: "register_add.php",
+			success: function(res){
+				var res = JSON.parse(res);
+				if (res.status == "success") {
+					$.messager.alert("<? echo $ls->title[$lang]; ?>","<b style='color: blue;'>"+ res.username +"<br><br><? echo $ls->successful[$lang]; ?>","info",function(r){
+						location.reload();
+					});
+				} else {
+					$.messager.alert("<? echo $ls->title[$lang]; ?>",res.msg,"error");
+				}
+			}
+		});
+	}
+	function checkSponsor() {
+		var sponsor = document.getElementById("sponsor").value;
+		$.post('register_chk.php', {sponsor: sponsor}, function(data) {
+			document.getElementById("sponsor2").value = data;
+		});
+	}
+	function getpin() {
+		$.get('register_pin.php', {data: 1}, function(data){
+			document.getElementById("pin").value = data;
+		});
+	}
 </script>
 <?
 include("_script.php");

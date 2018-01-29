@@ -24,7 +24,7 @@ $req = ($debug)? $_GET:$req;
 	$ls->nofullname = array("Name Not Set","尚未设定","尚未設定");
 
 	$page = isset($req['page']) ? intval($req['page']) : 1;
-	$rows = isset($req['rows']) ? intval($req['rows']) : 30;
+	$rows = isset($req['rows']) ? intval($req['rows']) : 20;
 	$sort = isset($req['sort']) ? strval($req['sort']) : 'username';
 	$order = isset($req['order']) ? strval($req['order']) : 'asc';	$offset = ($page-1)*$rows;
 

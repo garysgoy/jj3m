@@ -39,22 +39,25 @@ include("inc/ggHeader.php");
   <!-- MAIN CONTENT -->
   <div id="content">
     <div class="row" style="padding: 15px 15px;">
-    	<!-- GG Start -->
-      <div id="p" class="easyui-panel" title="&nbsp;<i class='fa fa-home'></i>  <? echo $page_title; ?>" style="width:98%;">
-      <table id="dg" class="easyui-datagrid" style="width:100%;"
+      <div class="panel panel-bar">
+        <div class="panel-heading">
+          <h4><i class='fa fa-user'></i>  <? echo $page_title; ?></h4>
+        </div>
+        <div class="panel-body" style="padding:10px;">
+          <table id="dg" class="easyui-datagrid" style="width:100%;"
           url="activate_l.php"
           pagination="true" pageSize="10"
           fitColumns="true" singleSelect="true">
-        <thead>
-          <tr>
-            <th field="username" width="20" sortable="true"><? echo $ls->username[$lang] ?></th>
-            <th field="phone" width="25" sortable="true"><? echo $ls->phone[$lang] ?></th>
-            <th field="status" width="15" sortable="true"><? echo $ls->status[$lang] ?></th>
-            <th field="action" width="30" sortable="true"><? echo $ls->action[$lang] ?></th>
-            <th field="date_add" width="30" sortable="true"><? echo $ls->date_add[$lang] ?></th>
-          </tr>
-        </thead>
-      </table>
+          <thead>
+            <tr>
+              <th field="username" width="20" sortable="true"><? echo $ls->username[$lang] ?></th>
+              <th field="phone" width="25" sortable="true"><? echo $ls->phone[$lang] ?></th>
+              <th field="status" width="15" sortable="true"><? echo $ls->status[$lang] ?></th>
+              <th field="action" width="30" sortable="true"><? echo $ls->action[$lang] ?></th>
+              <th field="date_add" width="30" sortable="true"><? echo $ls->date_add[$lang] ?></th>
+            </tr>
+          </thead>
+        </table>
       </div>
       <!-- GG End -->
     </div> <!-- END ROW -->
@@ -63,29 +66,29 @@ include("inc/ggHeader.php");
 
 <!-- ==========================CONTENT ENDS HERE ========================== -->
 <script>
-function doActivate(id) {
-	var act = 'activate';
-	$.post("_action.php",{act:act,id:id},function(result){
-	  if(result.status == 'success')
-	  {
-	    alert("操作成功");
-	    location.reload();
-	  }
-	  else
-	  {
-	    alert(result.msg);
-	    location.reload();
-	  }
+  function doActivate(id) {
+   var act = 'activate';
+   $.post("_action.php",{act:act,id:id},function(result){
+     if(result.status == 'success')
+     {
+       alert("操作成功");
+       location.reload();
+     }
+     else
+     {
+       alert(result.msg);
+       location.reload();
+     }
 
-	},"json");
-}
+   },"json");
+ }
 
-function doDelete(id) {
-	alert("Delete "+id);
-}
+ function doDelete(id) {
+   alert("Delete "+id);
+ }
 </script>
 <!-- PAGE FOOTER -->
 <?php
-  include("inc/footer.php");
-  include("inc/scripts.php");
+include("inc/footer.php");
+include("inc/scripts.php");
 ?>
