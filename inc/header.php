@@ -34,7 +34,7 @@ $use_easyui=true;
 if ($use_easyui) {
 ?>
 
-		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/themes/bootstrap/easyui.css">
 	  <link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/themes/icon.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/3m/toastr.min.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/my-style.css">

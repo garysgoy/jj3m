@@ -40,7 +40,7 @@ include("inc/ggHeader.php");
 		<!--<span class="small-tag">在这里，你可以提交你所面对的疑难，这将被发送到CRO或CRO的同事，您的请求我们将会尽快的处理。我们的服务时间是在周一至周五，北京/香港时间 9:00 到 17:00。</span>-->
 	  </div>
 	  <div class="panel-body">
-		<div class="col-md-4" style="background-color:#ddd; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;">
+		<div class="col-md-4" style="padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;">
 			<h4><? echo $ls->submit_request[$lang]; ?></h4>
 			<form action="" method="POST" id="contactForm" enctype="multipart/form-data">
 <?

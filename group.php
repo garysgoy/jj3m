@@ -112,11 +112,11 @@ $ls->gh  = array("Get Help","接受帮助","接受幫助");
 	include("inc/scripts.php");
 ?>
 
-<!-- PAGE RELATED PLUGIN(S) -->
+<!-- PAGE RELATED PLUGIN(S)
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/default/easyui.css">
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/icon.css">
    <script type="text/javascript" src="js/plugin/jquery-easyui/jquery.easyui.min.js"></script>
-
+ -->
 <script>
 
 

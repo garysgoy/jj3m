@@ -77,11 +77,11 @@ $ls->title = array("Direct Referrals","直属推荐人","直屬推薦人");
 	include("inc/scripts.php");
 ?>
 
-<!-- PAGE RELATED PLUGIN(S) -->
+<!-- PAGE RELATED PLUGIN(S)
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/default/easyui.css">
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/icon.css">
-   <script type="text/javascript" src="js/plugin/jquery-easyui/jquery.easyui.min.js"></script>
-
+  <script type="text/javascript" src="js/plugin/jquery-easyui/jquery.easyui.min.js"></script>
+-->
 <script>
 
 
