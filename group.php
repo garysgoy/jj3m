@@ -23,7 +23,7 @@ include("inc/ggHeader.php");
   <? include("inc/ribbon.php"); ?>
   <!-- MAIN CONTENT -->
   <div id="content">
-    <div class="row" style="padding: 15px 15px;">
+    <div class="row" style="padding: 5px 5px;">
 	<!-- GG Start -->
 <?
 //$lang=1;
@@ -50,8 +50,12 @@ $ls->ph  = array("Provide Help","提供帮助","提供幫助");
 $ls->gh  = array("Get Help","接受帮助","接受幫助");
 ?>
 
-  <div id="p" class="easyui-panel" title="&nbsp;<i class='fa fa-home'></i>  <? echo $ls->title[$lang]; ?>" style="width:98%;">
-    <div class="easyui-tabs" style="width:auto;height:auto">
+      <div class="panel panel-bar">
+        <div class="panel-heading">
+          <h4><i class="fa fa-user"></i> <? echo $page_title; ?></h4>
+        </div>
+        <div class="panel-body" style="padding: 10px 20px 10px 10px;">
+          <div class="easyui-tabs" style="width:auto;height:auto">
         <div title="<? echo $ls->ph[$lang] ?>" style="padding:10px">
       <table id="dg" class="easyui-datagrid" style="width:100%;"
           data-options="url:'group_ph.php',

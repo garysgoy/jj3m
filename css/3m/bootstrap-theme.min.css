@@ -618,7 +618,7 @@ fieldset[disabled] .btn-danger:hover {
   background-repeat: repeat-x
 }
 
-.panel-bar>.panel-heading {
+.panel-warning>.panel-heading {
   background-image: -webkit-linear-gradient(top, #fcf8e3 0, #faf2cc 100%);
   background-image: -o-linear-gradient(top, #fcf8e3 0, #faf2cc 100%);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fcf8e3), to(#faf2cc));

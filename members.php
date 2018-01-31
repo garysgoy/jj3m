@@ -35,13 +35,17 @@ include("inc/ggHeader.php");
   <? include("inc/ribbon.php"); ?>
   <!-- MAIN CONTENT -->
   <div id="content">
-    <div class="row" style="padding: 15px 15px;">
+    <div class="row" style="padding: 5px 5px;">
     	<!-- GG Start -->
-      <div id="p" class="easyui-panel" title="&nbsp;<i class='fa fa-home'></i>  <? echo $ls->title[$lang]; ?>" style="width:98%;">
-        <table id="dg" class="easyui-datagrid" style="width:100%;"
-            data-options="url:'member_l.php',
-            pagination:true, pageSize:10,
-            fitColumns:true, singleSelect:true">
+      <div class="panel panel-bar">
+        <div class="panel-heading">
+          <h4><i class="fa fa-user"></i> <? echo $page_title; ?></h4>
+        </div>
+        <div class="panel-body" style="padding: 10px 20px 10px 10px;">
+          <table id="dg" class="easyui-datagrid" style="width:100%;"
+          data-options="url:'member_l.php',
+          pagination:true, pageSize:10,
+          fitColumns:true, singleSelect:true">
           <thead>
             <tr>
               <th field="username" width="35" sortable="true"><? echo $ls->username[$lang] ?></th>
@@ -57,8 +61,9 @@ include("inc/ggHeader.php");
         </table>
       </div>
     </div>
-	</div>
-	<!-- END MAIN CONTENT -->
+  </div>
+</div>
+<!-- END MAIN CONTENT -->
 
 </div>
 <!-- END MAIN PANEL -->
@@ -67,26 +72,26 @@ include("inc/ggHeader.php");
 
 <!-- PAGE FOOTER -->
 <?php
-	include("inc/footer.php");
+include("inc/footer.php");
 ?>
 <!-- END PAGE FOOTER -->
 
 <?php
 	//include required scripts
-	include("inc/scripts.php");
+include("inc/scripts.php");
 ?>
 
 <!-- PAGE RELATED PLUGIN(S)
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/default/easyui.css">
   <link rel="stylesheet" type="text/css" href="js/plugin/jquery-easyui/themes/icon.css">
    <script type="text/javascript" src="js/plugin/jquery-easyui/jquery.easyui.min.js"></script>
--->
-<script>
+ -->
+ <script>
 
 
-</script>
+ </script>
 
-<?php
+ <?php
 	//include footer
 	//include("inc/google-analytics.php");
-?>
+ ?>

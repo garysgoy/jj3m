@@ -82,7 +82,7 @@ $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user-
               <br/><input type="password" class="form-control" id="password2" name="password2" value="" placeholder="<? echo $ls->psecondpassword[$lang]; ?>" autocomplete="off" required />
               <span id="errMsg" style="font-size:12px; color:#ff0000;"></span> <span id="successMsg" style="font-size:12px;"></span>
               <br/>
-              <a href="#" class="btn btn-default btn-success" onclick="doTransfer()"><? echo $ls->bsubmit[$lang]; ?></a><br><br><br>
+              <a href="#" class="btn btn-default btn-success" onclick="doTransfer()"><? echo $ls->bsubmit[$lang]; ?></a><br>
             </form>
           </div>
         </div>
@@ -95,54 +95,71 @@ $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user-
       </div>
     </div>
 
-    <div class="panel panel-bar">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-share-alt"></i> <? echo $ls->sharepin[$lang]; ?></h3>
-      </div>
-      <div class="panel-body">
-        <div class="easyui-tabs" style="width:auto;height:auto">
-          <div title="<? echo $ls->pin_avail[$lang]; ?>" style="padding:5px">
+    <div class="row" style="padding: 15px;">
+      <div class="panel panel-bar">
+        <div class="panel-heading">
+          <h4><i class="fa fa-share-alt"></i> <? echo $ls->sharepin[$lang]; ?></h4>
+        </div>
+        <div class="panel-body">
+          <div class="easyui-tabs" style="width:auto;height:auto">
+            <div title="<? echo $ls->pin_avail[$lang]; ?>" style="padding:5px">
+              <table id="dg" class="easyui-datagrid" style="width:100%;"
+              data-options="url:'pin_t1.php',
+              pagination:true, pageSize:10,
+              fitColumns:true, singleSelect:true">
+              <thead>
+                <tr>
+                  <th field="sn" width="10" sortable="true"><? echo $ls->sn[$lang] ?></th>
+                  <th field="pin" width="25" sortable="true"><? echo $ls->apin[$lang] ?></th>
+                  <th field="requestdate" width="18" sortable="true"><? echo $ls->date[$lang] ?></th>
+                  <th field="sharedfrom" width="15" sortable="true"><? echo $ls->sharedfrom[$lang] ?></th>
+                  <th field="action" width="15" sortable="true"><? echo $ls->action[$lang] ?></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div title="<? echo $ls->pin_used[$lang]; ?>" style="padding:5px">
             <table id="dg" class="easyui-datagrid" style="width:100%;"
-            data-options="url:'pin_t1.php',
+            data-options="url:'pin_t2.php',
             pagination:true, pageSize:10,
             fitColumns:true, singleSelect:true">
             <thead>
               <tr>
                 <th field="sn" width="10" sortable="true"><? echo $ls->sn[$lang] ?></th>
-                <th field="pin" width="25" sortable="true"><? echo $ls->apin[$lang] ?></th>
+                <th field="pin" width="25" sortable="true"><? echo $ls->pin[$lang] ?></th>
                 <th field="requestdate" width="18" sortable="true"><? echo $ls->date[$lang] ?></th>
-                <th field="sharedfrom" width="15" sortable="true"><? echo $ls->sharedfrom[$lang] ?></th>
+                <th field="useby" width="12" sortable="true"><? echo $ls->usedon[$lang] ?></th>
+                <th field="usedate" width="20" sortable="true"><? echo $ls->usedate[$lang] ?></th>
                 <th field="action" width="15" sortable="true"><? echo $ls->action[$lang] ?></th>
               </tr>
             </thead>
           </table>
         </div>
-        <div title="<? echo $ls->pin_used[$lang]; ?>" style="padding:5px">
+        <div title="<? echo $ls->pin_in[$lang]; ?>" style="padding:5px">
           <table id="dg" class="easyui-datagrid" style="width:100%;"
-          data-options="url:'pin_t2.php',
+          data-options="url:'pin_t3.php',
           pagination:true, pageSize:10,
           fitColumns:true, singleSelect:true">
           <thead>
             <tr>
               <th field="sn" width="10" sortable="true"><? echo $ls->sn[$lang] ?></th>
-              <th field="pin" width="25" sortable="true"><? echo $ls->pin[$lang] ?></th>
-              <th field="requestdate" width="18" sortable="true"><? echo $ls->date[$lang] ?></th>
-              <th field="useby" width="12" sortable="true"><? echo $ls->usedon[$lang] ?></th>
-              <th field="usedate" width="20" sortable="true"><? echo $ls->usedate[$lang] ?></th>
-              <th field="action" width="15" sortable="true"><? echo $ls->action[$lang] ?></th>
+              <th field="efrom" width="25" sortable="true"><? echo $ls->useracc[$lang] ?></th>
+              <th field="qty" width="18" sortable="true"><? echo $ls->pqty[$lang] ?></th>
+              <th field="trdate" width="12" sortable="true"><? echo $ls->date[$lang] ?></th>
             </tr>
           </thead>
         </table>
       </div>
-      <div title="<? echo $ls->pin_in[$lang]; ?>" style="padding:5px">
+
+      <div title="<? echo $ls->pin_out[$lang]; ?>" style="padding:5px">
         <table id="dg" class="easyui-datagrid" style="width:100%;"
-        data-options="url:'pin_t3.php',
+        data-options="url:'pin_t4.php',
         pagination:true, pageSize:10,
         fitColumns:true, singleSelect:true">
         <thead>
           <tr>
             <th field="sn" width="10" sortable="true"><? echo $ls->sn[$lang] ?></th>
-            <th field="efrom" width="25" sortable="true"><? echo $ls->useracc[$lang] ?></th>
+            <th field="eto" width="25" sortable="true"><? echo $ls->useracc[$lang] ?></th>
             <th field="qty" width="18" sortable="true"><? echo $ls->pqty[$lang] ?></th>
             <th field="trdate" width="12" sortable="true"><? echo $ls->date[$lang] ?></th>
           </tr>
@@ -150,25 +167,9 @@ $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user-
       </table>
     </div>
 
-    <div title="<? echo $ls->pin_out[$lang]; ?>" style="padding:5px">
-      <table id="dg" class="easyui-datagrid" style="width:100%;"
-      data-options="url:'pin_t4.php',
-      pagination:true, pageSize:10,
-      fitColumns:true, singleSelect:true">
-      <thead>
-        <tr>
-          <th field="sn" width="10" sortable="true"><? echo $ls->sn[$lang] ?></th>
-          <th field="eto" width="25" sortable="true"><? echo $ls->useracc[$lang] ?></th>
-          <th field="qty" width="18" sortable="true"><? echo $ls->pqty[$lang] ?></th>
-          <th field="trdate" width="12" sortable="true"><? echo $ls->date[$lang] ?></th>
-        </tr>
-      </thead>
-    </table>
   </div>
-
 </div>
-
-<!-- GG End -->
+  <!-- GG End -->
 </div> <!-- END ROW -->
 </div> <!-- END MAIN CONTENT -->
 </div> <!-- END MAIN PANEL -->

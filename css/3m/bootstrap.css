@@ -6939,26 +6939,26 @@ button.list-group-item-danger.active:focus {
   border-bottom-color: #bce8f1;
 }
 
-.panel-bar {
+.panel-warning {
   border-color: #faebcc;
 }
 
-.panel-bar>.panel-heading {
+.panel-warning>.panel-heading {
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
 }
 
-.panel-bar>.panel-heading+.panel-collapse>.panel-body {
+.panel-warning>.panel-heading+.panel-collapse>.panel-body {
   border-top-color: #faebcc;
 }
 
-.panel-bar>.panel-heading .badge {
+.panel-warning>.panel-heading .badge {
   color: #fcf8e3;
   background-color: #8a6d3b;
 }
 
-.panel-bar>.panel-footer+.panel-collapse>.panel-body {
+.panel-warning>.panel-footer+.panel-collapse>.panel-body {
   border-bottom-color: #faebcc;
 }
 

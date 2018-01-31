@@ -83,18 +83,18 @@ $register    = ggFetchObject("select sum(future_amount) as amt from tblmavro whe
   <!-- MAIN CONTENT -->
   <div id="content">
     <div class="row" style="padding: 15px 15px;">
-  <!-- GG Start -->
-		<!-- Page content -->
-		<!--<div class="container content-body">-->
-			<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，欢迎回来！</div-->
-  <div class="container wallet">
-  <div class="col-md-4">
-    <div>
-      <h2><i class="fa fa-money"></i> <? echo $ls->wallet_ph[$lang]; ?></h2>
-      <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;"><? echo $setup->currency; ?></strong>
-      <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
-    </div>
-  </div>
+      <!-- GG Start -->
+      <!-- Page content -->
+      <!--<div class="container content-body">-->
+       <!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，欢迎回来！</div-->
+       <div class="container wallet">
+        <div class="col-md-4">
+          <div>
+            <h2><i class="fa fa-money"></i> <? echo $ls->wallet_ph[$lang]; ?></h2>
+            <span><? echo number_format($deposit->amt,0); ?></span> <strong style="font-size:18px; font-weight:500;"><? echo $setup->currency; ?></strong>
+            <p><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#requestHelpD"><? echo $ls->withdraw[$lang]; ?></a></p>
+          </div>
+        </div>
 <!--
   <div class="col-md-3">
     <div>
@@ -105,29 +105,29 @@ $register    = ggFetchObject("select sum(future_amount) as amt from tblmavro whe
     </div>
   </div>
 -->
-	<div class="col-md-4">
-		<div>
-			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_ref[$lang]; ?></h2>
-			<p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-			<p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($referral->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-      <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#requestHelpR"><? echo $ls->withdraw[$lang]; ?></a></p>
-		</div>
-	</div>
-		<div class="col-md-4">
-		<div>
-			<h2><i class="fa fa-money"></i> <? echo $ls->wallet_mgr[$lang]; ?></h2>
-			<p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($manageru->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-			<p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
-<?
-if ($user->rank < 6) {
+<div class="col-md-4">
+  <div>
+   <h2><i class="fa fa-money"></i> <? echo $ls->wallet_ref[$lang]; ?></h2>
+   <p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($referralu->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+   <p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($referral->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+   <p><a href="#" class="btn btn-success" data-toggle="modal" data-target="#requestHelpR"><? echo $ls->withdraw[$lang]; ?></a></p>
+ </div>
+</div>
+<div class="col-md-4">
+  <div>
+   <h2><i class="fa fa-money"></i> <? echo $ls->wallet_mgr[$lang]; ?></h2>
+   <p style="color:#00bcff;"><? echo $ls->w_onhold[$lang]; ?>: <? echo number_format($manageru->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+   <p style="color:#00ff5a;"><? echo $ls->w_available[$lang]; ?>: <? echo number_format($manager->amt,0); ?> <? echo $ls->rmb[$lang]; ?></p>
+   <?
+   if ($user->rank < 6) {
     echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpX'>Withdraw</a></p>";
-} else if ($user->rank >= 6) {
+  } else if ($user->rank >= 6) {
     echo "<p><a href='#' class='btn btn-primary' data-toggle='modal' data-target='#requestHelpM'>".$ls->withdraw[$lang]."</a></p>";
-}
-?>
-      </div>
-	</div>
-	</div>
+  }
+  ?>
+</div>
+</div>
+</div>
 
 <?
 include("_inc_gethelp.php");
@@ -136,65 +136,65 @@ include("_inc_gethelp_m.php");
 ?>
 
 <div class="container">
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-		<h3 class="panel-title"><i class="fa fa-book"></i> <? echo $ls->wallet[$lang]; ?> <? echo $ls->record[$lang]; ?></h3>
-	  </div>
-	  <div class="panel-body">
+	<div class="panel panel-bar">
+   <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-book"></i> <? echo $ls->wallet[$lang]; ?> <? echo $ls->record[$lang]; ?></h3>
+  </div>
+  <div class="panel-body" style="padding:5px">
     <div class="easyui-tabs" style="width:auto;height:auto">
-        <div title="<? echo $ls->wallet_ph[$lang]; ?>" style="padding:5px">
-  <table id="dg" class="easyui-datagrid" style="width:100%"
-      url="wallet_ph.php"
-      pagination="true" pageSize="10" nowrap="true"
-      fitColumns="true" singleSelect="true">
-    <thead>
-      <tr>
-        <th field="id" sortable="true" width="28"><? echo $ls->id[$lang] ?></th>
-        <th field="date_created" sortable="true" width="28"><? echo $ls->created[$lang] ?></th>
-        <th field="date_release" sortable="true" width="28"><? echo $ls->release[$lang] ?></th>
-        <th field="type" sortable="true" width="20"><? echo $ls->type[$lang] ?></th>
-        <th field="wallet" sortable="true" width="43"><? echo $ls->mavrotype[$lang] ?></th>
-        <th field="help_id" sortable="true" width="30"><? echo $ls->description[$lang] ?></th>
-        <th field="nominal_amount" sortable="true" width="25" align="right"><? echo $ls->nominal[$lang] ?></th>
-        <th field="future_amount" sortable="true" width="30" align="right"><? echo $ls->target[$lang] ?></th>
-        <th field="reward" sortable="true" width="18"><? echo $ls->reward[$lang] ?></th>
-        <th field="future" sortable="true" width="30"><? echo $ls->comment[$lang] ?></th>
-      </tr>
-    </thead>
-  </table>
+      <div title="<? echo $ls->wallet_ph[$lang]; ?>" style="padding:0px 5px 0px 0px">
+        <table id="dg" class="easyui-datagrid" style="width:100%"
+        url="wallet_ph.php"
+        pagination="true" pageSize="10" nowrap="true"
+        fitColumns="true" singleSelect="true">
+        <thead>
+          <tr>
+            <th field="id" sortable="true" width="28"><? echo $ls->id[$lang] ?></th>
+            <th field="date_created" sortable="true" width="28"><? echo $ls->created[$lang] ?></th>
+            <th field="date_release" sortable="true" width="28"><? echo $ls->release[$lang] ?></th>
+            <th field="type" sortable="true" width="20"><? echo $ls->type[$lang] ?></th>
+            <th field="wallet" sortable="true" width="43"><? echo $ls->mavrotype[$lang] ?></th>
+            <th field="help_id" sortable="true" width="30"><? echo $ls->description[$lang] ?></th>
+            <th field="nominal_amount" sortable="true" width="25" align="right"><? echo $ls->nominal[$lang] ?></th>
+            <th field="future_amount" sortable="true" width="30" align="right"><? echo $ls->target[$lang] ?></th>
+            <th field="reward" sortable="true" width="18"><? echo $ls->reward[$lang] ?></th>
+            <th field="future" sortable="true" width="30"><? echo $ls->comment[$lang] ?></th>
+          </tr>
+        </thead>
+      </table>
 
-        </div>
+    </div>
 
     <!-- GG REF -->
-  <div title="<? echo $ls->wallet_ref[$lang]; ?>" style="padding:5px">
-  <table id="dg" class="easyui-datagrid" style="width:100%"
+    <div title="<? echo $ls->wallet_ref[$lang]; ?>" style="padding:0px 5px 0px 0px">
+      <table id="dg" class="easyui-datagrid" style="width:100%"
       url="wallet_ref.php"
       pagination="true" pageSize="10" nowrap="false"
       fitColumns="true" singleSelect="true">
-     <thead>
-      <tr>
-        <th field="id" sortable="true" width="28"><? echo $ls->id[$lang] ?></th>
-        <th field="date_created" sortable="true" width="28"><? echo $ls->created[$lang] ?></th>
-        <th field="date_release" sortable="true" width="28"><? echo $ls->release[$lang] ?></th>
-        <th field="type" sortable="true" width="25"><? echo $ls->type[$lang] ?></th>
-        <th field="wallet" sortable="true" width="30"><? echo $ls->mavrotype[$lang] ?></th>
-        <th field="help_id" sortable="true" width="30"><? echo $ls->description[$lang] ?></th>
-        <th field="comment" sortable="true" width="30"><? echo $ls->username[$lang] ?></th>
-        <th field="nominal_amount" sortable="true" width="25" align="right"><? echo $ls->nominal[$lang] ?></th>
-        <th field="future_amount" sortable="true" width="35" align="right"><? echo $ls->target[$lang] ?></th>
-        <th field="future" sortable="true" width="35"><? echo $ls->comment[$lang] ?></th>
-      </tr>
-    </thead>
+      <thead>
+        <tr>
+          <th field="id" sortable="true" width="28"><? echo $ls->id[$lang] ?></th>
+          <th field="date_created" sortable="true" width="28"><? echo $ls->created[$lang] ?></th>
+          <th field="date_release" sortable="true" width="28"><? echo $ls->release[$lang] ?></th>
+          <th field="type" sortable="true" width="25"><? echo $ls->type[$lang] ?></th>
+          <th field="wallet" sortable="true" width="30"><? echo $ls->mavrotype[$lang] ?></th>
+          <th field="help_id" sortable="true" width="30"><? echo $ls->description[$lang] ?></th>
+          <th field="comment" sortable="true" width="30"><? echo $ls->username[$lang] ?></th>
+          <th field="nominal_amount" sortable="true" width="25" align="right"><? echo $ls->nominal[$lang] ?></th>
+          <th field="future_amount" sortable="true" width="35" align="right"><? echo $ls->target[$lang] ?></th>
+          <th field="future" sortable="true" width="35"><? echo $ls->comment[$lang] ?></th>
+        </tr>
+      </thead>
 
-  </table>
-    </div>
-    <!-- GG MGR -->
-    <div title="<? echo $ls->wallet_mgr[$lang]; ?>" style="padding:5px">
+    </table>
+  </div>
+  <!-- GG MGR -->
+  <div title="<? echo $ls->wallet_mgr[$lang]; ?>" style="padding:0px 5px 0px 0px">
 
-  <table id="dg" class="easyui-datagrid" style="width:100%"
-      url="wallet_mgr.php"
-      pagination="true" pageSize="10" nowrap="false"
-      fitColumns="true" singleSelect="true">
+    <table id="dg" class="easyui-datagrid" style="width:100%"
+    url="wallet_mgr.php"
+    pagination="true" pageSize="10" nowrap="false"
+    fitColumns="true" singleSelect="true">
     <thead>
       <tr>
         <th field="id" sortable="true" width="28"><? echo $ls->id[$lang] ?></th>
@@ -212,36 +212,36 @@ include("_inc_gethelp_m.php");
 
   </table>
 
-    </div> <!-- Manager / Supermanager Bonus -->
- </div>
- </div> <!-- end Page Content -->
+</div> <!-- Manager / Supermanager Bonus -->
+</div>
+</div> <!-- end Page Content -->
 </div>
 </div>
- </div> <!-- end Page Content -->
+</div> <!-- end Page Content -->
 </div>
 </div>
 <script>
-function GHAction(type) {
+  function GHAction(type) {
     var act = "GH";
     var mavro = "deposit";
     var amount = document.getElementById('sell_amount'+type).value;
 
-      jQuery.ajax({
-          type: "POST",
-          url: '_action_gh.php',
-          data: {act:act, mavro:mavro,type:type,amount:amount},
-          success: function(res) {
-              var res = JSON.parse(res);
-              if (res.status == 'success') {
-                  $.messager.alert("<? echo $ls->titlegh[$lang];?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
-                      location.reload();
-                  });
-              } else {
-                  $.messager.alert("<?php echo $ls->titlegh[$lang]; ?>",res.msg,"error");
-              }
-          }
-      });
-}
+    jQuery.ajax({
+      type: "POST",
+      url: '_action_gh.php',
+      data: {act:act, mavro:mavro,type:type,amount:amount},
+      success: function(res) {
+        var res = JSON.parse(res);
+        if (res.status == 'success') {
+          $.messager.alert("<? echo $ls->titlegh[$lang];?>","<b class=blue><? echo $ls->success[$lang]; ?></b>","info",function(r) {
+            location.reload();
+          });
+        } else {
+          $.messager.alert("<?php echo $ls->titlegh[$lang]; ?>",res.msg,"error");
+        }
+      }
+    });
+  }
 </script>
 <?
 include("inc/ggFooter.php");
