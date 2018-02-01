@@ -20,7 +20,7 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 	<!-- Page title -->
 	<title><? echo $ls->title[$lang]; ?></title>
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
+	<link rel="shortcut icon" type="image/ico" href="images/<? echo $app_code; ?>/favicon.ico" />
 
 	<!-- Vendor styles -->
 <!--    <link rel="stylesheet" href="css/3m/main.css" />
@@ -68,7 +68,10 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
 		<div class="col-sm-12">
 			<div class="text-center m-b-md">
-			<img src="img/logo-o.png" width=80 style='margin-top: 40px;'>
+<?
+$logo = ($app_code=="3m")? "images/logo.png":"img/logo-o.png";
+?>				
+			<img src="images/<? echo $app_code; ?>/logo.png" width=80 style='margin-top: 40px;'>
 			<br><b style='color:green;font-size:18px;'><? echo $ls->title[$lang]; ?></b></img>
 			</div>
 
