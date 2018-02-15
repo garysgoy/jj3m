@@ -37,7 +37,7 @@ if ($use_easyui) {
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/themes/bootstrap/easyui.css">
 	  <link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/themes/icon.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/3m/toastr.min.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/my-style.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/my-style.min.css">
 <? } ?>
 <?
 			if ($page_css) {
@@ -101,7 +101,7 @@ if ($use_easyui) {
 					<div id="logo-group">
 
 						<!-- PLACE YOUR LOGO HERE -->
-						<span id="logo"> <img src="<?php echo ASSETS_URL; ?>/img/logo.png" alt="SmartAdmin"> </span>
+						<span id="logo"> <img src="<?php echo ASSETS_URL; ?>/images/<? echo $app_code; ?>/logo.png" alt="SmartAdmin"> </span>
 						<!-- END LOGO PLACEHOLDER -->
 
 <?

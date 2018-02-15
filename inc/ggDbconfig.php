@@ -9,7 +9,7 @@
 -----------*/
 
 $server = ($_SERVER['SERVER_ADDR']=="::1")? 0:1;
-$app_code = "jj";
+$app_code = "3m";
 
 if ($server==0) {
   $db = new mysqli("localhost", "root", "root","jj3m");
