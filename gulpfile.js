@@ -10,24 +10,24 @@ const imagemin = require('gulp-imagemin');
 
 // CSS Tasks
 gulp.task('css-compile', function() {
-  gulp.src('scss/**/*.scss')
+  gulp.src('./src/scss/*.scss')
     .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 10 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('./css/src'));
+    .pipe(gulp.dest('./src/css'));
 });
 
 gulp.task('css-minify', function() {
-    gulp.src(['./css/src/*.css', '!css/*.min.css'])
+    gulp.src(['./src/css/*.css', '!css/*.min.css'])
       .pipe(cssmin())
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('./css'))
 });
 
-
 // Watch on everything
 gulp.task('default', function() {
-  gulp.watch(["css/src/*.css", "!css/*.min.css"], ['css-minify']);
+  gulp.watch("./src/scss/*.scss", ['css-compile']);
+  gulp.watch(["./src/css/*.css", "!css/*.min.css"], ['css-minify']);
 });

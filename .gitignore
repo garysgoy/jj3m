@@ -1,5 +1,6 @@
 
 css/
 node_modules/
-css/demo.min.css
-css/font-awesome.min.css
+gulpfile.js
+src/scss/bootstrap-test.scss
+gulpfile.js

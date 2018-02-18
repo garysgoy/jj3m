@@ -11,10 +11,10 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<!-- Page title -->
@@ -86,7 +86,7 @@ $logo = ($app_code=="3m")? "images/logo.png":"img/logo-o.png";
 
 							<div class="form-group">
 								<label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
-								<input type="password" title="请输入您的密码" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
+								<input type="password" title="password" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
 							</div>
 <? if ($setup->use_captcha==1) { ?>
 							<div class="form-group">
@@ -166,23 +166,6 @@ function doSubmit(n) {
   });
 }
 
-function doLogin() {
-	var act = $("#act").val();
-	var username = $("#username").val();
-	var password = $('#password').val();
-	var sec_code = $('#sec_code').val();
-
-	$("#login_btn").attr("disabled",true);
-	$.post("_action_login.php",{act:act,username:username,password:password,sec_code:sec_code},function(result){
-		if(result.status == 'success') {
-		  document.location.href = "dashboard.php";
-		} else {
-			alert(result.msg);
-			$("#login_btn").attr("disabled",false);
-			//show_msg(result.msg);
-		}
-	},"json");
-}
 </script>
 </body>
 </html>
