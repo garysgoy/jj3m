@@ -26,8 +26,24 @@ gulp.task('css-minify', function() {
       .pipe(gulp.dest('./css'))
 });
 
+
+gulp.task('js-minify', function() {
+  gulp.src('src/js/*.js')
+    .pipe(minify({
+        ext:{
+            src:'-debug.js',
+            min:'.min.js'
+        },
+        noSource:'-debug.js',
+        exclude: ['task'],
+        ignoreFiles: ['.combo.js', '-min.js']
+    }))
+    .pipe(gulp.dest('js'))
+});
+
 // Watch on everything
 gulp.task('default', function() {
   gulp.watch("./src/scss/*.scss", ['css-compile']);
   gulp.watch(["./src/css/*.css", "!css/*.min.css"], ['css-minify']);
+  gulp.watch("./src/js/*.js", ['js-minify']);
 });

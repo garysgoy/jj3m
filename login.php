@@ -17,155 +17,84 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<!-- Page title -->
 	<title><? echo $ls->title[$lang]; ?></title>
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" type="image/ico" href="images/<? echo $app_code; ?>/favicon.ico" />
 
-	<!-- Vendor styles -->
-<!--    <link rel="stylesheet" href="css/3m/main.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css" />
--->
-<!--
-	<link rel="stylesheet" href="/assets/vendor/metisMenu/dist/metisMenu.css" />
-	<link rel="stylesheet" href="/assets/vendor/animate.css/animate.css" />
--->
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/3m/style1.css">
-
-<!--
-	<link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
-	<link rel="stylesheet" href="/assets/fonts/pe-icon-7-stroke/css/helper.css" />
--->
+	<link rel="stylesheet" href="css/my-login.min.css" />
 </head>
 <? $bgfile = ($app_code=="jj")? "1":"2"; ?>
-<body class="blank" style=" background-image:url(images/bg/background<? echo $bgfile; ?>.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
-
-
-
-<!-- Simple splash screen-->
+<body class="my-login-page" style=" background-image:url(images/bg/background<? echo $bgfile; ?>.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
 
 <!--[if lt IE 7]>
-
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-
 <![endif]-->
 
-<div class="color-line"></div>
-
-
-<div class="pull-left m">
-	<!--
-	<a href="" class="btn btn-primary">规则</a>
-	-->
-</div>
-
-
-
-<div class="login-container">
-
-	<div class="row">
-
-		<div class="col-sm-12">
-			<div class="text-center m-b-md">
-<?
-$logo = ($app_code=="3m")? "images/logo.png":"img/logo-o.png";
-?>				
-			<img src="images/<? echo $app_code; ?>/logo.png" width=80 style='margin-top: 40px;'>
-			<br><b style='color:green;font-size:18px;'><? echo $ls->title[$lang]; ?></b></img>
-			</div>
-
-			<div class="hpanel" style="opacity: 0.9;">
-				<div class="panel-body">
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="images/<? echo $app_code; ?>/logo.png"></img>
+					</div>
+					<div class="brand-text">
+						<? echo $ls->title[$lang]; ?>
+					</div>
+					<div class="card fat">
+						<div class="card-body">
 						<form action="" id="loginForm" method="post">
-							<input type="hidden" id="act" value="login">
-							<div class="form-group">
-								<label class="control-label" for="username"><? echo $ls->username[$lang]; ?></label>
-								<input type="text" placeholder="name@163.com" title="<? echo $ls->username[$lang]; ?>" required value="" name="username" id="username" autocomplete="off" class="form-control">
-							</div>
 
-							<div class="form-group">
-								<label class="control-label" for="password"><? echo $ls->password[$lang]; ?></label>
-								<input type="password" title="password" placeholder="<? echo $ls->password[$lang]; ?>" required value="" name="password" id="password" autocomplete="off" class="form-control">
-							</div>
+								<div class="form-group">
+									<label for="username"><? echo $ls->username[$lang]; ?></label>
+									<input id="username" type="text" class="form-control" name="username" value="" required autofocus>
+								</div>
+
+								<div class="form-group">
+									<label for="password"><? echo $ls->password[$lang]; ?>
+										<!--
+										<a href="forgot.html" class="float-right">
+											Forgot Password?
+										</a> -->
+									</label>
+									<input id="password" type="password" class="form-control" name="password" required data-eye>
+								</div>
 <? if ($setup->use_captcha==1) { ?>
-							<div class="form-group">
-								<label class="control-label" for="password"><? echo $ls->sec_code[$lang]; ?>
+								<div class="form-group">
+									<label for="password"><? echo $ls->sec_code[$lang]; ?>
 									<a tabindex=-1 style="margin-left:10px;" href="javascript:void(0)" class="red" onclick="document.getElementById('captcha_img').src='captcha.php'">
 										<img id="captcha_img" src="captcha.php" width="110px">
 									</a>
-								</label>
-								<input type="text" placeholder="<? echo $ls->sec_code[$lang]; ?>" name="sec_code" id="sec_code" class="form-control">
-							</div>
+									</label>
+									<input id="sec_code" type="text" class="form-control" name="sec_code" required>
+								</div>
 <? } ?>
-							<button  id="login-btn" class="btn btn-success btn-block" onclick="doSubmit(this)" value="login"><? echo $ls->login[$lang]; ?></button>
-<!--
-							<a class="btn btn-default btn-block" href="/web/index/forgot_password">忘记密码？</a>
--->
-						</form>
+<!--								<div class="form-group">
+									<label>
+										<input type="checkbox" name="remember"> Remember Me
+									</label>
+								</div> -->
+
+								<div class="form-group">
+									<button  id="login-btn" class="btn btn-success btn-block" onclick="doSubmit(this)" value="login"><? echo $ls->login[$lang]; ?></button>
+								</div>
+								<!--
+								<div class="margin-top20 text-center">
+									Don't have an account? <a href="register.html">Create One</a>
+								</div> -->
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2017 &mdash; Your Company 
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-</div>
-</div>
-</div>
-
-<!-- Vendor scripts -->
-<script src="./js/libs/jquery-3.2.1.min.js"></script>
-<script src="./js/bootstrap/bootstrap.min.js"></script>
-
-<!--
-<script src="./js/3m/toastr.min.js"></script>
-<script src="./js/libs/jquery-ui-1.10.3.min.js"></script>
-<script src="/assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="/assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
-<script src="/assets/vendor/iCheck/icheck.min.js"></script>
-<script src="/assets/vendor/sparkline/index.js"></script>
-<script src="/assets/vendor/toastr/build/toastr.min.js"></script>
--->
-<script>
-$(document).ready(function(){
-	$("#loginForm").submit(function(event){
-		event.preventDefault();
-	});
-});
-
-$(document).keypress(function (e) {
-	if (e.which == 13) {
-		if ($("#login_btn").attr("disabled") == false) {
-			doLogin();
-		}
-	}
-});
-
-function doSubmit(n) {
-	n.disabled = true;
-	$.ajax({
-		url:"_action_" + n.value + ".php",
-		type: "POST",
-		data: $("#"+n.value+"Form").serialize(),
-		dataType: "json",
-		success:function(result){
-		  if (result.status=="success") {
-					if (result.url) {
-					  location.href = result.url;
-					} else {
-					  location.reload();
-					}
-		  } else {
-					alert(result.msg);
-		  }
-		  n.disabled = false;
-		},
-		error:function(XMLHttpRequest, textStatus, errorThrown){
-		  alert(txtStatus);
-		  n.disabled = false;
-		}
-  });
-}
-
-</script>
+	<script src="js/jquery211.min.js"></script>
+	<script src="js/bootstrap337.min.js"></script>
+	<script src="js/my-login.min.js"></script>
 </body>
 </html>
