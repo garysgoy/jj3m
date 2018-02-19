@@ -27,6 +27,8 @@ $ls->directs = array("Directs","下线","下線");
 $ls->date_add = array("Date Add","注册日期","註冊日期");
 $ls->ph = array("Last PH","最近一次的提供帮助","最近一次的提供幫助");
 $ls->title = array("Direct Referrals","直属推荐人","直屬推薦人");
+$ls->confirm_activate = array("Confirm you want to activate this member? ","需要消耗您1个激活码，确定要执行此操作吗？","需要消耗您1個激活碼，確定要執行此操作嗎？");
+$ls->confirm_delete = array("Confirm you want to delete this member?","直属推荐人","直屬推薦人");
 
 
 include("inc/ggHeader.php");
@@ -66,25 +68,40 @@ include("inc/ggHeader.php");
 
 <!-- ==========================CONTENT ENDS HERE ========================== -->
 <script>
-  function doActivate(id) {
+  function doActivate(btn,id) {
    var act = 'activate';
-   $.post("_action.php",{act:act,id:id},function(result){
-     if(result.status == 'success')
-     {
-       alert("操作成功");
-       location.reload();
-     }
-     else
-     {
-       alert(result.msg);
-       location.reload();
-     }
-
-   },"json");
+   btn.disabled = true;
+   if (window.confirm("<? echo $ls->confirm_activate[$lang]; ?>")) {
+     $.post("_action.php",{act:act,id:id},function(result) {
+       if(result.status == 'success') {
+         alert(result.msg);
+         location.reload();
+       } else {
+         alert(result.msg);
+         btn.disabled = false;
+       }
+     },"json");
+   }
  }
 
- function doDelete(id) {
-   alert("Delete "+id);
+ function doDelete(btn,id) {
+   var act = 'delete';
+   btn.disabled = true;
+   if (window.confirm("<? echo $ls->confirm_delete[$lang]; ?>")) {
+     $.post("_action.php",{act:act,id:id},function(result) {
+       if(result.status == 'success')
+       {
+         alert(result.msg);
+         location.reload();
+       }
+       else
+       {
+        alert(result.msg);
+        btn.disabled = false;
+      }
+
+    },"json");
+   }
  }
 </script>
 <!-- PAGE FOOTER -->

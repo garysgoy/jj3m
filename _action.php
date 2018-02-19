@@ -19,6 +19,8 @@ if ($act == 'consult') {
   echo doSupport();
 } else if ($act == 'activate') {
   echo doActivate();
+} else if ($act == 'delete') {
+  echo doDelete();
 } else if ($act == 'PH') {
   echo doPH();
 } else if ($act == 'pin1') {
@@ -57,7 +59,7 @@ function doSupport() {
 
 function doActivate() {
   global $db,$req,$user,$debug,$lang;
-  $id = $req['id'];
+  $id = ($req['id']>0)? $req['id']:0;
 
   $fs = new stdClass();
   $fs->ne_pin = array("You dont have enought activate PIN","激活码不足","激活碼不足");
@@ -78,6 +80,28 @@ function doActivate() {
     $rs1 = $db->query("update tblmember set pin='".$pin."' where id=$id") or die("Err ".$db->error);
     $usr = load_user($id);
     $rs1 = $db->query("update tblpin1 set status='U',usedate=now(), useby = '$usr->username' where managerid=$user->id and pin='$pin'");
+    $ret = array("status"=>"success","msg"=>$fs->success[$lang]);
+  }
+  return json_encode($ret);
+}
+
+function doDelete() {
+  global $db,$req,$user,$debug,$lang;
+  $id = ($req['id']>0)? $req['id']:0;
+
+  $fs = new stdClass();
+  $fs->member = array("Invalid Member","找不到要删除的会员","找不到要刪除的會員");
+  $fs->success = array("Success","操作成功","操作成功");
+
+  $id_c = ggFetchValue("select id from tblmember where id=$id and pin=''");
+
+  $v = new FormValidator();
+  $v->addValidation(2,$id,"eq=".$id_c,$fs->member[$lang]);
+
+  if (!$v->ValidateForm()) {
+    $ret = array("status"=>"fail", "msg"=>$v->getError());
+  } else {
+    $rs1 = $db->query("delete from tblmember where id=$id");
     $ret = array("status"=>"success","msg"=>$fs->success[$lang]);
   }
   return json_encode($ret);

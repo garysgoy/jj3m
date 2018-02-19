@@ -1,4 +1,4 @@
-<?php
+<?
 include_once("inc/ggInit.php");
 
 if ($user->rank<1) {
