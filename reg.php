@@ -51,11 +51,11 @@ include("inc/header0.php");
 
 	<!--div id="welcome-bar"><i class="fa_icon fa fa-smile-o" style="padding-top: 12px;"></i> ezmoney，歡迎回來！</div-->
   <!--div class="container content-body"-->
-	<div class="panel panel-default">
+	<div class="panel panel-info">
 	  <div class="panel-heading">
 		<h3 class="panel-title"><i class="fa fa-user"></i> <? echo $ls->title[$lang]; ?></h3>
 	  </div>
-	  <div class="panel-body">
+	  <div class="panel-body" style="padding: 20px">
 		<form method="POST" id="regForm" name="regForm">
 		  <div class="form-group register-form col-md-6">
 			<label for="username"><? echo $ls->username[$lang]; ?> <span class="require-field">*</span></label> <span id="errmsg1" style="font-size:10px; color:#ff0000;"></span>

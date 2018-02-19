@@ -3,11 +3,13 @@ include("inc/ggDbconfig.php");
 
 $ls = new stdClass();
 $ls->title = array("3M System","3M 互助系统","3M 互助系統");
-$ls->login = array("Login to System","会员登入","會員登入!");
+$ls->login = array("Login","会员登入","會員登入!");
 $ls->username = array("Username","用戶名","用戶名");
 $ls->email = array("Can use Email as your username","用戶名或者电子邮箱","用戶名或者電子郵箱");
 $ls->password = array("Login Password","登入密码","登入密碼");
 $ls->sec_code = array("Security Code","验证码","驗證碼");
+$ls->noaccount = array("No account?","没有账号？","");
+$ls->register = array("Register here","注册账号","驗證碼");
 
 ?>
 <!DOCTYPE html>
@@ -78,15 +80,15 @@ $ls->sec_code = array("Security Code","验证码","驗證碼");
 								<div class="form-group">
 									<button  id="login-btn" class="btn btn-success btn-block" onclick="doSubmit(this)" value="login"><? echo $ls->login[$lang]; ?></button>
 								</div>
-								<!--
+								
 								<div class="margin-top20 text-center">
-									Don't have an account? <a href="register.html">Create One</a>
-								</div> -->
+									<? echo $ls->noaccount[$lang]; ?> <a href="reg.php"><? echo $ls->register[$lang];?></a>
+								</div>
 							</form>
 						</div>
 					</div>
 					<div class="footer">
-						Copyright &copy; 2017 &mdash; Your Company 
+						Copyright &copy; 2018 &mdash; <? echo $ls->title[$lang]; ?>
 					</div>
 				</div>
 			</div>
