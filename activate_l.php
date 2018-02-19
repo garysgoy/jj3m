@@ -54,8 +54,8 @@ $req = ($debug)? $_GET:$_POST;
 
     if ($row->pin =="") {
       $row->status = "<b style='color:red'>".$ls->statusW[$lang]."</b>";
-      $row->action = '<a class="btn btn-success btn-xs" id="btn_alive" onclick="doActivate('.$row->id.')">'.$ls->activate[$lang].'</a>&nbsp;
-                <a class="btn btn-danger btn-xs" id="btn_del" onclick="doDelete('.$row->id.')">'.$ls->delete[$lang].'</a>&nbsp;';
+      $row->action = '<a class="btn btn-success btn-xs" id="btn_alive" onclick="doActivate(this,'.$row->id.')">'.$ls->activate[$lang].'</a>&nbsp;
+                <a class="btn btn-danger btn-xs" id="btn_del" onclick="doDelete(this,'.$row->id.')">'.$ls->delete[$lang].'</a>&nbsp;';
     } else {
       $row->status = "<b style='color:green'>".$ls->statusA[$lang]."</b>";
       $row->action = $ls->none[$lang];
