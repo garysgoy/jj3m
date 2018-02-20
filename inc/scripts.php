@@ -3,7 +3,7 @@
 <script src="<?php echo ASSETS_URL; ?>/js/app.config.min.js"></script>
 
 <!-- BOOTSTRAP JS -->
-<script src="<?php echo ASSETS_URL; ?>/js/bootstrap/bootstrap.min.js"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/bootstrap337.min.js"></script>
 
 <!-- JQUERY VALIDATE -->
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/jquery-validate/jquery.validate.min.js"></script>

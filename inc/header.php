@@ -78,7 +78,7 @@ if ($server==0) {
 		<link rel="apple-touch-startup-image" href="<?php echo ASSETS_URL; ?>/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
 		<!-- GG Use Local instead. - Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-	  <script src="<? echo ASSETS_URL; ?>/js/libs/jquery211.js"></script>
+	  <script src="<? echo ASSETS_URL; ?>/js/jquery211.min.js"></script>
 	  <!-- <script src="<? echo ASSETS_URL; ?>/js/libs/jquery-3.2.1.min.js"></script> -->
 <?
 if ($use_easyui) {

@@ -25,7 +25,25 @@ $ls->register = array("Register here","注册账号","驗證碼");
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/my-login.min.css" />
 </head>
-<? $bgfile = ($app_code=="jj")? "1":"2"; ?>
+<?
+	if ($app_code=="jj") {
+		$bgfile = "1";
+?>
+<style>
+.my-login-page .brand {
+	width: 70px;
+	overflow: hidden;
+	margin: 40px auto 10px auto;
+}
+.my-login-page .brand img {
+	width: 100%;
+}
+</style>
+<?
+	} else {
+    $bgfile = "2";
+	}
+?>
 <body class="my-login-page" style=" background-image:url(images/bg/background<? echo $bgfile; ?>.jpg);background-origin:content;background-size:cover;background-repeat:no-repeat;">
 
 <!--[if lt IE 7]>
@@ -41,7 +59,7 @@ $ls->register = array("Register here","注册账号","驗證碼");
 						<img src="images/<? echo $app_code; ?>/logo.png"></img>
 					</div>
 					<div class="brand-text">
-						<? echo $ls->title[$lang]; ?>
+						<b><? echo $ls->title[$lang]; ?></b>
 					</div>
 					<div class="card fat">
 						<div class="card-body">
@@ -80,7 +98,7 @@ $ls->register = array("Register here","注册账号","驗證碼");
 								<div class="form-group">
 									<button  id="login-btn" class="btn btn-success btn-block" onclick="doSubmit(this)" value="login"><? echo $ls->login[$lang]; ?></button>
 								</div>
-								
+
 								<div class="margin-top20 text-center">
 									<? echo $ls->noaccount[$lang]; ?> <a href="reg.php"><? echo $ls->register[$lang];?></a>
 								</div>
