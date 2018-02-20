@@ -5,6 +5,9 @@
 <!-- BOOTSTRAP JS -->
 <script src="<?php echo ASSETS_URL; ?>/js/bootstrap337.min.js"></script>
 
+<!-- JARVIS WIDGETS -->
+<script src="<?php echo ASSETS_URL; ?>/js/smartwidgets/jarvis.widget.min.js"></script>
+
 <!-- JQUERY VALIDATE -->
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/jquery-validate/jquery.validate.min.js"></script>
 
