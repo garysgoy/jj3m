@@ -35,6 +35,7 @@ gulp.task('js-minify', function() {
             min:'.min.js'
         },
         noSource:'-debug.js',
+        preserveComments: 'some',
         exclude: ['task'],
         ignoreFiles: ['.combo.js', '-min.js']
     }))

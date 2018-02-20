@@ -11,6 +11,10 @@
 <!-- browser msie issue fix -->
 <script src="<?php echo ASSETS_URL; ?>/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
 
+<!-- Easyui: For data grids -->
+<script src="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/jquery.easyui.min.js"></script>
+<script src="<?php echo ASSETS_URL; ?>/js/plugin/jquery-easyui/jquery.easyui.mobile.js"></script>
+
 <!--[if IE 8]>
 <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 <![endif]-->
