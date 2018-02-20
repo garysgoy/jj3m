@@ -5889,3 +5889,85 @@ body.smart-style-7.menu-on-top nav ul>a:hover {
         color: #fff
     }
 }
+
+/*******************
+*
+* Style 11 Demo
+*
+********************/
+
+body.smart-style-11 {
+    background: #FF0000;
+    font-family: RobotoDraft, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased
+}
+/* GG Active Page Indicator Icon (If background-color can set a small bar) */
+body.smart-style-11 .txt-color-magenta,
+body.smart-style-11 nav ul li.active>a:before {
+    color: #A0F!important;
+}
+/* GG Left Pannel Color & width also */
+body.smart-style-11 aside,
+body.smart-style-11 nav ul ul {
+    background: purple;
+    width: 220px;
+}
+
+body.smart-style-11 .nav-tabs>li.active>a {
+    -webkit-box-shadow: 0 2px 0 #E91E63;
+    -moz-box-shadow: 0 2px 0 #E91E63;
+    box-shadow: 0 2px 0 #E91E63;
+    z-index: 10
+}
+
+/* GG Header bar background color */
+body.smart-style-11 #header,
+body.smart-style-11 .dropdown-menu>.active>a,
+body.smart-style-11 .dropdown-menu>.active>a:focus,
+body.smart-style-11 .dropdown-menu>.active>a:hover,
+body.smart-style-11 .dropdown-menu>li>a:focus,
+body.smart-style-11 .dropdown-menu>li>a:hover {
+    background: purple; /*#2196F3;*/
+}
+
+/* GG Ribbon Color setting */
+.smart-style-11 #ribbon {
+    background: green; /* #e6e6e6*/
+}
+
+/* GG Minify color */
+.smart-style-11 .minifyme {
+    background: #434953
+}
+
+.smart-style-11 .minifyme:hover {
+    background: #5C6C86;
+    color: #E1E8F3
+}
+
+/* GG Header Button Color & Hover */
+.smart-style-11 .btn-header>:first-child>a {
+    background: #fb3c4a;
+    border: 1px solid #fb3c4a;
+    color: #fff!important;
+    cursor: pointer!important
+}
+
+.smart-style-11 .btn-header>:first-child>a:hover {
+    opacity: .7
+}
+
+
+/************************/
+
+body.smart-style-12 {
+    background: #FFCC00;
+    font-family: RobotoDraft, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased
+}
+
+body.smart-style-13 {
+    background: #FFFF00;
+    font-family: RobotoDraft, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased
+}

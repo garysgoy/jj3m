@@ -4,7 +4,12 @@
 .smart-style-3 nav ul b .fa-minus-square-o:before {
   content: "\f107";
 }
-
+.smart-style-3 #logo img {
+    width: 35px;
+    height: auto;
+    padding-left: 3px;
+    margin-top: -3px
+}
 /*
 .smart-style-3 .ribbon-button-alignment {
   display: none;
