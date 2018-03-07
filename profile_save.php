@@ -5,25 +5,29 @@ include ('inc/ggFunctions.php');
 $user = load_user(0);
 $setup=load_setup();
 
+$debug = false;
+$req = ($debug)? $_GET:$_POST;
+
 $check_phone_len = false;
 
-$fullname 	= $_REQUEST['fullname'];
-$username 	= $_REQUEST['username'];
-$email 		= $_REQUEST['email'];
-$bankholder = $_REQUEST['bankholder'];
-$bankaccount = $_REQUEST['bankacc'];
-$phone 		= $_REQUEST['phone'];
-$wechat 	= $_REQUEST['wechat'];
-$alipay 	= $_REQUEST['alipay'];
-$btc 	= $_REQUEST['btc'];
-$eth 	= $_REQUEST['eth'];
-$whatsapp 	= $_REQUEST['whatsapp'];
-$line 		= $_REQUEST['line'];
-$bankname 	= $_REQUEST['bankname'];
-$bankbranch = $_REQUEST['bankbranch'];
-$password2_5  = md5($_REQUEST['transpin']);
-$transpin   = $_REQUEST['transpin'];
-$transpin2  = $_REQUEST['transpin2'];
+$fullname 	= $req['fullname'];
+$username 	= $req['username'];
+$email 		= $req['email'];
+$bankholder = $req['bankholder'];
+$bankaccount = $req['bankacc'];
+$phone 		= $req['phone'];
+$wechat 	= $req['wechat'];
+$alipay 	= $req['alipay'];
+$btc 	= $req['btc'];
+$eth 	= $req['eth'];
+$arb 	= $req['arb'];
+$whatsapp 	= $req['whatsapp'];
+$line 		= $req['line'];
+$bankname 	= $req['bankname'];
+$bankbranch = $req['bankbranch'];
+$password2_5  = md5($req['transpin']);
+$transpin   = $req['transpin'];
+$transpin2  = $req['transpin2'];
 
 $bankaccount = preg_replace("/\\s+/iu","",$bankaccount);
 
@@ -106,7 +110,7 @@ if ($alipay <> "") {
 }
 
 if ($msg=="") {
-	$rep = ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$whatsapp,$line,$bankname,$bankbranch);
+	$rep = ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$arb,$whatsapp,$line,$bankname,$bankbranch);
 }
 
 if ($msg == "") {
@@ -116,11 +120,11 @@ if ($msg == "") {
 	echo json_encode(array('msg'=>$msg));
 }
 
-function ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$whatsapp,$line,$bankname,$bankbranch) {
+function ggSaveMember($fullname,$bankaccount,$phone,$wechat,$alipay,$btc,$eth,$arb,$whatsapp,$line,$bankname,$bankbranch) {
 	global $db,$user,$ls,$msg, $lang, $password2_5;
 	$ret = 0;
 
-	$rs1 = $db->query("update tblmember set fullname='$fullname',bankholder='$fullname',bankaccount='$bankaccount',phone='$phone',wechat='$wechat',alipay='$alipay',btc='$btc',eth='$eth',whatsapp='$whatsapp',line='$line',bankname='$bankname',bankbranch='$bankbranch' where id = $user->id");
+	$rs1 = $db->query("update tblmember set fullname='$fullname',bankholder='$fullname',bankaccount='$bankaccount',phone='$phone',wechat='$wechat',alipay='$alipay',btc='$btc',eth='$eth',arb ='$arb',whatsapp='$whatsapp',line='$line',bankname='$bankname',bankbranch='$bankbranch' where id = $user->id");
 
 	if ($user->password2 == "") {
 		$rs1 = $db->query("update tblmember set password2 = '$password2_5' where id = $user->id");

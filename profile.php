@@ -20,6 +20,7 @@ $ls->bankacc = array("Bank account number","银行卡号","銀行卡號");
 $ls->bankbranch = array("Bank branch","银行分行","銀行分行");
 $ls->btc = array("BTC Address","BTC 比特币钱包地址","BTC 比特幣錢包地址");
 $ls->eth = array("ETH Address","ETH 以太币钱包地址","ETH 以太幣錢包地址");
+$ls->arb = array("ARB Address","ARB 币钱包地址","ARB 幣錢包地址");
 $ls->sec_password = array("2nd Password","二级密码","二級密碼");
 $ls->resec_password = array("Confirm 2nd Password","确认二级密码","確認二級密碼");
 $ls->setup_password = array("Setup your 2nd Password","设定你的二级密码","設定你的二級密碼");
@@ -114,6 +115,14 @@ if ($setup->btc==1) {
 		  <div class="form-group">
 			<label for="eth"><? echo $ls->eth[$lang]; ?></label><br/>
 				<input type="text" class="form-control" name="eth" id="eth" value="<? echo $user->eth; ?>" placeholder="<? echo $ls->eth[$lang]; ?>" <? echo ($user->eth=="")?"required":"readonly"; ?> />
+		  </div>
+<? } ?>
+<?
+if ($setup->btc==2) {
+?>
+		  <div class="form-group">
+			<label for="btc"><? echo $ls->arb[$lang]; ?></label><br/>
+				<input type="text" class="form-control" name="arb" id="arb" value="<? echo $user->arb; ?>" placeholder="<? echo $ls->arb[$lang]; ?>" <? echo ($user->arb=="")?"required":"readonly"; ?> />
 		  </div>
 <? } ?>
 		  <!--div class="form-group">
