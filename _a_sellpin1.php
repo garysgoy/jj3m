@@ -108,7 +108,7 @@ if (isset($_POST['user_id']) and isset($_POST['pins'])) {
 	</script>
 </head>
 <body>
-	<div class="easyui-panel" title="Sell PINs" style="width:600px;padding:10px;">
+	<div class="easyui-panel" title="<? echo $page_title; ?>" style="width:600px;padding:10px;">
 		<form id="ff" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>

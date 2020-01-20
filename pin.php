@@ -95,6 +95,13 @@ $pin = ggFetchObject("select count(id) as ctr from tblpin where managerid=$user-
       </div>
     </div>
 
+    <div>
+      <span class="purple lighten-5">Purple l5</span>
+      <span class="purple lighten-4">Purple l4</span>
+      <span class="purple lighten-3">Purple l3</span>
+      <span class="purple lighten-2">Purple l2</span>
+      <span class="purple lighten-1">Purple l1</span>
+    </div>
     <div class="row" style="padding: 15px;">
       <div class="panel panel-bar">
         <div class="panel-heading">

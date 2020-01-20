@@ -58,7 +58,7 @@ function ggPhByDate($pr) {
     $uamount = 0;
     while ($row = mysqli_fetch_object($rs)) {
       $uamount += $row->uamount;
-      $ret .=  "<tr><td>$i</td><td>$row->udate</td><td align=right>".number_format($row->ucount)."</td><td align=right><b class='blue'>".number_format($row->uamount)."</b></td><td align=right>".number_format($uamount)."</td><tr>";
+      $ret .=  "<tr><td>$i</td><td>$row->udate</td><td align=right>".number_format($row->ucount)."</td><td align=right><b class='txt-color-blue'>".number_format($row->uamount)."</b></td><td align=right>".number_format($uamount)."</td><tr>";
       $i -=1;
     }
     $ret .= "</tbody></table><br><br>";
@@ -79,7 +79,7 @@ function ggGhByDate($pr) {
     $uamount = 0;
     while ($row = mysqli_fetch_object($rs)) {
       $uamount += $row->uamount;
-      $ret .=  "<tr><td>$i</td><td>$row->udate</td><td align=right>".number_format($row->ucount)."</td><td align=right><b class='blue'>".number_format($row->uamount)."</b></td><td align=right>".number_format($uamount)."</td><tr>";
+      $ret .=  "<tr><td>$i</td><td>$row->udate</td><td align=right>".number_format($row->ucount)."</td><td align=right><b class='txt-color-blue'>".number_format($row->uamount)."</b></td><td align=right>".number_format($uamount)."</td><tr>";
       $i -=1;
     }
     $ret .= "</tbody></table><br><br>";
